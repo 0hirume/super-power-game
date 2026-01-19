@@ -1,4 +1,12 @@
 {
+  "name": "super-power-game",
+  "type": "module",
+  "scripts": {
+    "build": "rbxtsc",
+    "lint": "oxlint --type-aware",
+    "format": "oxfmt",
+    "start": "rbxtsc -w"
+  },
   "dependencies": {
     "@rbxts/jabby": "^0.4.0",
     "@rbxts/jecs": "^0.9.0",
@@ -14,16 +22,10 @@
     "@rbxts/compiler-types": "^3.0.0-types.0",
     "@rbxts/types": "^1.0.902",
     "eslint-plugin-roblox-ts": "^1.3.1",
+    "oxfmt": "^0.26.0",
     "oxlint": "^1.39.0",
     "oxlint-tsgolint": "^0.11.1",
     "roblox-ts": "^3.0.0",
     "typescript": "^5.9.3"
-  },
-  "name": "super-power-game",
-  "scripts": {
-    "build": "rbxtsc",
-    "lint": "oxlint --type-aware",
-    "start": "rbxtsc -w"
-  },
-  "type": "module"
+  }
 }
