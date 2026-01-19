@@ -1,13 +1,15 @@
 import jabby from "@rbxts/jabby";
-import { sharedWorld } from "../shared/world";
-import { scheduler } from "../shared/scheduler";
 import { Plugin as RunServicePlugin } from "@rbxts/planck-runservice";
+import Net from "@rbxts/yetanothernet";
+
+import { routes } from "../shared/routes";
+import { scheduler } from "../shared/scheduler";
+import { sharedWorld } from "../shared/world";
+
+import { decreaseCoolDownSystem } from "./systems/decrease-cooldown";
 import { playerJoinedSystem } from "./systems/player-join";
 import { playerLeftSystem } from "./systems/player-left";
-import Net from "@rbxts/yetanothernet";
-import { routes } from "../shared/routes";
 import { trainSystem } from "./systems/train";
-import { decreaseCoolDownSystem } from "./systems/decrease-cooldown";
 
 const [beginFrame, endFrame] = Net.createHook(routes);
 

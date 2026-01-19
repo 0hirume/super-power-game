@@ -1,14 +1,20 @@
-import { ContextActionService } from "@rbxts/services";
 import jabby from "@rbxts/jabby";
+import { Plugin as RunServicePlugin } from "@rbxts/planck-runservice";
+import { ContextActionService } from "@rbxts/services";
 import Net from "@rbxts/yetanothernet";
+
 import { routes } from "../shared/routes";
 import { scheduler } from "../shared/scheduler";
-import { Plugin as RunServicePlugin } from "@rbxts/planck-runservice";
+
 import { processInputsSystem } from "./systems/process-inputs";
 
 const [beginFrame, endFrame] = Net.createHook(routes);
 
-scheduler.addPlugin(new RunServicePlugin()).addSystem(beginFrame).addSystem(processInputsSystem).addSystem(endFrame);
+scheduler
+    .addPlugin(new RunServicePlugin())
+    .addSystem(beginFrame)
+    .addSystem(processInputsSystem)
+    .addSystem(endFrame);
 
 const client = jabby.obtain_client();
 

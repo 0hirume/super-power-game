@@ -1,5 +1,6 @@
-import { sharedWorld } from "./world";
 import { Name } from "@rbxts/jecs";
+
+import { sharedWorld } from "./world";
 
 export const PlayerInstance = sharedWorld.component<Player>();
 sharedWorld.set(PlayerInstance, Name, "PlayerInstance");

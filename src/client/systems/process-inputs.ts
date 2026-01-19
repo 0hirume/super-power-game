@@ -1,8 +1,9 @@
+import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 import { onEvent } from "@rbxts/planck";
 import { UserInputService } from "@rbxts/services";
+
 import { routes } from "../../shared/routes";
-import type { World } from "@rbxts/jecs";
 
 const [hasInput, collectInputs] = onEvent(UserInputService.InputBegan);
 

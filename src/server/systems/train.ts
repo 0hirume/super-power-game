@@ -1,6 +1,6 @@
 import { pair, type World } from "@rbxts/jecs";
-import { routes } from "../../shared/routes";
 import type { SystemTable } from "@rbxts/planck";
+
 import {
     CoolDown,
     Endurance,
@@ -12,6 +12,7 @@ import {
     StrengthMultiplier,
 } from "../../shared/components";
 import { TRAINING_COOLDOWN } from "../../shared/constants/player";
+import { routes } from "../../shared/routes";
 
 const TRAINING_ACTIONS = [
     {
@@ -39,7 +40,10 @@ function system(world: World): void {
                 training.statComponent,
                 training.multiplierComponent,
             )) {
-                if (instance === player && !world.has(entity, pair(CoolDown, training.statComponent))) {
+                if (
+                    instance === player &&
+                    !world.has(entity, pair(CoolDown, training.statComponent))
+                ) {
                     world.set(entity, training.statComponent, stat + multiplier);
                     world.set(entity, pair(CoolDown, training.statComponent), TRAINING_COOLDOWN);
                     break;

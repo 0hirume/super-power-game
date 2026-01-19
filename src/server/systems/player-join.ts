@@ -1,4 +1,8 @@
 import type { World } from "@rbxts/jecs";
+import type { SystemTable } from "@rbxts/planck";
+import { onEvent } from "@rbxts/planck";
+import { Players } from "@rbxts/services";
+
 import {
     Endurance,
     EnduranceMultiplier,
@@ -14,9 +18,6 @@ import {
     Strength,
     StrengthMultiplier,
 } from "../../shared/components";
-import { Players } from "@rbxts/services";
-import type { SystemTable } from "@rbxts/planck";
-import { onEvent } from "@rbxts/planck";
 import {
     DEFAULT_ENDURANCE,
     DEFAULT_ENDURANCE_MULTIPLIER,

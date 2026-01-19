@@ -1,8 +1,9 @@
-import type { SystemTable } from "@rbxts/planck";
 import { pair, Wildcard, type World } from "@rbxts/jecs";
+import type { SystemTable } from "@rbxts/planck";
+
 import { CoolDown } from "../../shared/components";
-import { scheduler } from "../../shared/scheduler";
 import { COOLDOWN_ZERO } from "../../shared/constants/player";
+import { scheduler } from "../../shared/scheduler";
 
 function system(world: World): void {
     for (const [entity] of world.query(pair(CoolDown, Wildcard))) {
