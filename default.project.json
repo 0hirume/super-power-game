@@ -1,0 +1,106 @@
+{
+  "globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
+  "name": "super-power-game",
+  "tree": {
+    "$className": "DataModel",
+    "Lighting": {
+      "$properties": {
+        "Ambient": [0, 0, 0],
+        "Brightness": 2
+      },
+      "Sky": {
+        "$className": "Sky",
+        "$properties": {
+          "SkyboxBk": "rbxassetid://6444884337",
+          "SkyboxDn": "rbxassetid://6444884785",
+          "SkyboxFt": "rbxassetid://6444884337",
+          "SkyboxLf": "rbxassetid://6444884337",
+          "SkyboxRt": "rbxassetid://6444884337",
+          "SkyboxUp": "rbxassetid://6412503613"
+        }
+      }
+    },
+    "ReplicatedStorage": {
+      "$ignoreUnknownInstances": true,
+      "$path": "out/shared",
+      "rbxts_include": {
+        "$path": "include",
+        "node_modules": {
+          "@rbxts": {
+            "$path": "node_modules/@rbxts"
+          },
+          "$className": "Folder"
+        }
+      }
+    },
+    "ServerScriptService": {
+      "$path": "out/server"
+    },
+    "SoundService": {
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    },
+    "StarterPlayer": {
+      "StarterCharacterScripts": {
+        "$path": "out/character"
+      },
+      "StarterPlayerScripts": {
+        "$path": "out/client"
+      }
+    },
+    "Workspace": {
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "BottomSurface": "Smooth",
+          "CFrame": {
+            "CFrame": {
+              "orientation": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+              "position": [0, 0, 0]
+            }
+          },
+          "Color": { "Color3uint8": [100, 100, 100] },
+          "Locked": true,
+          "Size": [256, 2, 256],
+          "TopSurface": "Smooth"
+        },
+        "Texture": {
+          "$className": "Texture",
+          "$properties": {
+            "Color3": [0, 0, 0],
+            "Face": "Top",
+            "Texture": "rbxassetid://6372755229"
+          }
+        }
+      },
+      "SpawnLocation": {
+        "$className": "SpawnLocation",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "CanQuery": false,
+          "CanTouch": false,
+          "CFrame": {
+            "CFrame": {
+              "orientation": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+              "position": [0, 0.5, 0]
+            }
+          },
+          "Color": [1, 1, 1],
+          "Locked": true,
+          "Size": [4, 1, 4],
+          "Transparency": 1
+        },
+        "Decal": {
+          "$className": "Decal",
+          "$properties": {
+            "Face": "Top",
+            "Texture": "rbxasset://textures/SpawnLocation.png"
+          }
+        }
+      }
+    }
+  }
+}
