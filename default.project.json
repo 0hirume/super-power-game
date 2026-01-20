@@ -6,7 +6,8 @@
     "Lighting": {
       "$properties": {
         "Ambient": [0, 0, 0],
-        "Brightness": 2
+        "Brightness": 2,
+        "Technology": "Voxel"
       },
       "Sky": {
         "$className": "Sky",
@@ -47,6 +48,11 @@
       },
       "StarterPlayerScripts": {
         "$path": "out/client"
+      }
+    },
+    "TextChatService": {
+      "$properties": {
+        "ChatVersion": "TextChatService"
       }
     },
     "Workspace": {
