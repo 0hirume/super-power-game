@@ -20,12 +20,12 @@ const [beginFrame, endFrame] = Net.createHook(routes);
 scheduler
     .addPlugin(new RunServicePlugin())
     .addSystem(beginFrame)
+    .addSystem(playerJoinedSystem)
     .addSystem(replecsStartSystem)
     .addSystem(replecsHydrateSystem)
-    .addSystem(playerJoinedSystem)
-    .addSystem(playerLeftSystem)
     .addSystem(trainSystem)
     .addSystem(decreaseCoolDownSystem)
+    .addSystem(playerLeftSystem)
     .addSystem(endFrame);
 
 jabby.register({

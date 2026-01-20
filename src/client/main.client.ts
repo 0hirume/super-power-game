@@ -22,9 +22,9 @@ const [beginFrame, endFrame] = Net.createHook(routes);
 scheduler
     .addPlugin(new RunServicePlugin())
     .addSystem(beginFrame)
+    .addSystem(replecsStartReplicationSystem)
     .addSystem(replecsReceiveFullSystem)
     .addSystem(replecsReceiveUpdateSystem)
-    .addSystem(replecsStartReplicationSystem)
     .addSystem(processInputsSystem)
     .addSystem(endFrame);
 
