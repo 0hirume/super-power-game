@@ -1,6 +1,7 @@
-import type { World } from "@rbxts/jecs";
+import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 import { onEvent } from "@rbxts/planck";
+import replecs from "@rbxts/replecs";
 import { Players } from "@rbxts/services";
 
 import {
@@ -41,20 +42,33 @@ function system(world: World): void {
         const playerEntity = makeEntity(world, true);
 
         world.set(playerEntity, PlayerInstance, player);
+        world.set(playerEntity, pair(replecs.reliable, PlayerInstance), undefined);
 
         world.set(playerEntity, Health, DEFAULT_HEALTH);
+        world.set(playerEntity, pair(replecs.reliable, Health), undefined);
         world.set(playerEntity, MaxHealth, DEFAULT_MAX_HEALTH);
+        world.set(playerEntity, pair(replecs.reliable, MaxHealth), undefined);
 
         world.set(playerEntity, Strength, DEFAULT_STRENGTH);
+        world.set(playerEntity, pair(replecs.reliable, Strength), undefined);
         world.set(playerEntity, StrengthMultiplier, DEFAULT_STRENGTH_MULTIPLIER);
+        world.set(playerEntity, pair(replecs.reliable, StrengthMultiplier), undefined);
         world.set(playerEntity, Endurance, DEFAULT_ENDURANCE);
+        world.set(playerEntity, pair(replecs.reliable, Endurance), undefined);
         world.set(playerEntity, EnduranceMultiplier, DEFAULT_ENDURANCE_MULTIPLIER);
+        world.set(playerEntity, pair(replecs.reliable, EnduranceMultiplier), undefined);
         world.set(playerEntity, Speed, DEFAULT_SPEED);
+        world.set(playerEntity, pair(replecs.reliable, Speed), undefined);
         world.set(playerEntity, SpeedMultiplier, DEFAULT_SPEED_MULTIPLIER);
+        world.set(playerEntity, pair(replecs.reliable, SpeedMultiplier), undefined);
         world.set(playerEntity, JumpForce, DEFAULT_JUMP_FORCE);
+        world.set(playerEntity, pair(replecs.reliable, JumpForce), undefined);
         world.set(playerEntity, JumpForceMultiplier, DEFAULT_JUMP_FORCE_MULTIPLIER);
+        world.set(playerEntity, pair(replecs.reliable, JumpForceMultiplier), undefined);
         world.set(playerEntity, Power, DEFAULT_POWER);
+        world.set(playerEntity, pair(replecs.reliable, Power), undefined);
         world.set(playerEntity, PowerMultiplier, DEFAULT_POWER_MULTIPLIER);
+        world.set(playerEntity, pair(replecs.reliable, PowerMultiplier), undefined);
     }
 }
 
