@@ -11,6 +11,7 @@ function system(): void {
         }
 
         const [buf, variants] = replicator.get_full(player);
+        replicator.mark_player_ready(player);
         routes.receiveFull.send(buf, variants).to(player);
     }
 }
