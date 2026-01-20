@@ -32,12 +32,13 @@ import {
     DEFAULT_STRENGTH,
     DEFAULT_STRENGTH_MULTIPLIER,
 } from "../../shared/constants/player";
+import { makeEntity } from "../../shared/utilities/entity";
 
 const [hasPlayerJoined, collectPlayersJoined] = onEvent(Players.PlayerAdded);
 
 function system(world: World): void {
     for (const [_, player] of collectPlayersJoined()) {
-        const playerEntity = world.entity();
+        const playerEntity = makeEntity(world, true);
 
         world.set(playerEntity, PlayerInstance, player);
 
