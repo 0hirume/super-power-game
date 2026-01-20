@@ -16,38 +16,42 @@ import { routes } from "../../shared/routes";
 
 const TRAINING_ACTIONS = [
     {
-        multiplierComponent: StrengthMultiplier,
+        multiplier: StrengthMultiplier,
         route: routes.trainStrength,
-        statComponent: Strength,
+        stat: Strength,
     },
     {
-        multiplierComponent: EnduranceMultiplier,
+        multiplier: EnduranceMultiplier,
         route: routes.trainEndurance,
-        statComponent: Endurance,
+        stat: Endurance,
     },
     {
-        multiplierComponent: PowerMultiplier,
+        multiplier: PowerMultiplier,
         route: routes.trainPower,
-        statComponent: Power,
+        stat: Power,
     },
 ];
 
 function system(world: World): void {
-    for (const training of TRAINING_ACTIONS) {
-        for (const [_, player] of training.route.query()) {
-            for (const [entity, instance, stat, multiplier] of world.query(
+    for (const { multiplier, route, stat } of TRAINING_ACTIONS) {
+        for (const [_, player] of route.query()) {
+            for (const [entity, instance, statValue, multiplierValue] of world.query(
                 PlayerInstance,
-                training.statComponent,
-                training.multiplierComponent,
+                stat,
+                multiplier,
             )) {
-                if (
-                    instance === player &&
-                    !world.has(entity, pair(CoolDown, training.statComponent))
-                ) {
-                    world.set(entity, training.statComponent, stat + multiplier);
-                    world.set(entity, pair(CoolDown, training.statComponent), TRAINING_COOLDOWN);
-                    break;
+                if (instance !== player) {
+                    continue;
                 }
+
+                if (world.has(entity, pair(CoolDown, stat))) {
+                    continue;
+                }
+
+                world.set(entity, stat, statValue + multiplierValue);
+                world.set(entity, pair(CoolDown, stat), TRAINING_COOLDOWN);
+
+                break;
             }
         }
     }
