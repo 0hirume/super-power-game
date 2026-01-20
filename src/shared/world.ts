@@ -1,3 +1,3 @@
-import { world } from "@rbxts/jecs";
+import * as jecs from "@rbxts/jecs";
 
-export const sharedWorld = world();
+export const world = jecs.world();

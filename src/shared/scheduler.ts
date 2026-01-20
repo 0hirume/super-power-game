@@ -1,5 +1,5 @@
 import { Scheduler } from "@rbxts/planck";
 
-import { sharedWorld } from "./world";
+import { world } from "./world";
 
-export const scheduler = new Scheduler(sharedWorld);
+export const scheduler = new Scheduler(world);
