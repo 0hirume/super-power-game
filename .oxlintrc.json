@@ -201,7 +201,6 @@
     "unicorn/prefer-optional-catch-binding": "warn",
     "unicorn/prefer-set-has": "error",
     "unicorn/prefer-spread": "warn",
-    "unicorn/prefer-top-level-await": "error",
     "unicorn/require-array-join-separator": "warn",
     "unicorn/require-module-specifiers": "error",
     "unicorn/switch-case-braces": "warn"
