@@ -4,6 +4,7 @@ import type { SystemTable } from "@rbxts/planck";
 import { CoolDown } from "../../shared/components";
 import { COOLDOWN_ZERO } from "../../shared/constants/player";
 import { scheduler } from "../../shared/scheduler";
+import { setPairValue } from "../../shared/utilities/entity";
 
 function system(world: World): void {
     for (const [entity] of world.query(pair(CoolDown, Wildcard))) {
@@ -11,16 +12,15 @@ function system(world: World): void {
         let target = world.target(entity, CoolDown, index);
 
         while (target !== undefined) {
-            const cooldownPair = pair(CoolDown, target);
-            const cooldown = world.get(entity, cooldownPair);
+            const cooldown = world.get(entity, pair(CoolDown, target));
 
             if (cooldown !== undefined) {
                 const newCooldown = cooldown - scheduler.getDeltaTime();
 
                 if (newCooldown <= COOLDOWN_ZERO) {
-                    world.remove(entity, cooldownPair);
+                    world.remove(entity, pair(CoolDown, target));
                 } else {
-                    world.set(entity, cooldownPair, newCooldown);
+                    setPairValue(world, entity, CoolDown, target, newCooldown);
                 }
             }
 

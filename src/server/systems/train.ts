@@ -1,6 +1,5 @@
 import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
-import replecs from "@rbxts/replecs";
 
 import {
     CoolDown,
@@ -14,6 +13,7 @@ import {
 } from "../../shared/components";
 import { TRAINING_COOLDOWN } from "../../shared/constants/player";
 import { routes } from "../../shared/routes";
+import { setComponent, setPairValue } from "../../shared/utilities/entity";
 
 const TRAINING_ACTIONS = [
     {
@@ -49,9 +49,8 @@ function system(world: World): void {
                     continue;
                 }
 
-                world.set(entity, stat, statValue + multiplierValue);
-                world.set(entity, pair(CoolDown, stat), TRAINING_COOLDOWN);
-                world.set(entity, pair(replecs.pair, CoolDown), undefined);
+                setComponent(world, entity, stat, statValue + multiplierValue);
+                setPairValue(world, entity, CoolDown, stat, TRAINING_COOLDOWN);
 
                 break;
             }
