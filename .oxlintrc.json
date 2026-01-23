@@ -17,7 +17,6 @@
     "eslint/max-lines": "error",
     "eslint/max-lines-per-function": "error",
     "eslint/max-nested-callbacks": "error",
-    "eslint/max-params": "warn",
     "eslint/no-array-constructor": "error",
     "eslint/no-await-in-loop": "error",
     "eslint/no-bitwise": "warn",
