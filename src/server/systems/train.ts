@@ -1,5 +1,6 @@
 import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
+import replecs from "@rbxts/replecs";
 
 import {
     CoolDown,
@@ -50,6 +51,7 @@ function system(world: World): void {
 
                 world.set(entity, stat, statValue + multiplierValue);
                 world.set(entity, pair(CoolDown, stat), TRAINING_COOLDOWN);
+                world.set(entity, pair(replecs.pair, CoolDown), undefined);
 
                 break;
             }
