@@ -1,5 +1,5 @@
 import type { World } from "@rbxts/jecs";
-import type { SystemTable } from "@rbxts/planck";
+import { runOnce, type SystemTable } from "@rbxts/planck";
 
 import { replicator } from "../../../shared/replicator/client";
 import { routes } from "../../../shared/routes";
@@ -11,5 +11,6 @@ function system(): void {
 }
 
 export const replecsReceiveFullSystem: SystemTable<[World]> = {
+    runConditions: [runOnce()],
     system,
 };
