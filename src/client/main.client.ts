@@ -6,9 +6,9 @@ import Net from "@rbxts/yetanothernet";
 import * as _ from "../shared/components";
 import { replicator } from "../shared/replicator/client";
 import { routes } from "../shared/routes";
-import { scheduler } from "../shared/scheduler";
 import { world } from "../shared/world";
 
+import { scheduler } from "./scheduler";
 import { processInputsSystem } from "./systems/process-inputs";
 import {
     replecsReceiveFullSystem,

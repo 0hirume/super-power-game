@@ -4,9 +4,9 @@ import Net from "@rbxts/yetanothernet";
 
 import { replicator } from "../shared/replicator/server";
 import { routes } from "../shared/routes";
-import { scheduler } from "../shared/scheduler";
 import { world } from "../shared/world";
 
+import { scheduler } from "./scheduler";
 import { decreaseCoolDownSystem } from "./systems/decrease-cooldown";
 import { playerJoinedSystem } from "./systems/player-join";
 import { playerLeftSystem } from "./systems/player-left";

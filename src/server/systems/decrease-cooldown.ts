@@ -3,8 +3,8 @@ import type { SystemTable } from "@rbxts/planck";
 
 import { CoolDown } from "../../shared/components";
 import { COOLDOWN_ZERO } from "../../shared/constants/player";
-import { scheduler } from "../../shared/scheduler";
 import { setPairValue } from "../../shared/utilities/entity";
+import { scheduler } from "../scheduler";
 
 function system(world: World): void {
     for (const [entity] of world.query(pair(CoolDown, Wildcard))) {
