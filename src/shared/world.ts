@@ -1,3 +1,3 @@
-import * as jecs from "@rbxts/jecs";
+import jecs from "@rbxts/jecs";
 
 export const world = jecs.world();
