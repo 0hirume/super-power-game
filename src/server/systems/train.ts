@@ -50,7 +50,7 @@ function system(world: World): void {
                 }
 
                 setComponent(world, entity, stat, statValue + multiplierValue);
-                setPairValue(world, entity, CoolDown, stat, TRAINING_COOLDOWN);
+                setPairValue(world, entity, CoolDown, stat, TRAINING_COOLDOWN, true);
 
                 break;
             }
