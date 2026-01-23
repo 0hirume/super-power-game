@@ -21,11 +21,11 @@ scheduler
     .addPlugin(new RunServicePlugin())
     .addSystem(beginFrame)
     .addSystem(playerJoinedSystem)
-    .addSystem(replecsStartSystem)
-    .addSystem(replecsHydrateSystem)
     .addSystem(trainSystem)
     .addSystem(decreaseCoolDownSystem)
     .addSystem(playerLeftSystem)
+    .addSystem(replecsStartSystem)
+    .addSystem(replecsHydrateSystem)
     .addSystem(endFrame);
 
 jabby.register({

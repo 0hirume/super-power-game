@@ -3,6 +3,7 @@ import { Plugin as RunServicePlugin } from "@rbxts/planck-runservice";
 import { ContextActionService } from "@rbxts/services";
 import Net from "@rbxts/yetanothernet";
 
+import * as _ from "../shared/components";
 import { replicator } from "../shared/replicator/client";
 import { routes } from "../shared/routes";
 import { scheduler } from "../shared/scheduler";
@@ -22,10 +23,10 @@ const [beginFrame, endFrame] = Net.createHook(routes);
 scheduler
     .addPlugin(new RunServicePlugin())
     .addSystem(beginFrame)
-    .addSystem(replecsStartReplicationSystem)
+    .addSystem(processInputsSystem)
     .addSystem(replecsReceiveFullSystem)
     .addSystem(replecsReceiveUpdateSystem)
-    .addSystem(processInputsSystem)
+    .addSystem(replecsStartReplicationSystem)
     .addSystem(endFrame);
 
 jabby.register({
