@@ -1,22 +1,18 @@
-import type { World } from "@rbxts/jecs";
+import type { Entity, World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 import { onEvent } from "@rbxts/planck";
 import { Players } from "@rbxts/services";
 
 import {
     Endurance,
-    EnduranceMultiplier,
     Health,
     JumpForce,
-    JumpForceMultiplier,
     MaxHealth,
     PlayerInstance,
     Power,
-    PowerMultiplier,
     Speed,
-    SpeedMultiplier,
     Strength,
-    StrengthMultiplier,
+    TokenMultiplier,
 } from "../../shared/components";
 import {
     DEFAULT_ENDURANCE,
@@ -32,7 +28,35 @@ import {
     DEFAULT_STRENGTH,
     DEFAULT_STRENGTH_MULTIPLIER,
 } from "../../shared/constants/player";
-import { makeEntity, setComponent } from "../../shared/utilities/entity";
+import { makeEntity, setComponent, setPairValue } from "../../shared/utilities/entity";
+
+const STATS: { component: Entity; multiplier: number; value: number }[] = [
+    {
+        component: Strength,
+        multiplier: DEFAULT_STRENGTH_MULTIPLIER,
+        value: DEFAULT_STRENGTH,
+    },
+    {
+        component: Endurance,
+        multiplier: DEFAULT_ENDURANCE_MULTIPLIER,
+        value: DEFAULT_ENDURANCE,
+    },
+    {
+        component: Speed,
+        multiplier: DEFAULT_SPEED_MULTIPLIER,
+        value: DEFAULT_SPEED,
+    },
+    {
+        component: JumpForce,
+        multiplier: DEFAULT_JUMP_FORCE_MULTIPLIER,
+        value: DEFAULT_JUMP_FORCE,
+    },
+    {
+        component: Power,
+        multiplier: DEFAULT_POWER_MULTIPLIER,
+        value: DEFAULT_POWER,
+    },
+];
 
 const [hasPlayerJoined, collectPlayersJoined] = onEvent(Players.PlayerAdded);
 
@@ -45,16 +69,10 @@ function system(world: World): void {
         setComponent(world, playerEntity, Health, DEFAULT_HEALTH, true);
         setComponent(world, playerEntity, MaxHealth, DEFAULT_MAX_HEALTH, true);
 
-        setComponent(world, playerEntity, Strength, DEFAULT_STRENGTH, true);
-        setComponent(world, playerEntity, StrengthMultiplier, DEFAULT_STRENGTH_MULTIPLIER, true);
-        setComponent(world, playerEntity, Endurance, DEFAULT_ENDURANCE, true);
-        setComponent(world, playerEntity, EnduranceMultiplier, DEFAULT_ENDURANCE_MULTIPLIER, true);
-        setComponent(world, playerEntity, Speed, DEFAULT_SPEED, true);
-        setComponent(world, playerEntity, SpeedMultiplier, DEFAULT_SPEED_MULTIPLIER, true);
-        setComponent(world, playerEntity, JumpForce, DEFAULT_JUMP_FORCE, true);
-        setComponent(world, playerEntity, JumpForceMultiplier, DEFAULT_JUMP_FORCE_MULTIPLIER, true);
-        setComponent(world, playerEntity, Power, DEFAULT_POWER, true);
-        setComponent(world, playerEntity, PowerMultiplier, DEFAULT_POWER_MULTIPLIER, true);
+        for (const { component, multiplier, value } of STATS) {
+            setComponent(world, playerEntity, component, value, true);
+            setPairValue(world, playerEntity, TokenMultiplier, component, multiplier, true);
+        }
     }
 }
 
