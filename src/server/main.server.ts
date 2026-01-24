@@ -21,9 +21,9 @@ scheduler
     .addPlugin(new RunServicePlugin())
     .addSystem(beginFrame)
     .addSystem(playerJoinedSystem)
+    .addSystem(playerLeftSystem)
     .addSystem(trainSystem)
     .addSystem(decreaseCoolDownSystem)
-    .addSystem(playerLeftSystem)
     .addSystem(replecsStartSystem)
     .addSystem(replecsHydrateSystem)
     .addSystem(endFrame);
