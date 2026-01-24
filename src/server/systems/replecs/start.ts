@@ -10,8 +10,9 @@ function system(): void {
             continue;
         }
 
-        const [buf, variants] = replicator.get_full(player);
         replicator.mark_player_ready(player);
+
+        const [buf, variants] = replicator.get_full(player);
         routes.receiveFull.send(buf, variants).to(player);
     }
 }
