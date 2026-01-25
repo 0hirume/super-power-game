@@ -12,6 +12,7 @@ import { addTrainEnduranceEventSystem } from "./systems/events/endurance";
 import { addHumanoidJumpEventSystem } from "./systems/events/jump";
 import { addHumanoidMoveEventSystem } from "./systems/events/move";
 import { addTrainStrengthEventSystem } from "./systems/events/strength";
+import { passiveHealSystem, syncHealthSystem } from "./systems/health";
 import { playerJoinedSystem } from "./systems/player-join";
 import { playerLeftSystem } from "./systems/player-left";
 import { replecsHydrateSystem, replecsStartSystem } from "./systems/replecs";
@@ -32,6 +33,8 @@ scheduler
     .addSystem(beginFrame)
     .addSystem(playerJoinedSystem)
     .addSystem(playerLeftSystem)
+    .addSystem(passiveHealSystem)
+    .addSystem(syncHealthSystem)
     .addSystem(addTrainStrengthEventSystem)
     .addSystem(addTrainEnduranceEventSystem)
     .addSystem(addHumanoidMoveEventSystem)
