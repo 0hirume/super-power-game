@@ -1,17 +1,22 @@
 import type { World } from "@rbxts/jecs";
-import type { SystemTable } from "@rbxts/planck";
+import { timePassed, type SystemTable } from "@rbxts/planck";
 
 import { PlayerInstance } from "../../../shared/components";
 import { HumanoidMoveEvent } from "../../../shared/tags";
 import { addTag } from "../../../shared/utilities/ecs";
 
-const ZERO = 0;
+const THRESHOLD = 0.5;
+const INTERVAL = 1;
 
 function system(world: World): void {
     for (const [entity, instance] of world.query(PlayerInstance)) {
         const humanoid = instance.Character?.FindFirstChildWhichIsA("Humanoid");
 
-        if (humanoid === undefined || humanoid.MoveDirection.Magnitude === ZERO) {
+        if (humanoid === undefined) {
+            continue;
+        }
+
+        if (humanoid.MoveDirection.Magnitude <= THRESHOLD) {
             continue;
         }
 
@@ -20,5 +25,6 @@ function system(world: World): void {
 }
 
 export const addHumanoidMoveEventSystem: SystemTable<[World]> = {
+    runConditions: [timePassed(INTERVAL)],
     system,
 };
