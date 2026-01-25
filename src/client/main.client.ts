@@ -9,6 +9,7 @@ import { routes } from "../shared/routes";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
+import { humanoidJumpedSystem } from "./systems/humanoid-jumped";
 import { processInputsSystem } from "./systems/process-inputs";
 import {
     replecsReceiveFullSystem,
@@ -24,6 +25,7 @@ scheduler
     .addPlugin(new RunServicePlugin())
     .addSystem(beginFrame)
     .addSystem(processInputsSystem)
+    .addSystem(humanoidJumpedSystem)
     .addSystem(replecsReceiveFullSystem)
     .addSystem(replecsReceiveUpdateSystem)
     .addSystem(replecsStartReplicationSystem)

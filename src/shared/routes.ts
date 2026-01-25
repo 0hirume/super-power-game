@@ -8,4 +8,6 @@ export const routes = {
     trainEndurance: new Route(),
     trainPower: new Route(),
     trainStrength: new Route(),
+
+    humanoidJumped: new Route(),
 };
