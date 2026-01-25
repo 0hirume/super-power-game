@@ -11,9 +11,13 @@ import { decreaseCoolDownSystem } from "./systems/decrease-cooldown";
 import { playerJoinedSystem } from "./systems/player-join";
 import { playerLeftSystem } from "./systems/player-left";
 import { replecsHydrateSystem, replecsStartSystem } from "./systems/replecs";
-import { trainSystem } from "./systems/train";
-import { trainJumpSystem } from "./systems/train-jump";
-import { trainSpeedSystem } from "./systems/train-speed";
+import {
+    trainEnduranceSystem,
+    trainJumpSystem,
+    trainPowerSystem,
+    trainSpeedSystem,
+    trainStrengthSystem,
+} from "./systems/training";
 
 replicator.init(world);
 
@@ -24,9 +28,11 @@ scheduler
     .addSystem(beginFrame)
     .addSystem(playerJoinedSystem)
     .addSystem(playerLeftSystem)
-    .addSystem(trainSystem)
+    .addSystem(trainStrengthSystem)
+    .addSystem(trainEnduranceSystem)
     .addSystem(trainSpeedSystem)
     .addSystem(trainJumpSystem)
+    .addSystem(trainPowerSystem)
     .addSystem(decreaseCoolDownSystem)
     .addSystem(replecsStartSystem)
     .addSystem(replecsHydrateSystem)
