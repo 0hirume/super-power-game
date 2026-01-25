@@ -3,28 +3,25 @@ import type { SystemTable } from "@rbxts/planck";
 
 import { Cooldown, PlayerInstance, Speed, TokenMultiplier } from "../../../shared/components";
 import { TRAINING_COOLDOWN } from "../../../shared/constants/player";
+import { HumanoidMoveEvent } from "../../../shared/tags";
 import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
-    for (const [entity, playerInstance, statValue, multiplierValue] of world.query(
-        PlayerInstance,
+    for (const [entity, statValue, multiplierValue] of world.query(
         Speed,
         pair(TokenMultiplier, Speed),
     )) {
+        if (!world.has(entity, HumanoidMoveEvent)) {
+            continue;
+        }
+
         if (world.has(entity, pair(Cooldown, Speed))) {
             continue;
         }
 
-        const character = playerInstance.Character;
-        const humanoid = character?.FindFirstChildWhichIsA("Humanoid");
+        print("SPEED", world.get(entity, PlayerInstance));
 
-        if (humanoid === undefined) {
-            continue;
-        }
-
-        if (humanoid.MoveDirection === Vector3.zero) {
-            continue;
-        }
+        world.remove(entity, HumanoidMoveEvent);
 
         setComponent(world, entity, Speed, statValue + multiplierValue);
         setPairValue(world, entity, Cooldown, Speed, TRAINING_COOLDOWN, true);
