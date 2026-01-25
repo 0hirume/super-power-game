@@ -1,4 +1,4 @@
-import { makeComponent, makeTag } from "./utilities/ecs";
+import { makeComponent } from "./utilities/ecs";
 import { world } from "./world";
 
 export const PlayerInstance = makeComponent<Player>(world, "PlayerInstance", true);
@@ -15,5 +15,3 @@ export const Power = makeComponent<number>(world, "Power", true);
 export const TokenMultiplier = makeComponent<number>(world, "TokenMultiplier", true);
 
 export const Cooldown = makeComponent<number>(world, "Cooldown", true);
-
-export const IsMeditating = makeTag(world, "IsMeditating", true);
