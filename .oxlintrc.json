@@ -166,7 +166,6 @@
     "unicorn/consistent-function-scoping": "error",
     "unicorn/empty-brace-spaces": "warn",
     "unicorn/escape-case": "error",
-    "unicorn/filename-case": "warn",
     "unicorn/no-accessor-recursion": "error",
     "unicorn/no-anonymous-default-export": "warn",
     "unicorn/no-array-callback-reference": "error",
