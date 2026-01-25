@@ -1,7 +1,7 @@
 import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { Cooldown, PlayerInstance, Speed, TokenMultiplier } from "../../../shared/components";
+import { Cooldown, Speed, TokenMultiplier } from "../../../shared/components";
 import { TRAINING_COOLDOWN } from "../../../shared/constants/player";
 import { HumanoidMoveEvent } from "../../../shared/tags";
 import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
@@ -18,8 +18,6 @@ function system(world: World): void {
         if (world.has(entity, pair(Cooldown, Speed))) {
             continue;
         }
-
-        print("SPEED", world.get(entity, PlayerInstance));
 
         world.remove(entity, HumanoidMoveEvent);
 
