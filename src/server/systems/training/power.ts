@@ -1,7 +1,7 @@
 import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { CoolDown, IsMeditating, Power, TokenMultiplier } from "../../../shared/components";
+import { Cooldown, IsMeditating, Power, TokenMultiplier } from "../../../shared/components";
 import { TRAINING_COOLDOWN } from "../../../shared/constants/player";
 import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
@@ -10,7 +10,7 @@ function system(world: World): void {
         Power,
         pair(TokenMultiplier, Power),
     )) {
-        if (world.has(entity, pair(CoolDown, Power))) {
+        if (world.has(entity, pair(Cooldown, Power))) {
             continue;
         }
 
@@ -19,7 +19,7 @@ function system(world: World): void {
         }
 
         setComponent(world, entity, Power, statValue + multiplierValue);
-        setPairValue(world, entity, CoolDown, Power, TRAINING_COOLDOWN, true);
+        setPairValue(world, entity, Cooldown, Power, TRAINING_COOLDOWN, true);
     }
 }
 

@@ -14,6 +14,6 @@ export const Power = makeComponent<number>(world, "Power", true);
 
 export const TokenMultiplier = makeComponent<number>(world, "TokenMultiplier", true);
 
-export const CoolDown = makeComponent<number>(world, "CoolDown", true);
+export const Cooldown = makeComponent<number>(world, "Cooldown", true);
 
 export const IsMeditating = makeTag(world, "IsMeditating", true);

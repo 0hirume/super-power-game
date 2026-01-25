@@ -1,7 +1,7 @@
 import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { CoolDown, PlayerInstance, Strength, TokenMultiplier } from "../../../shared/components";
+import { Cooldown, PlayerInstance, Strength, TokenMultiplier } from "../../../shared/components";
 import { TRAINING_COOLDOWN } from "../../../shared/constants/player";
 import { routes } from "../../../shared/routes";
 import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
@@ -17,12 +17,12 @@ function system(world: World): void {
                 continue;
             }
 
-            if (world.has(entity, pair(CoolDown, Strength))) {
+            if (world.has(entity, pair(Cooldown, Strength))) {
                 continue;
             }
 
             setComponent(world, entity, Strength, statValue + multiplierValue);
-            setPairValue(world, entity, CoolDown, Strength, TRAINING_COOLDOWN, true);
+            setPairValue(world, entity, Cooldown, Strength, TRAINING_COOLDOWN, true);
 
             break;
         }
