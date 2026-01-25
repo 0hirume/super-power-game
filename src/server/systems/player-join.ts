@@ -28,7 +28,7 @@ import {
     DEFAULT_STRENGTH,
     DEFAULT_STRENGTH_MULTIPLIER,
 } from "../../shared/constants/player";
-import { makeEntity, setComponent, setPairValue } from "../../shared/utilities/entity";
+import { makeEntity, setComponent, setPairValue } from "../../shared/utilities/ecs";
 
 const STATS: { component: Entity; multiplier: number; value: number }[] = [
     {

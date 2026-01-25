@@ -1,4 +1,4 @@
-import { makeComponent, makeTag } from "./utilities/component";
+import { makeComponent, makeTag } from "./utilities/ecs";
 import { world } from "./world";
 
 export const PlayerInstance = makeComponent<Player>(world, "PlayerInstance", true);

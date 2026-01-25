@@ -3,7 +3,7 @@ import type { SystemTable } from "@rbxts/planck";
 
 import { CoolDown } from "../../shared/components";
 import { COOLDOWN_ZERO } from "../../shared/constants/player";
-import { setPairValue } from "../../shared/utilities/entity";
+import { setPairValue } from "../../shared/utilities/ecs";
 import { scheduler } from "../scheduler";
 
 function system(world: World): void {

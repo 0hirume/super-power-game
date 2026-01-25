@@ -3,7 +3,7 @@ import type { SystemTable } from "@rbxts/planck";
 
 import { CoolDown, IsMeditating, Power, TokenMultiplier } from "../../../shared/components";
 import { TRAINING_COOLDOWN } from "../../../shared/constants/player";
-import { setComponent, setPairValue } from "../../../shared/utilities/entity";
+import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
     for (const [entity, statValue, multiplierValue] of world.query(

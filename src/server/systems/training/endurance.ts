@@ -4,7 +4,7 @@ import type { SystemTable } from "@rbxts/planck";
 import { CoolDown, PlayerInstance, Endurance, TokenMultiplier } from "../../../shared/components";
 import { TRAINING_COOLDOWN } from "../../../shared/constants/player";
 import { routes } from "../../../shared/routes";
-import { setComponent, setPairValue } from "../../../shared/utilities/entity";
+import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
     for (const [_, player] of routes.trainEndurance.query()) {
