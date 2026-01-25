@@ -3,9 +3,10 @@ import { Plugin as RunServicePlugin } from "@rbxts/planck-runservice";
 import { ContextActionService } from "@rbxts/services";
 import Net from "@rbxts/yetanothernet";
 
-import * as _ from "../shared/components";
+import * as _components from "../shared/components";
 import { replicator } from "../shared/replicator/client";
 import { routes } from "../shared/routes";
+import * as _tags from "../shared/tags";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
