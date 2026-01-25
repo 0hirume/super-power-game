@@ -22,7 +22,7 @@ function system(world: World): void {
         world.remove(entity, TrainEnduranceEvent);
 
         setComponent(world, entity, Endurance, statValue + multiplierValue);
-        setPairValue(world, entity, Cooldown, Endurance, TRAINING_COOLDOWN, true);
+        setPairValue(world, entity, Cooldown, Endurance, TRAINING_COOLDOWN);
     }
 }
 

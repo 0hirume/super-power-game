@@ -20,7 +20,7 @@ function system(world: World): void {
         }
 
         setComponent(world, entity, Power, statValue + multiplierValue);
-        setPairValue(world, entity, Cooldown, Power, TRAINING_COOLDOWN, true);
+        setPairValue(world, entity, Cooldown, Power, TRAINING_COOLDOWN);
     }
 }
 
