@@ -1,4 +1,4 @@
-import { makeComponent } from "./utilities/component";
+import { makeComponent, makeTag } from "./utilities/component";
 import { world } from "./world";
 
 export const PlayerInstance = makeComponent<Player>(world, "PlayerInstance", true);
@@ -15,3 +15,5 @@ export const Power = makeComponent<number>(world, "Power", true);
 export const TokenMultiplier = makeComponent<number>(world, "TokenMultiplier", true);
 
 export const CoolDown = makeComponent<number>(world, "CoolDown", true);
+
+export const IsMeditating = makeTag(world, "IsMeditating", true);
