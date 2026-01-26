@@ -3,6 +3,16 @@ import type { Entity, World, Tag } from "@rbxts/jecs";
 import jecs from "@rbxts/jecs";
 import replecs from "@rbxts/replecs";
 
+export function makeEntity(world: World, isNetworked = false): Entity {
+    const entity = world.entity();
+
+    if (isNetworked) {
+        world.set(entity, replecs.networked, undefined);
+    }
+
+    return entity;
+}
+
 export function makeComponent<T>(world: World, name?: string, isShared = false): Entity<T> {
     const component = world.component<T>();
 
@@ -29,16 +39,6 @@ export function makeTag(world: World, name?: string, isShared = false): Tag {
     }
 
     return tag;
-}
-
-export function makeEntity(world: World, isNetworked = false): Entity {
-    const entity = world.entity();
-
-    if (isNetworked) {
-        world.set(entity, replecs.networked, undefined);
-    }
-
-    return entity;
 }
 
 export function addTag(world: World, entity: Entity, tag: Tag, isReplicated = false): void {
