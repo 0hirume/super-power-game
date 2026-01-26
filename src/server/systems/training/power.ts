@@ -7,18 +7,10 @@ import { IsMeditating } from "../../../shared/tags";
 import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
-    for (const [entity, statValue, multiplierValue] of world.query(
-        Power,
-        pair(TokenMultiplier, Power),
-    )) {
-        if (world.has(entity, pair(Cooldown, Power))) {
-            continue;
-        }
-
-        if (!world.has(entity, IsMeditating)) {
-            continue;
-        }
-
+    for (const [entity, statValue, multiplierValue] of world
+        .query(Power, pair(TokenMultiplier, Power))
+        .with(IsMeditating)
+        .without(pair(Cooldown, Power))) {
         setComponent(world, entity, Power, statValue + multiplierValue);
         setPairValue(world, entity, Cooldown, Power, TRAINING_COOLDOWN);
     }

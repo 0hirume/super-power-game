@@ -7,18 +7,10 @@ import { TrainEnduranceEvent } from "../../../shared/tags";
 import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
-    for (const [entity, statValue, multiplierValue] of world.query(
-        Endurance,
-        pair(TokenMultiplier, Endurance),
-    )) {
-        if (!world.has(entity, TrainEnduranceEvent)) {
-            continue;
-        }
-
-        if (world.has(entity, pair(Cooldown, Endurance))) {
-            continue;
-        }
-
+    for (const [entity, statValue, multiplierValue] of world
+        .query(Endurance, pair(TokenMultiplier, Endurance))
+        .with(TrainEnduranceEvent)
+        .without(pair(Cooldown, Endurance))) {
         world.remove(entity, TrainEnduranceEvent);
 
         setComponent(world, entity, Endurance, statValue + multiplierValue);

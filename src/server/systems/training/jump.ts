@@ -7,18 +7,10 @@ import { HumanoidJumpEvent } from "../../../shared/tags";
 import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
-    for (const [entity, statValue, multiplierValue] of world.query(
-        JumpForce,
-        pair(TokenMultiplier, JumpForce),
-    )) {
-        if (!world.has(entity, HumanoidJumpEvent)) {
-            continue;
-        }
-
-        if (world.has(entity, pair(Cooldown, JumpForce))) {
-            continue;
-        }
-
+    for (const [entity, statValue, multiplierValue] of world
+        .query(JumpForce, pair(TokenMultiplier, JumpForce))
+        .with(HumanoidJumpEvent)
+        .without(pair(Cooldown, JumpForce))) {
         world.remove(entity, HumanoidJumpEvent);
 
         setComponent(world, entity, JumpForce, statValue + multiplierValue);

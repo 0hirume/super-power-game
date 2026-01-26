@@ -7,18 +7,10 @@ import { HumanoidMoveEvent } from "../../../shared/tags";
 import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
-    for (const [entity, statValue, multiplierValue] of world.query(
-        Speed,
-        pair(TokenMultiplier, Speed),
-    )) {
-        if (!world.has(entity, HumanoidMoveEvent)) {
-            continue;
-        }
-
-        if (world.has(entity, pair(Cooldown, Speed))) {
-            continue;
-        }
-
+    for (const [entity, statValue, multiplierValue] of world
+        .query(Speed, pair(TokenMultiplier, Speed))
+        .with(HumanoidMoveEvent)
+        .without(pair(Cooldown, Speed))) {
         world.remove(entity, HumanoidMoveEvent);
 
         setComponent(world, entity, Speed, statValue + multiplierValue);
