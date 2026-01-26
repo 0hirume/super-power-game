@@ -8,10 +8,12 @@ import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
 import { decreaseCoolDownSystem } from "./systems/decrease-cooldown";
-import { addTrainEnduranceEventSystem } from "./systems/events/endurance";
-import { addHumanoidJumpEventSystem } from "./systems/events/jump";
-import { addHumanoidMoveEventSystem } from "./systems/events/move";
-import { addTrainStrengthEventSystem } from "./systems/events/strength";
+import {
+    addJumpTrainEventSystem,
+    addSpeedTrainEventSystem,
+    addTrainEventSystem,
+    addPowerTrainEventSystem,
+} from "./systems/events";
 import { passiveHealSystem, syncHealthSystem } from "./systems/health";
 import { playerJoinedSystem } from "./systems/player-join";
 import { playerLeftSystem } from "./systems/player-left";
@@ -35,10 +37,10 @@ scheduler
     .addSystem(playerLeftSystem)
     .addSystem(passiveHealSystem)
     .addSystem(syncHealthSystem)
-    .addSystem(addTrainStrengthEventSystem)
-    .addSystem(addTrainEnduranceEventSystem)
-    .addSystem(addHumanoidMoveEventSystem)
-    .addSystem(addHumanoidJumpEventSystem)
+    .addSystem(addTrainEventSystem)
+    .addSystem(addSpeedTrainEventSystem)
+    .addSystem(addJumpTrainEventSystem)
+    .addSystem(addPowerTrainEventSystem)
     .addSystem(trainStrengthSystem)
     .addSystem(trainEnduranceSystem)
     .addSystem(trainSpeedSystem)

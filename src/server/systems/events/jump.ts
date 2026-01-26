@@ -1,10 +1,10 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { PlayerInstance } from "../../../shared/components";
+import { JumpForce, PlayerInstance } from "../../../shared/components";
 import { routes } from "../../../shared/routes";
-import { HumanoidJumpEvent } from "../../../shared/tags";
-import { addTag } from "../../../shared/utilities/ecs";
+import { TrainEvent } from "../../../shared/tags";
+import { addPair } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
     for (const [_, player] of routes.humanoidJumped.query()) {
@@ -13,13 +13,13 @@ function system(world: World): void {
                 continue;
             }
 
-            addTag(world, entity, HumanoidJumpEvent);
+            addPair(world, entity, TrainEvent, JumpForce);
 
             break;
         }
     }
 }
 
-export const addHumanoidJumpEventSystem: SystemTable<[World]> = {
+export const addJumpTrainEventSystem: SystemTable<[World]> = {
     system,
 };

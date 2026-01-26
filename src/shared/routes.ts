@@ -8,7 +8,5 @@ export const routes = {
 
     startReplication: new Route<[]>(),
 
-    trainEndurance: new Route<[]>(),
-    trainPower: new Route<[]>(),
-    trainStrength: new Route<[]>(),
+    train: new Route<[]>(),
 };
