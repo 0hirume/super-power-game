@@ -13,6 +13,7 @@ import {
     addSpeedTrainEventSystem,
     addTrainEventSystem,
     addPowerTrainEventSystem,
+    setTrainingModeSystem,
 } from "./systems/events";
 import { passiveHealSystem, syncHealthSystem } from "./systems/health";
 import { playerJoinedSystem } from "./systems/player-join";
@@ -37,6 +38,7 @@ scheduler
     .addSystem(playerLeftSystem)
     .addSystem(passiveHealSystem)
     .addSystem(syncHealthSystem)
+    .addSystem(setTrainingModeSystem)
     .addSystem(addTrainEventSystem)
     .addSystem(addSpeedTrainEventSystem)
     .addSystem(addJumpTrainEventSystem)

@@ -1,3 +1,4 @@
+import type { Entity } from "@rbxts/jecs";
 import { Route } from "@rbxts/yetanothernet";
 
 export const routes = {
@@ -5,6 +6,8 @@ export const routes = {
 
     receiveFull: new Route<[buffer, unknown[][]]>(),
     receiveUpdate: new Route<[buffer, unknown[][]]>(),
+
+    setTrainingMode: new Route<[Entity<number>]>(),
 
     startReplication: new Route<[]>(),
 
