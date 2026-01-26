@@ -4,7 +4,6 @@ import { world } from "./world";
 export const PlayerInstance = makeComponent<Player>(world, "PlayerInstance", true);
 
 export const Health = makeComponent<number>(world, "Health", true);
-export const MaxHealth = makeComponent<number>(world, "MaxHealth", true);
 
 export const Strength = makeComponent<number>(world, "Strength", true);
 export const Endurance = makeComponent<number>(world, "Endurance", true);

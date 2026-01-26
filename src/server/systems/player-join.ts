@@ -7,7 +7,6 @@ import {
     Endurance,
     Health,
     JumpForce,
-    MaxHealth,
     PlayerInstance,
     Power,
     Speed,
@@ -20,7 +19,6 @@ import {
     DEFAULT_HEALTH,
     DEFAULT_JUMP_FORCE,
     DEFAULT_JUMP_FORCE_MULTIPLIER,
-    DEFAULT_MAX_HEALTH,
     DEFAULT_POWER,
     DEFAULT_POWER_MULTIPLIER,
     DEFAULT_SPEED,
@@ -67,7 +65,6 @@ function system(world: World): void {
         setComponent(world, playerEntity, PlayerInstance, player, true);
 
         setComponent(world, playerEntity, Health, DEFAULT_HEALTH, true);
-        setComponent(world, playerEntity, MaxHealth, DEFAULT_MAX_HEALTH, true);
 
         for (const { component, multiplier, value } of STATS) {
             setComponent(world, playerEntity, component, value, true);

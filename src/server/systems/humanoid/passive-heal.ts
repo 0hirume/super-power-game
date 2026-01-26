@@ -1,23 +1,22 @@
 import type { World } from "@rbxts/jecs";
 import { timePassed, type SystemTable } from "@rbxts/planck";
 
-import { Health, MaxHealth } from "../../../shared/components";
+import { Endurance, Health } from "../../../shared/components";
+import { BASE_MAX_HEALTH } from "../../../shared/constants/player";
 import { setComponent } from "../../../shared/utilities/ecs";
 
 const PASSIVE_HEAL_INTERVAL = 0.5;
 const PASSIVE_HEAL_RATE = 0.005;
 
 function system(world: World): void {
-    for (const [entity, healthValue, maxHealthValue] of world.query(Health, MaxHealth)) {
+    for (const [entity, healthValue, enduranceValue] of world.query(Health, Endurance)) {
+        const maxHealth = BASE_MAX_HEALTH + enduranceValue;
+
         setComponent(
             world,
             entity,
             Health,
-            math.clamp(
-                healthValue + maxHealthValue * PASSIVE_HEAL_RATE,
-                healthValue,
-                maxHealthValue,
-            ),
+            math.clamp(healthValue + maxHealth * PASSIVE_HEAL_RATE, healthValue, maxHealth),
         );
     }
 }
