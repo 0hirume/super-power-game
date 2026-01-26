@@ -3,7 +3,7 @@ import type { SystemTable } from "@rbxts/planck";
 import { onEvent } from "@rbxts/planck";
 import { UserInputService } from "@rbxts/services";
 
-import { routes } from "../../shared/routes";
+import { routes } from "../../../shared/routes";
 
 const [hasInput, collectInputs] = onEvent(UserInputService.InputBegan);
 
@@ -13,17 +13,9 @@ function system(): void {
             continue;
         }
 
-        switch (inputObject.KeyCode) {
-            case Enum.KeyCode.One: {
-                routes.trainStrength.send();
-                break;
-            }
-            case Enum.KeyCode.Two: {
-                routes.trainEndurance.send();
-                break;
-            }
-            case Enum.KeyCode.Three: {
-                routes.trainPower.send();
+        switch (inputObject.UserInputType) {
+            case Enum.UserInputType.MouseButton1: {
+                routes.train.send();
                 break;
             }
             default: {
@@ -33,7 +25,7 @@ function system(): void {
     }
 }
 
-export const processInputsSystem: SystemTable<[World]> = {
+export const processMouseInputsSystem: SystemTable<[World]> = {
     runConditions: [hasInput],
     system,
 };
