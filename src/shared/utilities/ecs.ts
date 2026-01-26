@@ -41,7 +41,7 @@ export function makeEntity(world: World, isNetworked = false): Entity {
     return entity;
 }
 
-export function addTag(world: World, entity: Entity, tag: Entity, isReplicated = false): void {
+export function addTag(world: World, entity: Entity, tag: Tag, isReplicated = false): void {
     world.add(entity, tag);
 
     if (isReplicated) {
@@ -66,7 +66,7 @@ export function setComponent<T>(
 export function addPair(
     world: World,
     entity: Entity,
-    relation: Entity,
+    relation: Tag,
     target: Entity,
     isReplicated = false,
 ): void {
