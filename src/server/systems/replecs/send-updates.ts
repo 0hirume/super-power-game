@@ -10,7 +10,7 @@ function system(): void {
     }
 }
 
-export const replecsHydrateSystem: SystemTable<[World]> = {
-    name: "ReplecsHydrate",
+export const sendUpdates: SystemTable<[World]> = {
+    name: "SendUpdates",
     system,
 };

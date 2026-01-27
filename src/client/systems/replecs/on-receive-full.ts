@@ -5,12 +5,12 @@ import { replicator } from "../../../shared/replicator/client";
 import { routes } from "../../../shared/routes";
 
 function system(): void {
-    for (const [, _, buf, variants] of routes.receiveUpdate.query()) {
-        replicator.apply_updates(buf, variants);
+    for (const [, _, buf, variants] of routes.receiveFull.query()) {
+        replicator.apply_full(buf, variants);
     }
 }
 
-export const replecsReceiveUpdateSystem: SystemTable<[World]> = {
-    name: "ReplecsReceiveUpdate",
+export const onReceiveFull: SystemTable<[World]> = {
+    name: "OnReceiveFull",
     system,
 };

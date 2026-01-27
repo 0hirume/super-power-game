@@ -7,8 +7,8 @@ function system(): void {
     routes.requestReplication.send();
 }
 
-export const replecsStartReplicationSystem: SystemTable<[World]> = {
-    name: "ReplecsStartReplication",
+export const requestReplication: SystemTable<[World]> = {
+    name: "RequestReplication",
     runConditions: [runOnce()],
     system,
 };

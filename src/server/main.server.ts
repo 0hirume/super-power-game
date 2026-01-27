@@ -18,7 +18,7 @@ import {
 } from "./systems/humanoid";
 import { detectHumanoidRootAdded, detectHumanoidRootChanged } from "./systems/humanoid-root";
 import { onPlayerJoined, onPlayerLeft } from "./systems/player";
-import { replecsHydrateSystem, replecsStartSystem } from "./systems/replecs";
+import { onRequestReplication, sendUpdates } from "./systems/replecs";
 import {
     addJumpTrainRequest,
     addSpeedTrainRequest,
@@ -63,8 +63,8 @@ scheduler
     .addSystem(processJumpForceTraining)
     .addSystem(processPowerTraining)
     .addSystem(decreaseCooldowns)
-    .addSystem(replecsStartSystem)
-    .addSystem(replecsHydrateSystem)
+    .addSystem(onRequestReplication)
+    .addSystem(sendUpdates)
     .addSystem(endFrame);
 
 jabby.register({

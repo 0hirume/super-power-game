@@ -17,7 +17,7 @@ function system(): void {
     }
 }
 
-export const replecsStartSystem: SystemTable<[World]> = {
-    name: "ReplecsStart",
+export const onRequestReplication: SystemTable<[World]> = {
+    name: "OnRequestReplication",
     system,
 };

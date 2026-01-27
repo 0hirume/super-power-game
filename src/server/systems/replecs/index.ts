@@ -1,2 +1,2 @@
-export * from "./hydrate";
-export * from "./start";
+export * from "./on-request-replication";
+export * from "./send-updates";

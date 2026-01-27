@@ -12,11 +12,7 @@ import { world } from "../shared/world";
 import { scheduler } from "./scheduler";
 import { detectHumanoidJumped } from "./systems/humanoid-jumped";
 import { onKeyInput, onMouseInput } from "./systems/input";
-import {
-    replecsReceiveFullSystem,
-    replecsStartReplicationSystem,
-    replecsReceiveUpdateSystem,
-} from "./systems/replecs";
+import { onReceiveFull, requestReplication, onReceiveUpdate } from "./systems/replecs";
 
 replicator.init(world);
 
@@ -29,9 +25,9 @@ scheduler
     .addSystem(onKeyInput)
     .addSystem(onMouseInput)
     .addSystem(detectHumanoidJumped)
-    .addSystem(replecsReceiveFullSystem)
-    .addSystem(replecsReceiveUpdateSystem)
-    .addSystem(replecsStartReplicationSystem)
+    .addSystem(onReceiveFull)
+    .addSystem(onReceiveUpdate)
+    .addSystem(requestReplication)
     .addSystem(endFrame);
 
 jabby.register({
