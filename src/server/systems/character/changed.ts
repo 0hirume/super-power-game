@@ -9,11 +9,17 @@ function system(world: World): void {
         PlayerInstance,
         CharacterInstance,
     )) {
-        if (playerInstance.Character === characterInstance) {
+        if (playerInstance.Character === undefined) {
+            world.remove(entity, CharacterInstance);
             continue;
         }
 
-        if (playerInstance.Character === undefined) {
+        if (playerInstance.Character.Parent === undefined) {
+            world.remove(entity, CharacterInstance);
+            continue;
+        }
+
+        if (playerInstance.Character === characterInstance) {
             continue;
         }
 

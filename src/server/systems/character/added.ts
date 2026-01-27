@@ -10,6 +10,10 @@ function system(world: World): void {
             continue;
         }
 
+        if (instance.Character.Parent === undefined) {
+            continue;
+        }
+
         setComponent(world, entity, CharacterInstance, instance.Character, true);
     }
 }
