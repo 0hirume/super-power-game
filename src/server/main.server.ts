@@ -8,15 +8,24 @@ import { routes } from "../shared/routes";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
-import { detectCharacterAdded, detectCharacterChanged } from "./systems/character";
+import {
+    detectCharacterAdded,
+    detectCharacterRemoved,
+    detectCharacterUpdated,
+} from "./systems/character";
 import { decreaseCooldowns } from "./systems/decrease-cooldowns";
 import {
     detectHumanoidAdded,
-    detectHumanoidChanged,
+    detectHumanoidRemoved,
+    detectHumanoidUpdated,
     regenerateHealth,
     reconcileHumanoidStats,
 } from "./systems/humanoid";
-import { detectHumanoidRootAdded, detectHumanoidRootChanged } from "./systems/humanoid-root";
+import {
+    detectHumanoidRootAdded,
+    detectHumanoidRootRemoved,
+    detectHumanoidRootUpdated,
+} from "./systems/humanoid-root";
 import { onPlayerJoined, onPlayerLeft } from "./systems/player";
 import { onRequestReplication, sendUpdates } from "./systems/replecs";
 import {
@@ -45,11 +54,14 @@ scheduler
     .addSystem(onPlayerJoined)
     .addSystem(onPlayerLeft)
     .addSystem(detectCharacterAdded)
-    .addSystem(detectCharacterChanged)
+    .addSystem(detectCharacterUpdated)
+    .addSystem(detectCharacterRemoved)
     .addSystem(detectHumanoidAdded)
-    .addSystem(detectHumanoidChanged)
+    .addSystem(detectHumanoidUpdated)
+    .addSystem(detectHumanoidRemoved)
     .addSystem(detectHumanoidRootAdded)
-    .addSystem(detectHumanoidRootChanged)
+    .addSystem(detectHumanoidRootUpdated)
+    .addSystem(detectHumanoidRootRemoved)
     .addSystem(regenerateHealth)
     .addSystem(reconcileHumanoidStats)
     .addSystem(handleSetTrainingMode)

@@ -1,2 +1,3 @@
 export * from "./detect-added";
-export * from "./detect-changed";
+export * from "./detect-removed";
+export * from "./detect-updated";

@@ -11,8 +11,7 @@ function system(world: World): void {
     )) {
         const root = characterInstance.FindFirstChild("HumanoidRootPart");
 
-        if (root === undefined || !root.IsA("Part")) {
-            world.remove(entity, HumanoidRootInstance);
+        if (root?.FindFirstAncestorWhichIsA("DataModel") === undefined || !root.IsA("Part")) {
             continue;
         }
 
@@ -24,7 +23,7 @@ function system(world: World): void {
     }
 }
 
-export const detectHumanoidRootChanged: SystemTable<[World]> = {
-    name: "DetectHumanoidRootChanged",
+export const detectHumanoidRootUpdated: SystemTable<[World]> = {
+    name: "DetectHumanoidRootUpdated",
     system,
 };

@@ -1,4 +1,5 @@
 export * from "./detect-added";
-export * from "./detect-changed";
-export * from "./regenerate-health";
+export * from "./detect-removed";
+export * from "./detect-updated";
 export * from "./reconcile-stats";
+export * from "./regenerate-health";

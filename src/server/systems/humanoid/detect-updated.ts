@@ -11,8 +11,7 @@ function system(world: World): void {
     )) {
         const humanoid = characterInstance.FindFirstChildWhichIsA("Humanoid");
 
-        if (humanoid === undefined) {
-            world.remove(entity, HumanoidInstance);
+        if (humanoid?.FindFirstAncestorWhichIsA("DataModel") === undefined) {
             continue;
         }
 
@@ -24,7 +23,7 @@ function system(world: World): void {
     }
 }
 
-export const detectHumanoidChanged: SystemTable<[World]> = {
-    name: "DetectHumanoidChanged",
+export const detectHumanoidUpdated: SystemTable<[World]> = {
+    name: "DetectHumanoidUpdated",
     system,
 };

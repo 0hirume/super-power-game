@@ -9,17 +9,9 @@ function system(world: World): void {
         PlayerInstance,
         CharacterInstance,
     )) {
-        if (playerInstance.Character === undefined) {
-            world.remove(entity, CharacterInstance);
-            continue;
-        }
+        const character = playerInstance.Character;
 
-        if (playerInstance.Character.Parent === undefined) {
-            world.remove(entity, CharacterInstance);
-            continue;
-        }
-
-        if (playerInstance.Character === characterInstance) {
+        if (character?.Parent === undefined || character === characterInstance) {
             continue;
         }
 
@@ -27,7 +19,7 @@ function system(world: World): void {
     }
 }
 
-export const detectCharacterChanged: SystemTable<[World]> = {
-    name: "DetectCharacterChanged",
+export const detectCharacterUpdated: SystemTable<[World]> = {
+    name: "DetectCharacterUpdated",
     system,
 };
