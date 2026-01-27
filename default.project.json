@@ -32,6 +32,9 @@
           },
           "$className": "Folder"
         }
+      },
+      "assets": {
+        "$path": "assets"
       }
     },
     "ServerScriptService": {
