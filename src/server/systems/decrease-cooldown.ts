@@ -30,6 +30,6 @@ function system(world: World): void {
     }
 }
 
-export const decreaseCoolDownSystem: SystemTable<[World]> = {
+export const decreaseCooldownSystem: SystemTable<[World]> = {
     system,
 };

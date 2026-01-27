@@ -7,7 +7,7 @@ import { routes } from "../shared/routes";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
-import { decreaseCoolDownSystem } from "./systems/decrease-cooldown";
+import { decreaseCooldownSystem } from "./systems/decrease-cooldown";
 import {
     addJumpTrainEventSystem,
     addSpeedTrainEventSystem,
@@ -48,7 +48,7 @@ scheduler
     .addSystem(trainSpeedSystem)
     .addSystem(trainJumpSystem)
     .addSystem(trainPowerSystem)
-    .addSystem(decreaseCoolDownSystem)
+    .addSystem(decreaseCooldownSystem)
     .addSystem(replecsStartSystem)
     .addSystem(replecsHydrateSystem)
     .addSystem(endFrame);
