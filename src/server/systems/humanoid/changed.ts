@@ -1,0 +1,29 @@
+import type { World } from "@rbxts/jecs";
+import type { SystemTable } from "@rbxts/planck";
+
+import { CharacterInstance, HumanoidInstance } from "../../../shared/components";
+import { setComponent } from "../../../shared/utilities/ecs";
+
+function system(world: World): void {
+    for (const [entity, characterInstance, humanoidInstance] of world.query(
+        CharacterInstance,
+        HumanoidInstance,
+    )) {
+        const humanoid = characterInstance.FindFirstChildWhichIsA("Humanoid");
+
+        if (humanoid === humanoidInstance) {
+            continue;
+        }
+
+        if (humanoid === undefined) {
+            world.remove(entity, HumanoidInstance);
+            continue;
+        }
+
+        setComponent(world, entity, HumanoidInstance, humanoid);
+    }
+}
+
+export const humanoidChangedSystem: SystemTable<[World]> = {
+    system,
+};
