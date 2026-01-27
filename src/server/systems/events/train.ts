@@ -3,7 +3,7 @@ import type { SystemTable } from "@rbxts/planck";
 
 import { PlayerInstance } from "../../../shared/components";
 import { routes } from "../../../shared/routes";
-import { IsTraining, TrainEvent } from "../../../shared/tags";
+import { IsTraining, TrainRequest } from "../../../shared/tags";
 import { addPair } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
@@ -21,7 +21,7 @@ function system(world: World): void {
                 continue;
             }
 
-            addPair(world, entity, TrainEvent, stat);
+            addPair(world, entity, TrainRequest, stat);
 
             break;
         }

@@ -1,7 +1,13 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { Endurance, Health, HumanoidInstance, JumpForce, Speed } from "../../../shared/components";
+import {
+    EnduranceValue,
+    HealthValue,
+    HumanoidInstance,
+    JumpForceValue,
+    SpeedValue,
+} from "../../../shared/components";
 import { BASE_JUMPHEIGHT, BASE_MAX_HEALTH, BASE_WALKSPEED } from "../../../shared/constants/player";
 
 function system(world: World): void {
@@ -12,7 +18,7 @@ function system(world: World): void {
         enduranceValue,
         speedValue,
         jumpForceValue,
-    ] of world.query(HumanoidInstance, Health, Endurance, Speed, JumpForce)) {
+    ] of world.query(HumanoidInstance, HealthValue, EnduranceValue, SpeedValue, JumpForceValue)) {
         instance.UseJumpPower = false;
 
         instance.Health = healthValue;

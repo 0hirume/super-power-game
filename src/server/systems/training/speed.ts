@@ -1,20 +1,20 @@
 import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { Cooldown, Speed, TokenMultiplier } from "../../../shared/components";
+import { Cooldown, SpeedValue, TokenMultiplier } from "../../../shared/components";
 import { TRAINING_COOLDOWN } from "../../../shared/constants/player";
-import { TrainEvent } from "../../../shared/tags";
+import { TrainRequest } from "../../../shared/tags";
 import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
-    for (const [entity, statValue, multiplierValue] of world
-        .query(Speed, pair(TokenMultiplier, Speed))
-        .with(pair(TrainEvent, Speed))
-        .without(pair(Cooldown, Speed))) {
-        world.remove(entity, pair(TrainEvent, Speed));
+    for (const [entity, speedValue, multiplierValue] of world
+        .query(SpeedValue, pair(TokenMultiplier, SpeedValue))
+        .with(pair(TrainRequest, SpeedValue))
+        .without(pair(Cooldown, SpeedValue))) {
+        world.remove(entity, pair(TrainRequest, SpeedValue));
 
-        setComponent(world, entity, Speed, statValue + multiplierValue);
-        setPairValue(world, entity, Cooldown, Speed, TRAINING_COOLDOWN);
+        setComponent(world, entity, SpeedValue, speedValue + multiplierValue);
+        setPairValue(world, entity, Cooldown, SpeedValue, TRAINING_COOLDOWN);
     }
 }
 

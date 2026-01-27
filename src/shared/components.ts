@@ -5,14 +5,14 @@ export const PlayerInstance = makeComponent<Player>(world, "PlayerInstance", tru
 export const CharacterInstance = makeComponent<Model>(world, "CharacterInstance", true);
 export const HumanoidInstance = makeComponent<Humanoid>(world, "HumanoidInstance", true);
 export const HumanoidRootInstance = makeComponent<Part>(world, "HumanoidRootInstance", true);
+export const VisualEffectInstance = makeComponent<Model>(world, "VisualEffectInstance");
 
-export const Health = makeComponent<number>(world, "Health", true);
-
-export const Strength = makeComponent<number>(world, "Strength", true);
-export const Endurance = makeComponent<number>(world, "Endurance", true);
-export const Speed = makeComponent<number>(world, "Speed", true);
-export const JumpForce = makeComponent<number>(world, "JumpForce", true);
-export const Power = makeComponent<number>(world, "Power", true);
+export const HealthValue = makeComponent<number>(world, "Health", true);
+export const StrengthValue = makeComponent<number>(world, "Strength", true);
+export const EnduranceValue = makeComponent<number>(world, "Endurance", true);
+export const SpeedValue = makeComponent<number>(world, "Speed", true);
+export const JumpForceValue = makeComponent<number>(world, "JumpForce", true);
+export const PowerValue = makeComponent<number>(world, "Power", true);
 
 export const TokenMultiplier = makeComponent<number>(world, "TokenMultiplier", true);
 

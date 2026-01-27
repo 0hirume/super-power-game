@@ -1,20 +1,20 @@
 import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { Cooldown, Strength, TokenMultiplier } from "../../../shared/components";
+import { Cooldown, StrengthValue, TokenMultiplier } from "../../../shared/components";
 import { TRAINING_COOLDOWN } from "../../../shared/constants/player";
-import { TrainEvent } from "../../../shared/tags";
+import { TrainRequest } from "../../../shared/tags";
 import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
-    for (const [entity, statValue, multiplierValue] of world
-        .query(Strength, pair(TokenMultiplier, Strength))
-        .with(pair(TrainEvent, Strength))
-        .without(pair(Cooldown, Strength))) {
-        world.remove(entity, pair(TrainEvent, Strength));
+    for (const [entity, strengthValue, multiplierValue] of world
+        .query(StrengthValue, pair(TokenMultiplier, StrengthValue))
+        .with(pair(TrainRequest, StrengthValue))
+        .without(pair(Cooldown, StrengthValue))) {
+        world.remove(entity, pair(TrainRequest, StrengthValue));
 
-        setComponent(world, entity, Strength, statValue + multiplierValue);
-        setPairValue(world, entity, Cooldown, Strength, TRAINING_COOLDOWN);
+        setComponent(world, entity, StrengthValue, strengthValue + multiplierValue);
+        setPairValue(world, entity, Cooldown, StrengthValue, TRAINING_COOLDOWN);
     }
 }
 

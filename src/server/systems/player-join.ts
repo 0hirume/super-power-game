@@ -4,13 +4,13 @@ import { onEvent } from "@rbxts/planck";
 import { Players } from "@rbxts/services";
 
 import {
-    Endurance,
-    Health,
-    JumpForce,
+    EnduranceValue,
+    HealthValue,
+    JumpForceValue,
     PlayerInstance,
-    Power,
-    Speed,
-    Strength,
+    PowerValue,
+    SpeedValue,
+    StrengthValue,
     TokenMultiplier,
 } from "../../shared/components";
 import {
@@ -30,27 +30,27 @@ import { makeEntity, setComponent, setPairValue } from "../../shared/utilities/e
 
 const STATS: { component: Entity; multiplier: number; value: number }[] = [
     {
-        component: Strength,
+        component: StrengthValue,
         multiplier: DEFAULT_STRENGTH_MULTIPLIER,
         value: DEFAULT_STRENGTH,
     },
     {
-        component: Endurance,
+        component: EnduranceValue,
         multiplier: DEFAULT_ENDURANCE_MULTIPLIER,
         value: DEFAULT_ENDURANCE,
     },
     {
-        component: Speed,
+        component: SpeedValue,
         multiplier: DEFAULT_SPEED_MULTIPLIER,
         value: DEFAULT_SPEED,
     },
     {
-        component: JumpForce,
+        component: JumpForceValue,
         multiplier: DEFAULT_JUMP_FORCE_MULTIPLIER,
         value: DEFAULT_JUMP_FORCE,
     },
     {
-        component: Power,
+        component: PowerValue,
         multiplier: DEFAULT_POWER_MULTIPLIER,
         value: DEFAULT_POWER,
     },
@@ -62,7 +62,7 @@ function system(world: World): void {
     for (const [_, player] of collectPlayersJoined()) {
         const playerEntity = makeEntity(world, true);
         setComponent(world, playerEntity, PlayerInstance, player, true);
-        setComponent(world, playerEntity, Health, DEFAULT_HEALTH, true);
+        setComponent(world, playerEntity, HealthValue, DEFAULT_HEALTH, true);
 
         for (const { component, multiplier, value } of STATS) {
             setComponent(world, playerEntity, component, value, true);

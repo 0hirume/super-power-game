@@ -1,9 +1,9 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { JumpForce, PlayerInstance } from "../../../shared/components";
+import { JumpForceValue, PlayerInstance } from "../../../shared/components";
 import { routes } from "../../../shared/routes";
-import { TrainEvent } from "../../../shared/tags";
+import { TrainRequest } from "../../../shared/tags";
 import { addPair } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
@@ -13,7 +13,7 @@ function system(world: World): void {
                 continue;
             }
 
-            addPair(world, entity, TrainEvent, JumpForce);
+            addPair(world, entity, TrainRequest, JumpForceValue);
 
             break;
         }

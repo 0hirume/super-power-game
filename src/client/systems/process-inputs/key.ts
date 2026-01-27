@@ -3,7 +3,7 @@ import type { SystemTable } from "@rbxts/planck";
 import { onEvent } from "@rbxts/planck";
 import { UserInputService } from "@rbxts/services";
 
-import { Endurance, Power, Strength } from "../../../shared/components";
+import { EnduranceValue, PowerValue, StrengthValue } from "../../../shared/components";
 import { routes } from "../../../shared/routes";
 
 const [hasInput, collectInputs] = onEvent(UserInputService.InputBegan);
@@ -16,15 +16,15 @@ function system(): void {
 
         switch (inputObject.KeyCode) {
             case Enum.KeyCode.One: {
-                routes.setTrainingMode.send(Strength);
+                routes.setTrainingMode.send(StrengthValue);
                 break;
             }
             case Enum.KeyCode.Two: {
-                routes.setTrainingMode.send(Endurance);
+                routes.setTrainingMode.send(EnduranceValue);
                 break;
             }
             case Enum.KeyCode.Three: {
-                routes.setTrainingMode.send(Power);
+                routes.setTrainingMode.send(PowerValue);
                 break;
             }
             default: {
