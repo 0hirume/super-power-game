@@ -2,6 +2,7 @@ import { makeComponent } from "./utilities/ecs";
 import { world } from "./world";
 
 export const PlayerInstance = makeComponent<Player>(world, "PlayerInstance", true);
+export const CharacterInstance = makeComponent<Model>(world, "CharacterInstance", true);
 
 export const Health = makeComponent<number>(world, "Health", true);
 

@@ -7,6 +7,7 @@ import { routes } from "../shared/routes";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
+import { characterAddedSystem, characterChangedSystem } from "./systems/character";
 import { decreaseCooldownSystem } from "./systems/decrease-cooldown";
 import {
     addJumpTrainEventSystem,
@@ -36,6 +37,8 @@ scheduler
     .addSystem(beginFrame)
     .addSystem(playerJoinedSystem)
     .addSystem(playerLeftSystem)
+    .addSystem(characterAddedSystem)
+    .addSystem(characterChangedSystem)
     .addSystem(passiveHealSystem)
     .addSystem(syncHumanoidSystem)
     .addSystem(setTrainingModeSystem)
