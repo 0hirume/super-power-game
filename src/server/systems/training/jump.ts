@@ -19,5 +19,6 @@ function system(world: World): void {
 }
 
 export const trainJumpSystem: SystemTable<[World]> = {
+    name: "TrainJump",
     system,
 };

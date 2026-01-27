@@ -35,6 +35,7 @@ function system(): void {
 }
 
 export const processKeyInputsSystem: SystemTable<[World]> = {
+    name: "ProcessKeyInputs",
     runConditions: [hasInput],
     system,
 };

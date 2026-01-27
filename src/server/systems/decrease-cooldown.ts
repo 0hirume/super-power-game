@@ -31,5 +31,6 @@ function system(world: World): void {
 }
 
 export const decreaseCooldownSystem: SystemTable<[World]> = {
+    name: "DecreaseCooldown",
     system,
 };

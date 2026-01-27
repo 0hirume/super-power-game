@@ -72,6 +72,7 @@ function system(world: World): void {
 }
 
 export const playerJoinedSystem: SystemTable<[World]> = {
+    name: "PlayerJoined",
     runConditions: [hasPlayerJoined],
     system,
 };

@@ -17,5 +17,6 @@ function system(world: World): void {
 }
 
 export const humanoidAddedSystem: SystemTable<[World]> = {
+    name: "HumanoidAdded",
     system,
 };

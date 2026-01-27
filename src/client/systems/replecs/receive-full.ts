@@ -11,5 +11,6 @@ function system(): void {
 }
 
 export const replecsReceiveFullSystem: SystemTable<[World]> = {
+    name: "ReplecsReceiveFull",
     system,
 };

@@ -22,6 +22,7 @@ function system(world: World): void {
 }
 
 export const passiveHealSystem: SystemTable<[World]> = {
+    name: "PassiveHeal",
     runConditions: [timePassed(PASSIVE_HEAL_INTERVAL)],
     system,
 };

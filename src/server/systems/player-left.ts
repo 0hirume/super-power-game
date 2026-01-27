@@ -19,6 +19,7 @@ function system(world: World): void {
 }
 
 export const playerLeftSystem: SystemTable<[World]> = {
+    name: "PlayerLeft",
     runConditions: [hasPlayerLeft],
     system,
 };

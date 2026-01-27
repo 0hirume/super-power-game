@@ -22,5 +22,6 @@ function system(world: World): void {
 }
 
 export const characterChangedSystem: SystemTable<[World]> = {
+    name: "CharacterChanged",
     system,
 };

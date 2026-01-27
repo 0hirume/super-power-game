@@ -18,5 +18,6 @@ function system(): void {
 }
 
 export const replecsStartSystem: SystemTable<[World]> = {
+    name: "ReplecsStart",
     system,
 };

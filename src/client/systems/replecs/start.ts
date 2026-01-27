@@ -8,6 +8,7 @@ function system(): void {
 }
 
 export const replecsStartReplicationSystem: SystemTable<[World]> = {
+    name: "ReplecsStartReplication",
     runConditions: [runOnce()],
     system,
 };

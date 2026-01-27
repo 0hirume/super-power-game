@@ -11,5 +11,6 @@ function system(): void {
 }
 
 export const replecsHydrateSystem: SystemTable<[World]> = {
+    name: "ReplecsHydrate",
     system,
 };

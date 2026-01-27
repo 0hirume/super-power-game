@@ -24,5 +24,6 @@ function system(world: World): void {
 }
 
 export const syncHumanoidSystem: SystemTable<[World]> = {
+    name: "SyncHumanoid",
     system,
 };

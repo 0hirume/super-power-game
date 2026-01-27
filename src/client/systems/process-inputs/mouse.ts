@@ -26,6 +26,7 @@ function system(): void {
 }
 
 export const processMouseInputsSystem: SystemTable<[World]> = {
+    name: "ProcessMouseInputs",
     runConditions: [hasInput],
     system,
 };

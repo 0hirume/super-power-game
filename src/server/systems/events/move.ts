@@ -19,6 +19,7 @@ function system(world: World): void {
 }
 
 export const addSpeedTrainEventSystem: SystemTable<[World]> = {
+    name: "AddSpeedTrainEvent",
     runConditions: [timePassed(INTERVAL)],
     system,
 };

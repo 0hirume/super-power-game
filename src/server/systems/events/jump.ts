@@ -21,5 +21,6 @@ function system(world: World): void {
 }
 
 export const addJumpTrainEventSystem: SystemTable<[World]> = {
+    name: "AddJumpTrainEvent",
     system,
 };

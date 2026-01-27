@@ -29,5 +29,6 @@ function system(world: World): void {
 }
 
 export const setTrainingModeSystem: SystemTable<[World]> = {
+    name: "SetTrainingMode",
     system,
 };
