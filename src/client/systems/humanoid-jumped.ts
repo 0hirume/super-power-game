@@ -23,7 +23,7 @@ function system(world: World): void {
             continue;
         }
 
-        routes.humanoidJumped.send();
+        routes.onHumanoidJumped.send();
     }
 }
 

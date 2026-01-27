@@ -7,7 +7,7 @@ import { TrainRequest } from "../../../shared/tags";
 import { addPair } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
-    for (const [_, player] of routes.humanoidJumped.query()) {
+    for (const [_, player] of routes.onHumanoidJumped.query()) {
         for (const [entity, instance] of world.query(PlayerInstance)) {
             if (player !== instance) {
                 continue;

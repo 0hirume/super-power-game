@@ -5,7 +5,7 @@ import { replicator } from "../../../shared/replicator/server";
 import { routes } from "../../../shared/routes";
 
 function system(): void {
-    for (const [_, player] of routes.startReplication.query()) {
+    for (const [_, player] of routes.requestReplication.query()) {
         if (!typeIs(player, "Instance") || !player.IsA("Player")) {
             continue;
         }

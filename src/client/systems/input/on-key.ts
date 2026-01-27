@@ -16,15 +16,15 @@ function system(): void {
 
         switch (inputObject.KeyCode) {
             case Enum.KeyCode.One: {
-                routes.setTrainingMode.send(StrengthValue);
+                routes.requestSetTrainingMode.send(StrengthValue);
                 break;
             }
             case Enum.KeyCode.Two: {
-                routes.setTrainingMode.send(EnduranceValue);
+                routes.requestSetTrainingMode.send(EnduranceValue);
                 break;
             }
             case Enum.KeyCode.Three: {
-                routes.setTrainingMode.send(PowerValue);
+                routes.requestSetTrainingMode.send(PowerValue);
                 break;
             }
             default: {

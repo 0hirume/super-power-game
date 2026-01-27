@@ -15,7 +15,7 @@ function system(): void {
 
         switch (inputObject.UserInputType) {
             case Enum.UserInputType.MouseButton1: {
-                routes.train.send();
+                routes.requestTrain.send();
                 break;
             }
             default: {

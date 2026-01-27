@@ -7,7 +7,7 @@ import { IsTraining } from "../../../shared/tags";
 import { addPair } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
-    for (const [_, player, trainingMode] of routes.setTrainingMode.query()) {
+    for (const [_, player, trainingMode] of routes.requestSetTrainingMode.query()) {
         for (const [entity, instance] of world.query(PlayerInstance)) {
             if (player !== instance) {
                 continue;
