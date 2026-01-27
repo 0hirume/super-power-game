@@ -11,12 +11,12 @@ function system(world: World): void {
     )) {
         const humanoid = characterInstance.FindFirstChildWhichIsA("Humanoid");
 
-        if (humanoid === humanoidInstance) {
+        if (humanoid === undefined) {
+            world.remove(entity, HumanoidInstance);
             continue;
         }
 
-        if (humanoid === undefined) {
-            world.remove(entity, HumanoidInstance);
+        if (humanoid === humanoidInstance) {
             continue;
         }
 
