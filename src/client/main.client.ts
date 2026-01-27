@@ -11,7 +11,7 @@ import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
 import { detectHumanoidJumped } from "./systems/humanoid-jumped";
-import { onKeyInput, onMouseInput } from "./systems/process-inputs";
+import { onKeyInput, onMouseInput } from "./systems/input";
 import {
     replecsReceiveFullSystem,
     replecsStartReplicationSystem,

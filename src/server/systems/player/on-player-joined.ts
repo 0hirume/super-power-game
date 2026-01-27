@@ -12,7 +12,7 @@ import {
     SpeedValue,
     StrengthValue,
     TokenMultiplier,
-} from "../../shared/components";
+} from "../../../shared/components";
 import {
     DEFAULT_ENDURANCE,
     DEFAULT_ENDURANCE_MULTIPLIER,
@@ -25,8 +25,8 @@ import {
     DEFAULT_SPEED_MULTIPLIER,
     DEFAULT_STRENGTH,
     DEFAULT_STRENGTH_MULTIPLIER,
-} from "../../shared/constants/player";
-import { makeEntity, setComponent, setPairValue } from "../../shared/utilities/ecs";
+} from "../../../shared/constants/player";
+import { makeEntity, setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 const STATS: { component: Entity; multiplier: number; value: number }[] = [
     {

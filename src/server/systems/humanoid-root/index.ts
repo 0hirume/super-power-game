@@ -1,2 +1,2 @@
-export * from "./added";
-export * from "./changed";
+export * from "./detect-added";
+export * from "./detect-changed";

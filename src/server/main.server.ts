@@ -9,14 +9,7 @@ import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
 import { detectCharacterAdded, detectCharacterChanged } from "./systems/character";
-import { decreaseCooldowns } from "./systems/decrease-cooldown";
-import {
-    addJumpTrainRequest,
-    addSpeedTrainRequest,
-    addTrainRequest,
-    addPowerTrainRequest,
-    handleSetTrainingMode,
-} from "./systems/events";
+import { decreaseCooldowns } from "./systems/decrease-cooldowns";
 import {
     detectHumanoidAdded,
     detectHumanoidChanged,
@@ -24,9 +17,15 @@ import {
     reconcileHumanoidStats,
 } from "./systems/humanoid";
 import { detectHumanoidRootAdded, detectHumanoidRootChanged } from "./systems/humanoid-root";
-import { onPlayerJoined } from "./systems/player-join";
-import { onPlayerLeft } from "./systems/player-left";
+import { onPlayerJoined, onPlayerLeft } from "./systems/player";
 import { replecsHydrateSystem, replecsStartSystem } from "./systems/replecs";
+import {
+    addJumpTrainRequest,
+    addSpeedTrainRequest,
+    addTrainRequest,
+    addPowerTrainRequest,
+    handleSetTrainingMode,
+} from "./systems/requests";
 import {
     processEnduranceTraining,
     processJumpForceTraining,
