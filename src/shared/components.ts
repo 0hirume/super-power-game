@@ -4,6 +4,7 @@ import { world } from "./world";
 export const PlayerInstance = makeComponent<Player>(world, "PlayerInstance", true);
 export const CharacterInstance = makeComponent<Model>(world, "CharacterInstance", true);
 export const HumanoidInstance = makeComponent<Humanoid>(world, "HumanoidInstance", true);
+export const HumanoidRootInstance = makeComponent<Part>(world, "HumanoidRootInstance", true);
 
 export const Health = makeComponent<number>(world, "Health", true);
 
