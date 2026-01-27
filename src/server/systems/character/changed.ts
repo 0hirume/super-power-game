@@ -27,7 +27,7 @@ function system(world: World): void {
     }
 }
 
-export const characterChangedSystem: SystemTable<[World]> = {
-    name: "CharacterChanged",
+export const detectCharacterChanged: SystemTable<[World]> = {
+    name: "DetectCharacterChanged",
     system,
 };

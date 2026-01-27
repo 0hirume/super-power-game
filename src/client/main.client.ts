@@ -10,8 +10,8 @@ import * as _ from "../shared/tags";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
-import { humanoidJumpedSystem } from "./systems/humanoid-jumped";
-import { processKeyInputsSystem, processMouseInputsSystem } from "./systems/process-inputs";
+import { detectHumanoidJumped } from "./systems/humanoid-jumped";
+import { onKeyInput, onMouseInput } from "./systems/process-inputs";
 import {
     replecsReceiveFullSystem,
     replecsStartReplicationSystem,
@@ -26,9 +26,9 @@ scheduler
     .addPlugin(new RunServicePlugin())
     .addPlugin(new JabbyPlugin())
     .addSystem(beginFrame)
-    .addSystem(processKeyInputsSystem)
-    .addSystem(processMouseInputsSystem)
-    .addSystem(humanoidJumpedSystem)
+    .addSystem(onKeyInput)
+    .addSystem(onMouseInput)
+    .addSystem(detectHumanoidJumped)
     .addSystem(replecsReceiveFullSystem)
     .addSystem(replecsReceiveUpdateSystem)
     .addSystem(replecsStartReplicationSystem)

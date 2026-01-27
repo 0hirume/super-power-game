@@ -8,31 +8,31 @@ import { routes } from "../shared/routes";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
-import { characterAddedSystem, characterChangedSystem } from "./systems/character";
-import { decreaseCooldownSystem } from "./systems/decrease-cooldown";
+import { detectCharacterAdded, detectCharacterChanged } from "./systems/character";
+import { decreaseCooldowns } from "./systems/decrease-cooldown";
 import {
-    addJumpTrainEventSystem,
-    addSpeedTrainEventSystem,
-    addTrainEventSystem,
-    addPowerTrainEventSystem,
-    setTrainingModeSystem,
+    addJumpTrainRequest,
+    addSpeedTrainRequest,
+    addTrainRequest,
+    addPowerTrainRequest,
+    handleSetTrainingMode,
 } from "./systems/events";
 import {
-    humanoidAddedSystem,
-    humanoidChangedSystem,
-    passiveHealSystem,
-    syncHumanoidSystem,
+    detectHumanoidAdded,
+    detectHumanoidChanged,
+    regenerateHealth,
+    reconcileHumanoidStats,
 } from "./systems/humanoid";
-import { humanoidRootAddedSystem, humanoidRootChangedSystem } from "./systems/humanoid-root";
-import { playerJoinedSystem } from "./systems/player-join";
-import { playerLeftSystem } from "./systems/player-left";
+import { detectHumanoidRootAdded, detectHumanoidRootChanged } from "./systems/humanoid-root";
+import { onPlayerJoined } from "./systems/player-join";
+import { onPlayerLeft } from "./systems/player-left";
 import { replecsHydrateSystem, replecsStartSystem } from "./systems/replecs";
 import {
-    trainEnduranceSystem,
-    trainJumpSystem,
-    trainPowerSystem,
-    trainSpeedSystem,
-    trainStrengthSystem,
+    processEnduranceTraining,
+    processJumpForceTraining,
+    processPowerTraining,
+    processSpeedTraining,
+    processStrengthTraining,
 } from "./systems/training";
 
 replicator.init(world);
@@ -43,27 +43,27 @@ scheduler
     .addPlugin(new RunServicePlugin())
     .addPlugin(new JabbyPlugin())
     .addSystem(beginFrame)
-    .addSystem(playerJoinedSystem)
-    .addSystem(playerLeftSystem)
-    .addSystem(characterAddedSystem)
-    .addSystem(characterChangedSystem)
-    .addSystem(humanoidAddedSystem)
-    .addSystem(humanoidChangedSystem)
-    .addSystem(humanoidRootAddedSystem)
-    .addSystem(humanoidRootChangedSystem)
-    .addSystem(passiveHealSystem)
-    .addSystem(syncHumanoidSystem)
-    .addSystem(setTrainingModeSystem)
-    .addSystem(addTrainEventSystem)
-    .addSystem(addSpeedTrainEventSystem)
-    .addSystem(addJumpTrainEventSystem)
-    .addSystem(addPowerTrainEventSystem)
-    .addSystem(trainStrengthSystem)
-    .addSystem(trainEnduranceSystem)
-    .addSystem(trainSpeedSystem)
-    .addSystem(trainJumpSystem)
-    .addSystem(trainPowerSystem)
-    .addSystem(decreaseCooldownSystem)
+    .addSystem(onPlayerJoined)
+    .addSystem(onPlayerLeft)
+    .addSystem(detectCharacterAdded)
+    .addSystem(detectCharacterChanged)
+    .addSystem(detectHumanoidAdded)
+    .addSystem(detectHumanoidChanged)
+    .addSystem(detectHumanoidRootAdded)
+    .addSystem(detectHumanoidRootChanged)
+    .addSystem(regenerateHealth)
+    .addSystem(reconcileHumanoidStats)
+    .addSystem(handleSetTrainingMode)
+    .addSystem(addTrainRequest)
+    .addSystem(addSpeedTrainRequest)
+    .addSystem(addJumpTrainRequest)
+    .addSystem(addPowerTrainRequest)
+    .addSystem(processStrengthTraining)
+    .addSystem(processEnduranceTraining)
+    .addSystem(processSpeedTraining)
+    .addSystem(processJumpForceTraining)
+    .addSystem(processPowerTraining)
+    .addSystem(decreaseCooldowns)
     .addSystem(replecsStartSystem)
     .addSystem(replecsHydrateSystem)
     .addSystem(endFrame);

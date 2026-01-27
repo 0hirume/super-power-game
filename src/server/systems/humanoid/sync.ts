@@ -29,7 +29,7 @@ function system(world: World): void {
     }
 }
 
-export const syncHumanoidSystem: SystemTable<[World]> = {
-    name: "SyncHumanoid",
+export const reconcileHumanoidStats: SystemTable<[World]> = {
+    name: "ReconcileHumanoidStats",
     system,
 };

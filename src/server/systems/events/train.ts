@@ -28,7 +28,7 @@ function system(world: World): void {
     }
 }
 
-export const addTrainEventSystem: SystemTable<[World]> = {
-    name: "AddTrainEvent",
+export const addTrainRequest: SystemTable<[World]> = {
+    name: "AddTrainRequest",
     system,
 };

@@ -71,8 +71,8 @@ function system(world: World): void {
     }
 }
 
-export const playerJoinedSystem: SystemTable<[World]> = {
-    name: "PlayerJoined",
+export const onPlayerJoined: SystemTable<[World]> = {
+    name: "OnPlayerJoined",
     runConditions: [hasPlayerJoined],
     system,
 };

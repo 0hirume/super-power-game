@@ -24,7 +24,7 @@ function system(world: World): void {
     }
 }
 
-export const humanoidChangedSystem: SystemTable<[World]> = {
-    name: "HumanoidChanged",
+export const detectHumanoidChanged: SystemTable<[World]> = {
+    name: "DetectHumanoidChanged",
     system,
 };

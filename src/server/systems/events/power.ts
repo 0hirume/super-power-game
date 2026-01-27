@@ -13,8 +13,8 @@ function system(world: World): void {
     }
 }
 
-export const addPowerTrainEventSystem: SystemTable<[World]> = {
-    name: "AddPowerTrainEvent",
+export const addPowerTrainRequest: SystemTable<[World]> = {
+    name: "AddPowerTrainRequest",
     runConditions: [timePassed(INTERVAL)],
     system,
 };

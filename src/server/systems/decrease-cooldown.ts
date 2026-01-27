@@ -30,7 +30,7 @@ function system(world: World): void {
     }
 }
 
-export const decreaseCooldownSystem: SystemTable<[World]> = {
-    name: "DecreaseCooldown",
+export const decreaseCooldowns: SystemTable<[World]> = {
+    name: "DecreaseCooldowns",
     system,
 };

@@ -28,7 +28,7 @@ function system(world: World): void {
     }
 }
 
-export const setTrainingModeSystem: SystemTable<[World]> = {
-    name: "SetTrainingMode",
+export const handleSetTrainingMode: SystemTable<[World]> = {
+    name: "HandleSetTrainingMode",
     system,
 };

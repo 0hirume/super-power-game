@@ -20,7 +20,7 @@ function system(world: World): void {
     }
 }
 
-export const addJumpTrainEventSystem: SystemTable<[World]> = {
-    name: "AddJumpTrainEvent",
+export const addJumpTrainRequest: SystemTable<[World]> = {
+    name: "AddJumpTrainRequest",
     system,
 };

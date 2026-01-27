@@ -18,8 +18,8 @@ function system(world: World): void {
     }
 }
 
-export const addSpeedTrainEventSystem: SystemTable<[World]> = {
-    name: "AddSpeedTrainEvent",
+export const addSpeedTrainRequest: SystemTable<[World]> = {
+    name: "AddSpeedTrainRequest",
     runConditions: [timePassed(INTERVAL)],
     system,
 };

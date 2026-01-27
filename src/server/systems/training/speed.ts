@@ -18,7 +18,7 @@ function system(world: World): void {
     }
 }
 
-export const trainSpeedSystem: SystemTable<[World]> = {
-    name: "TrainSpeed",
+export const processSpeedTraining: SystemTable<[World]> = {
+    name: "ProcessSpeedTraining",
     system,
 };

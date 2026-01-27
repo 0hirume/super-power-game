@@ -18,8 +18,8 @@ function system(world: World): void {
     }
 }
 
-export const playerLeftSystem: SystemTable<[World]> = {
-    name: "PlayerLeft",
+export const onPlayerLeft: SystemTable<[World]> = {
+    name: "OnPlayerLeft",
     runConditions: [hasPlayerLeft],
     system,
 };

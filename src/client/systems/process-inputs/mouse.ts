@@ -25,8 +25,8 @@ function system(): void {
     }
 }
 
-export const processMouseInputsSystem: SystemTable<[World]> = {
-    name: "ProcessMouseInputs",
+export const onMouseInput: SystemTable<[World]> = {
+    name: "OnMouseInputs",
     runConditions: [hasInput],
     system,
 };

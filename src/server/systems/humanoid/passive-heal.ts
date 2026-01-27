@@ -5,8 +5,8 @@ import { EnduranceValue, HealthValue } from "../../../shared/components";
 import { BASE_MAX_HEALTH } from "../../../shared/constants/player";
 import { setComponent } from "../../../shared/utilities/ecs";
 
-const PASSIVE_HEAL_INTERVAL = 0.5;
-const PASSIVE_HEAL_RATE = 0.005;
+const REGENERATION_INTERVAL = 0.5;
+const REGENERATION_RATE = 0.005;
 
 function system(world: World): void {
     for (const [entity, healthValue, enduranceValue] of world.query(HealthValue, EnduranceValue)) {
@@ -16,13 +16,13 @@ function system(world: World): void {
             world,
             entity,
             HealthValue,
-            math.clamp(healthValue + maxHealth * PASSIVE_HEAL_RATE, healthValue, maxHealth),
+            math.clamp(healthValue + maxHealth * REGENERATION_RATE, healthValue, maxHealth),
         );
     }
 }
 
-export const passiveHealSystem: SystemTable<[World]> = {
-    name: "PassiveHeal",
-    runConditions: [timePassed(PASSIVE_HEAL_INTERVAL)],
+export const regenerateHealth: SystemTable<[World]> = {
+    name: "RegenerateHealth",
+    runConditions: [timePassed(REGENERATION_INTERVAL)],
     system,
 };

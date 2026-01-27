@@ -34,8 +34,8 @@ function system(): void {
     }
 }
 
-export const processKeyInputsSystem: SystemTable<[World]> = {
-    name: "ProcessKeyInputs",
+export const onKeyInput: SystemTable<[World]> = {
+    name: "OnKeyInputs",
     runConditions: [hasInput],
     system,
 };

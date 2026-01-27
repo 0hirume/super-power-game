@@ -18,7 +18,7 @@ function system(world: World): void {
     }
 }
 
-export const characterAddedSystem: SystemTable<[World]> = {
-    name: "CharacterAdded",
+export const detectCharacterAdded: SystemTable<[World]> = {
+    name: "DetectCharacterAdded",
     system,
 };
