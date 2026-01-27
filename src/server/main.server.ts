@@ -23,6 +23,7 @@ import {
     passiveHealSystem,
     syncHumanoidSystem,
 } from "./systems/humanoid";
+import { humanoidRootAddedSystem, humanoidRootChangedSystem } from "./systems/humanoid-root";
 import { playerJoinedSystem } from "./systems/player-join";
 import { playerLeftSystem } from "./systems/player-left";
 import { replecsHydrateSystem, replecsStartSystem } from "./systems/replecs";
@@ -48,6 +49,8 @@ scheduler
     .addSystem(characterChangedSystem)
     .addSystem(humanoidAddedSystem)
     .addSystem(humanoidChangedSystem)
+    .addSystem(humanoidRootAddedSystem)
+    .addSystem(humanoidRootChangedSystem)
     .addSystem(passiveHealSystem)
     .addSystem(syncHumanoidSystem)
     .addSystem(setTrainingModeSystem)
