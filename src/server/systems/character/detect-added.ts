@@ -6,11 +6,9 @@ import { setComponent } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
     for (const [entity, instance] of world.query(PlayerInstance).without(CharacterInstance)) {
-        if (instance.Character === undefined) {
-            continue;
-        }
+        const character = instance.Character;
 
-        if (instance.Character.Parent === undefined) {
+        if (character?.Parent === undefined) {
             continue;
         }
 
