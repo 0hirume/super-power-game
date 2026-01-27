@@ -61,9 +61,7 @@ const [hasPlayerJoined, collectPlayersJoined] = onEvent(Players.PlayerAdded);
 function system(world: World): void {
     for (const [_, player] of collectPlayersJoined()) {
         const playerEntity = makeEntity(world, true);
-
         setComponent(world, playerEntity, PlayerInstance, player, true);
-
         setComponent(world, playerEntity, Health, DEFAULT_HEALTH, true);
 
         for (const { component, multiplier, value } of STATS) {
