@@ -3,7 +3,7 @@ import type { SystemTable } from "@rbxts/planck";
 
 import { PlayerInstance } from "../../../shared/components";
 import { routes } from "../../../shared/routes";
-import { IsTraining } from "../../../shared/tags";
+import { ActiveTrainingMode } from "../../../shared/tags";
 import { addPair } from "../../../shared/utilities/ecs";
 
 function system(world: World): void {
@@ -13,14 +13,14 @@ function system(world: World): void {
                 continue;
             }
 
-            const currentTrainingMode = world.target(entity, IsTraining);
+            const currentTrainingMode = world.target(entity, ActiveTrainingMode);
 
             if (currentTrainingMode !== undefined) {
-                world.remove(entity, pair(IsTraining, currentTrainingMode));
+                world.remove(entity, pair(ActiveTrainingMode, currentTrainingMode));
             }
 
             if (currentTrainingMode !== trainingMode) {
-                addPair(world, entity, IsTraining, trainingMode, true);
+                addPair(world, entity, ActiveTrainingMode, trainingMode, true);
             }
 
             break;
