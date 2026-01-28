@@ -1,3 +1,3 @@
-export * from "./on-receive-full";
-export * from "./on-receive-update";
+export * from "./apply-full";
+export * from "./apply-updates";
 export * from "./request-replication";

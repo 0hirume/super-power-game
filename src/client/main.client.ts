@@ -10,9 +10,9 @@ import * as _ from "../shared/tags";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
-import { detectHumanoidJumped } from "./systems/detect-humanoid-jumped";
-import { onKeyInput, onMouseInput } from "./systems/input";
-import { onReceiveFull, requestReplication, onReceiveUpdate } from "./systems/replecs";
+import { processKeyInputs, processMouseInputs } from "./systems/input";
+import { applyFull, requestReplication, applyUpdates } from "./systems/replecs";
+import { trackHumanoidJumping } from "./systems/track-humanoid-jumping";
 
 replicator.init(world);
 
@@ -22,11 +22,11 @@ scheduler
     .addPlugin(new RunServicePlugin())
     .addPlugin(new JabbyPlugin())
     .addSystem(beginFrame)
-    .addSystem(onKeyInput)
-    .addSystem(onMouseInput)
-    .addSystem(detectHumanoidJumped)
-    .addSystem(onReceiveFull)
-    .addSystem(onReceiveUpdate)
+    .addSystem(processKeyInputs)
+    .addSystem(processMouseInputs)
+    .addSystem(trackHumanoidJumping)
+    .addSystem(applyFull)
+    .addSystem(applyUpdates)
     .addSystem(requestReplication)
     .addSystem(endFrame);
 

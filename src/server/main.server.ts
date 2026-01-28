@@ -8,34 +8,30 @@ import { routes } from "../shared/routes";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
-import {
-    detectCharacterAdded,
-    detectCharacterRemoved,
-    detectCharacterUpdated,
-} from "./systems/character";
 import { decreaseCooldowns } from "./systems/decrease-cooldowns";
 import {
-    detectHumanoidAdded,
-    detectHumanoidRemoved,
-    detectHumanoidUpdated,
-    regenerateHealth,
-    reconcileHumanoidStats,
-} from "./systems/humanoid";
-import {
-    detectHumanoidRootAdded,
-    detectHumanoidRootRemoved,
-    detectHumanoidRootUpdated,
-} from "./systems/humanoid-root";
-import { onPlayerJoined, onPlayerLeft } from "./systems/player";
-import { onRequestReplication, sendUpdates } from "./systems/replecs";
+    cleanupPlayer,
+    setupPlayer,
+    trackCharacterAdded,
+    trackCharacterRemoved,
+    trackCharacterUpdated,
+    trackHumanoidAdded,
+    trackHumanoidRemoved,
+    trackHumanoidRootAdded,
+    trackHumanoidRootRemoved,
+    trackHumanoidRootUpdated,
+    trackHumanoidUpdated,
+} from "./systems/entities";
+import { sendFull, sendUpdates } from "./systems/replecs";
+import { reconcileHumanoids, regenerateHealth } from "./systems/stats";
 import {
     addJumpTrainRequest,
+    addPowerTrainRequest,
     addSpeedTrainRequest,
     addTrainRequest,
-    addPowerTrainRequest,
-    handleSetTrainingMode,
-} from "./systems/requests";
-import { processTrainRequest } from "./systems/training";
+    updateTrainingMode,
+    processTrainRequest,
+} from "./systems/training";
 
 replicator.init(world);
 
@@ -45,27 +41,27 @@ scheduler
     .addPlugin(new RunServicePlugin())
     .addPlugin(new JabbyPlugin())
     .addSystem(beginFrame)
-    .addSystem(onPlayerJoined)
-    .addSystem(onPlayerLeft)
-    .addSystem(detectCharacterAdded)
-    .addSystem(detectCharacterUpdated)
-    .addSystem(detectCharacterRemoved)
-    .addSystem(detectHumanoidAdded)
-    .addSystem(detectHumanoidUpdated)
-    .addSystem(detectHumanoidRemoved)
-    .addSystem(detectHumanoidRootAdded)
-    .addSystem(detectHumanoidRootUpdated)
-    .addSystem(detectHumanoidRootRemoved)
+    .addSystem(setupPlayer)
+    .addSystem(cleanupPlayer)
+    .addSystem(trackCharacterAdded)
+    .addSystem(trackCharacterUpdated)
+    .addSystem(trackCharacterRemoved)
+    .addSystem(trackHumanoidAdded)
+    .addSystem(trackHumanoidUpdated)
+    .addSystem(trackHumanoidRemoved)
+    .addSystem(trackHumanoidRootAdded)
+    .addSystem(trackHumanoidRootUpdated)
+    .addSystem(trackHumanoidRootRemoved)
     .addSystem(regenerateHealth)
-    .addSystem(reconcileHumanoidStats)
-    .addSystem(handleSetTrainingMode)
+    .addSystem(reconcileHumanoids)
+    .addSystem(updateTrainingMode)
     .addSystem(addTrainRequest)
     .addSystem(addSpeedTrainRequest)
     .addSystem(addJumpTrainRequest)
     .addSystem(addPowerTrainRequest)
     .addSystem(processTrainRequest)
     .addSystem(decreaseCooldowns)
-    .addSystem(onRequestReplication)
+    .addSystem(sendFull)
     .addSystem(sendUpdates)
     .addSystem(endFrame);
 

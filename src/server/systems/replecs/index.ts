@@ -1,2 +1,2 @@
-export * from "./on-request-replication";
+export * from "./send-full";
 export * from "./send-updates";

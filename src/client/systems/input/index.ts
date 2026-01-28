@@ -1,2 +1,2 @@
-export * from "./on-key";
-export * from "./on-mouse";
+export * from "./process-key";
+export * from "./process-mouse";
