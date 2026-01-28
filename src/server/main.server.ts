@@ -29,6 +29,8 @@ import {
     addPowerTrainRequest,
     addSpeedTrainRequest,
     addTrainRequest,
+    applyTrainingModeEffects,
+    removeTrainingModeEffects,
     updateTrainingMode,
     processTrainRequest,
 } from "./systems/training";
@@ -55,6 +57,8 @@ scheduler
     .addSystem(regenerateHealth)
     .addSystem(reconcileHumanoids)
     .addSystem(updateTrainingMode)
+    .addSystem(applyTrainingModeEffects)
+    .addSystem(removeTrainingModeEffects)
     .addSystem(addTrainRequest)
     .addSystem(addSpeedTrainRequest)
     .addSystem(addJumpTrainRequest)
