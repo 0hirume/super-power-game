@@ -10,7 +10,7 @@ import * as _ from "../shared/tags";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
-import { detectHumanoidJumped } from "./systems/humanoid-jumped";
+import { detectHumanoidJumped } from "./systems/detect-humanoid-jumped";
 import { onKeyInput, onMouseInput } from "./systems/input";
 import { onReceiveFull, requestReplication, onReceiveUpdate } from "./systems/replecs";
 
