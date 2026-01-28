@@ -35,13 +35,7 @@ import {
     addPowerTrainRequest,
     handleSetTrainingMode,
 } from "./systems/requests";
-import {
-    processEnduranceTraining,
-    processJumpForceTraining,
-    processPowerTraining,
-    processSpeedTraining,
-    processStrengthTraining,
-} from "./systems/training";
+import { processTrainRequest } from "./systems/training";
 
 replicator.init(world);
 
@@ -69,11 +63,7 @@ scheduler
     .addSystem(addSpeedTrainRequest)
     .addSystem(addJumpTrainRequest)
     .addSystem(addPowerTrainRequest)
-    .addSystem(processStrengthTraining)
-    .addSystem(processEnduranceTraining)
-    .addSystem(processSpeedTraining)
-    .addSystem(processJumpForceTraining)
-    .addSystem(processPowerTraining)
+    .addSystem(processTrainRequest)
     .addSystem(decreaseCooldowns)
     .addSystem(onRequestReplication)
     .addSystem(sendUpdates)
