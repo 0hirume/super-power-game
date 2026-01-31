@@ -12,6 +12,9 @@ import { decreaseCooldowns } from "./systems/decrease-cooldowns";
 import {
     cleanupPlayer,
     setupPlayer,
+    trackAnimatorAdded,
+    trackAnimatorRemoved,
+    trackAnimatorUpdated,
     trackCharacterAdded,
     trackCharacterRemoved,
     trackCharacterUpdated,
@@ -56,6 +59,9 @@ scheduler
     .addSystem(trackHumanoidRootAdded)
     .addSystem(trackHumanoidRootUpdated)
     .addSystem(trackHumanoidRootRemoved)
+    .addSystem(trackAnimatorAdded)
+    .addSystem(trackAnimatorUpdated)
+    .addSystem(trackAnimatorRemoved)
     .addSystem(regenerateHealth)
     .addSystem(reconcileHumanoids)
     .addSystem(updateTrainingMode)
