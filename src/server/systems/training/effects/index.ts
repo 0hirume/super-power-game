@@ -1,2 +1,2 @@
-export * from "./apply-effects";
-export * from "./remove-effects";
+export * from "./apply";
+export * from "./remove";
