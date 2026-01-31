@@ -3,14 +3,13 @@ import type { Tag, World } from "@rbxts/jecs";
 import { pair } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { EnduranceValue, PowerValue, StrengthValue } from "../../../shared/components";
+import { EnduranceValue, PowerValue, StrengthValue } from "../../../../shared/components";
 import {
     ActiveTrainingMode,
     EnduranceTrainingEffect,
     PowerTrainingEffect,
     StrengthTrainingEffect,
-} from "../../../shared/tags";
-import { addTag } from "../../../shared/utilities/ecs";
+} from "../../../../shared/tags";
 
 const EFFECTS: Record<Entity<number>, Tag> = {
     [StrengthValue]: StrengthTrainingEffect,
@@ -20,13 +19,13 @@ const EFFECTS: Record<Entity<number>, Tag> = {
 
 function system(world: World): void {
     for (const [component, tag] of pairs(EFFECTS)) {
-        for (const [entity] of world.query(pair(ActiveTrainingMode, component)).without(tag)) {
-            addTag(world, entity, tag);
+        for (const [entity] of world.query(tag).without(pair(ActiveTrainingMode, component))) {
+            world.remove(entity, tag);
         }
     }
 }
 
-export const applyTrainingModeEffects: SystemTable<[World]> = {
-    name: "ApplyTrainingModeEffects",
+export const removeTrainingModeEffects: SystemTable<[World]> = {
+    name: "RemoveTrainingModeEffects",
     system,
 };
