@@ -5,6 +5,7 @@ export const PlayerInstance = makeComponent<Player>(world, "PlayerInstance", tru
 export const CharacterInstance = makeComponent<Model>(world, "CharacterInstance", true);
 export const HumanoidInstance = makeComponent<Humanoid>(world, "HumanoidInstance", true);
 export const HumanoidRootInstance = makeComponent<Part>(world, "HumanoidRootInstance", true);
+export const AnimatorInstance = makeComponent<Animator>(world, "AnimatorInstance", true);
 export const VisualEffectInstance = makeComponent<Model>(world, "VisualEffectInstance");
 
 export const HealthValue = makeComponent<number>(world, "Health", true);
