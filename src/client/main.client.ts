@@ -10,7 +10,12 @@ import * as _ from "../shared/tags";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
-import { processKeyInputs, processMouseInputs } from "./systems/input";
+import {
+    freezeMovementSystem,
+    processKeyInputs,
+    processMouseInputs,
+    unfreezeMovementSystem,
+} from "./systems/input";
 import { applyFull, requestReplication, applyUpdates } from "./systems/replecs";
 import { trackHumanoidJumping } from "./systems/track-humanoid-jumping";
 
@@ -24,6 +29,8 @@ scheduler
     .addSystem(beginFrame)
     .addSystem(processKeyInputs)
     .addSystem(processMouseInputs)
+    .addSystem(freezeMovementSystem)
+    .addSystem(unfreezeMovementSystem)
     .addSystem(trackHumanoidJumping)
     .addSystem(applyFull)
     .addSystem(applyUpdates)
