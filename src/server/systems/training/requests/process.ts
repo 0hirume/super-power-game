@@ -10,10 +10,10 @@ import {
     SpeedValue,
     StrengthValue,
     TokenMultiplier,
-} from "../../../shared/components";
-import { TRAINING_COOLDOWN } from "../../../shared/constants/player";
-import { TrainRequest } from "../../../shared/tags";
-import { setComponent, setPairValue } from "../../../shared/utilities/ecs";
+} from "../../../../shared/components";
+import { TRAINING_COOLDOWN } from "../../../../shared/constants/player";
+import { TrainRequest } from "../../../../shared/tags";
+import { setComponent, setPairValue } from "../../../../shared/utilities/ecs";
 
 const STAT_COMPONENTS: Entity<number>[] = [
     StrengthValue,
