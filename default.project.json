@@ -34,7 +34,11 @@
         }
       },
       "assets": {
-        "$path": "assets"
+        "$className": "Folder",
+        "effects": {
+          "$className": "Folder",
+          "$path": "assets/effects"
+        }
       }
     },
     "ServerScriptService": {
