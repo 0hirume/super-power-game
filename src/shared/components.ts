@@ -1,13 +1,13 @@
 import { makeComponent } from "./utilities/ecs";
 import { world } from "./world";
 
-export const PlayerInstance = makeComponent<Player>(world, "PlayerInstance", true);
-export const CharacterInstance = makeComponent<Model>(world, "CharacterInstance", true);
-export const HumanoidInstance = makeComponent<Humanoid>(world, "HumanoidInstance", true);
-export const HumanoidRootInstance = makeComponent<Part>(world, "HumanoidRootInstance", true);
-export const AnimatorInstance = makeComponent<Animator>(world, "AnimatorInstance", true);
-export const VisualEffectInstance = makeComponent<Model>(world, "VisualEffectInstance");
+export const PlayerInstance = makeComponent<Player>(world, "Player", true);
+export const CharacterInstance = makeComponent<Model>(world, "Character", true);
+export const HumanoidInstance = makeComponent<Humanoid>(world, "Humanoid", true);
+export const HumanoidRootInstance = makeComponent<Part>(world, "HumanoidRoot", true);
+export const AnimatorInstance = makeComponent<Animator>(world, "Animator", true);
 export const TorsoInstance = makeComponent<BasePart>(world, "Torso", true);
+export const VisualEffectInstance = makeComponent<Model>(world, "VisualEffect");
 export const AnimationTrackInstance = makeComponent<AnimationTrack>(world, "AnimationTrack");
 
 export const HealthValue = makeComponent<number>(world, "Health", true);
