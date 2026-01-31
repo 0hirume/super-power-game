@@ -7,3 +7,5 @@ export const TrainRequest = makeTag(world, "TrainRequest");
 export const StrengthTrainingEffect = makeTag(world, "StrengthTrainingEffect");
 export const EnduranceTrainingEffect = makeTag(world, "EnduranceTrainingEffect");
 export const PowerTrainingEffect = makeTag(world, "PowerTrainingEffect");
+
+export const FrozenMovementEffect = makeTag(world, "FrozenMovementEffect");
