@@ -34,8 +34,10 @@ import {
     addTrainRequest,
     applyTrainingModeEffects,
     destroyTrainingVisualEffect,
+    playTrainingAnimation,
     spawnTrainingVisualEffect,
     removeTrainingModeEffects,
+    stopTrainingAnimation,
     updateTrainingMode,
     processTrainRequest,
 } from "./systems/training";
@@ -69,6 +71,8 @@ scheduler
     .addSystem(removeTrainingModeEffects)
     .addSystem(spawnTrainingVisualEffect)
     .addSystem(destroyTrainingVisualEffect)
+    .addSystem(playTrainingAnimation)
+    .addSystem(stopTrainingAnimation)
     .addSystem(addTrainRequest)
     .addSystem(addSpeedTrainRequest)
     .addSystem(addJumpTrainRequest)
