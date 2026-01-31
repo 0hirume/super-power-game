@@ -11,13 +11,19 @@ import {
 import { PowerTrainingEffect } from "../../../../shared/tags";
 import { setPairValue } from "../../../../shared/utilities/ecs";
 
-const powerTrainingVisualEffectModel = ReplicatedStorage.FindFirstChild("assets")!
-    .FindFirstChild("effects")!
-    .FindFirstChild("meditation")! as Model;
-
 const EFFECTS: Record<Tag, Model> = {
-    [PowerTrainingEffect]: powerTrainingVisualEffectModel,
+    [PowerTrainingEffect]: ReplicatedStorage.assets.effects.meditation,
 };
+
+for (const [_, model] of pairs(EFFECTS)) {
+    if (model === undefined) {
+        error(`Model doesn't exist`);
+    }
+
+    if (model.PrimaryPart === undefined) {
+        error(`Model doesn't have a PrimaryPart`);
+    }
+}
 
 function system(world: World): void {
     for (const [tag, model] of pairs(EFFECTS)) {
