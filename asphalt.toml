@@ -1,0 +1,10 @@
+[creator]
+type = "group"
+id = 985474832
+
+[codegen]
+typescript = true
+
+[inputs.animations]
+path = "assets/animations/*"
+output_path = "src/shared"
