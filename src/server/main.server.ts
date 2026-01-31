@@ -24,6 +24,9 @@ import {
     trackHumanoidRootRemoved,
     trackHumanoidRootUpdated,
     trackHumanoidUpdated,
+    trackTorsoAdded,
+    trackTorsoRemoved,
+    trackTorsoUpdated,
 } from "./systems/entities";
 import { sendFull, sendUpdates } from "./systems/replecs";
 import { reconcileHumanoids, regenerateHealth } from "./systems/stats";
@@ -61,6 +64,9 @@ scheduler
     .addSystem(trackHumanoidRootAdded)
     .addSystem(trackHumanoidRootUpdated)
     .addSystem(trackHumanoidRootRemoved)
+    .addSystem(trackTorsoAdded)
+    .addSystem(trackTorsoUpdated)
+    .addSystem(trackTorsoRemoved)
     .addSystem(trackAnimatorAdded)
     .addSystem(trackAnimatorUpdated)
     .addSystem(trackAnimatorRemoved)
