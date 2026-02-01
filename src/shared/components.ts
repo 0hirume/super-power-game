@@ -1,22 +1,42 @@
-import { makeComponent } from "./utilities/ecs";
+import { makeComponent, makeTag } from "./utilities/ecs";
 import { world } from "./world";
 
-export const PlayerInstance = makeComponent<Player>(world, "Player", true);
-export const CharacterInstance = makeComponent<Model>(world, "Character", true);
-export const HumanoidInstance = makeComponent<Humanoid>(world, "Humanoid", true);
-export const HumanoidRootInstance = makeComponent<Part>(world, "HumanoidRoot", true);
-export const AnimatorInstance = makeComponent<Animator>(world, "Animator", true);
-export const TorsoInstance = makeComponent<BasePart>(world, "Torso", true);
-export const VisualEffectInstance = makeComponent<Model>(world, "VisualEffect");
-export const AnimationTrackInstance = makeComponent<AnimationTrack>(world, "AnimationTrack");
+export namespace Player {
+    export const Instance = makeComponent<Player>(world, "Player", true);
+    export const Character = makeComponent<Model>(world, "Character", true);
+    export const Humanoid = makeComponent<Humanoid>(world, "Humanoid", true);
+    export const Root = makeComponent<Part>(world, "HumanoidRoot", true);
+    export const Animator = makeComponent<Animator>(world, "Animator", true);
+    export const Torso = makeComponent<BasePart>(world, "Torso", true);
+}
 
-export const HealthValue = makeComponent<number>(world, "Health", true);
-export const StrengthValue = makeComponent<number>(world, "Strength", true);
-export const EnduranceValue = makeComponent<number>(world, "Endurance", true);
-export const SpeedValue = makeComponent<number>(world, "Speed", true);
-export const JumpForceValue = makeComponent<number>(world, "JumpForce", true);
-export const PowerValue = makeComponent<number>(world, "Power", true);
+export namespace Value {
+    export const Health = makeComponent<number>(world, "Health", true);
+    export const Strength = makeComponent<number>(world, "Strength", true);
+    export const Endurance = makeComponent<number>(world, "Endurance", true);
+    export const Speed = makeComponent<number>(world, "Speed", true);
+    export const JumpForce = makeComponent<number>(world, "JumpForce", true);
+    export const Power = makeComponent<number>(world, "Power", true);
+    export const Cooldown = makeComponent<number>(world, "Cooldown");
+}
 
-export const TokenMultiplier = makeComponent<number>(world, "TokenMultiplier", true);
+export namespace Multiplier {
+    export const Token = makeComponent<number>(world, "TokenMultiplier", true);
+}
 
-export const Cooldown = makeComponent<number>(world, "Cooldown");
+export namespace Action {
+    export const Train = makeTag(world, "Train");
+    export const Punch = makeTag(world, "Punch");
+}
+
+export namespace Status {
+    export const TrainingMode = makeTag(world, "TrainingMode");
+    export const EnduranceTraining = makeTag(world, "EnduranceTraining");
+    export const PowerTraining = makeTag(world, "PowerTraining");
+    export const MovementFrozen = makeTag(world, "MovementFrozen");
+}
+
+export namespace Visual {
+    export const Instance = makeComponent<Model>(world, "VisualInstance");
+    export const AnimationTrack = makeComponent<AnimationTrack>(world, "VisualAnimation");
+}

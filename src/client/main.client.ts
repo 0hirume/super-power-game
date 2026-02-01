@@ -6,7 +6,6 @@ import Net from "@rbxts/yetanothernet";
 
 import { replicator } from "../shared/replicator/client";
 import { routes } from "../shared/routes";
-import * as _ from "../shared/tags";
 import { world } from "../shared/world";
 
 import { scheduler } from "./scheduler";
