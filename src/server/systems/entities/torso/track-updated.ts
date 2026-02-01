@@ -1,29 +1,32 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { CharacterInstance, TorsoInstance } from "../../../../shared/components";
+import { Player } from "../../../../shared/components";
 import { setComponent } from "../../../../shared/utilities/ecs";
 
-function system(world: World): void {
-    for (const [entity, characterInstance, rootInstance] of world.query(
-        CharacterInstance,
-        TorsoInstance,
-    )) {
-        const torso = characterInstance.FindFirstChild("Torso");
+function initializer(world: World): { system: () => void } {
+    const query = world.query(Player.Character, Player.Torso).cached();
 
-        if (torso?.FindFirstAncestorWhichIsA("DataModel") === undefined || !torso.IsA("Part")) {
-            continue;
+    function system(): void {
+        for (const [entity, character, torso] of query) {
+            const foundTorso = character.FindFirstChild("Torso");
+
+            if (foundTorso?.FindFirstAncestorWhichIsA("DataModel") === undefined) {
+                continue;
+            }
+
+            if (!foundTorso.IsA("BasePart") || foundTorso === torso) {
+                continue;
+            }
+
+            setComponent(world, entity, Player.Root, foundTorso);
         }
-
-        if (torso === rootInstance) {
-            continue;
-        }
-
-        setComponent(world, entity, TorsoInstance, torso);
     }
+
+    return { system };
 }
 
 export const trackTorsoUpdated: SystemTable<[World]> = {
     name: "TrackTorsoUpdated",
-    system,
+    system: initializer,
 };

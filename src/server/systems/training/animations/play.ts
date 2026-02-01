@@ -1,32 +1,48 @@
-import type { Tag, World } from "@rbxts/jecs";
+import type { CachedQuery, Entity, Tag, World } from "@rbxts/jecs";
 import { pair } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
 import animations from "../../../../shared/animations";
-import { AnimationTrackInstance, AnimatorInstance } from "../../../../shared/components";
-import { PowerTrainingEffect } from "../../../../shared/tags";
+import { Player, Status, Visual } from "../../../../shared/components";
 import { makeAnimation } from "../../../../shared/utilities/animations";
 import { setPairValue } from "../../../../shared/utilities/ecs";
 
 const ANIMATIONS: Record<Tag, Animation> = {
-    [PowerTrainingEffect]: makeAnimation(animations["meditation.rbxm"]),
+    [Status.PowerTraining]: makeAnimation(animations["meditation.rbxm"]),
 };
 
-function system(world: World): void {
-    for (const [tag, animation] of pairs(ANIMATIONS)) {
-        for (const [entity, animator] of world
-            .query(AnimatorInstance)
-            .with(tag)
-            .without(pair(AnimationTrackInstance, tag))) {
-            const track = animator.LoadAnimation(animation);
-            track.Play();
+function initializer(world: World): { system: () => void } {
+    const queries: Record<Tag, CachedQuery<[Entity<Animator>]>> = {};
 
-            setPairValue(world, entity, AnimationTrackInstance, tag, track);
+    for (const [tag] of pairs(ANIMATIONS)) {
+        queries[tag] = world
+            .query(Player.Animator)
+            .with(tag)
+            .without(pair(Visual.AnimationTrack, tag))
+            .cached();
+    }
+
+    function system(): void {
+        for (const [tag, animation] of pairs(ANIMATIONS)) {
+            const query = queries[tag];
+
+            if (query === undefined) {
+                continue;
+            }
+
+            for (const [entity, animator] of query) {
+                const track = animator.LoadAnimation(animation);
+                track.Play();
+
+                setPairValue(world, entity, Visual.AnimationTrack, tag, track);
+            }
         }
     }
+
+    return { system };
 }
 
 export const playTrainingAnimation: SystemTable<[World]> = {
     name: "PlayTrainingAnimation",
-    system,
+    system: initializer,
 };

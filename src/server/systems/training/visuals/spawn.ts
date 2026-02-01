@@ -1,21 +1,17 @@
+import type { CachedQuery, Entity } from "@rbxts/jecs";
 import { Name, type Tag, type World } from "@rbxts/jecs";
 import { pair } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 import { ReplicatedStorage } from "@rbxts/services";
 
-import {
-    CharacterInstance,
-    TorsoInstance,
-    VisualEffectInstance,
-} from "../../../../shared/components";
-import { PowerTrainingEffect } from "../../../../shared/tags";
+import { Player, Status, Visual } from "../../../../shared/components";
 import { setPairValue } from "../../../../shared/utilities/ecs";
 
-const EFFECTS: Record<Tag, Model> = {
-    [PowerTrainingEffect]: ReplicatedStorage.assets.effects.meditation,
+const STATUSES: Record<Tag, Model> = {
+    [Status.PowerTraining]: ReplicatedStorage.assets.effects.meditation,
 };
 
-for (const [_, model] of pairs(EFFECTS)) {
+for (const [_, model] of pairs(STATUSES)) {
     if (model === undefined) {
         error(`Model doesn't exist`);
     }
@@ -25,29 +21,46 @@ for (const [_, model] of pairs(EFFECTS)) {
     }
 }
 
-function system(world: World): void {
-    for (const [tag, model] of pairs(EFFECTS)) {
-        for (const [entity, characterInstance, torsoInstance] of world
-            .query(CharacterInstance, TorsoInstance)
+function initializer(world: World): { system: () => void } {
+    const queries: Record<Tag, CachedQuery<[Entity<Model>, Entity<BasePart>]>> = {};
+
+    for (const [tag] of pairs(STATUSES)) {
+        queries[tag] = world
+            .query(Player.Character, Player.Torso)
             .with(tag)
-            .without(pair(VisualEffectInstance, tag))) {
-            const newModel = model.Clone();
-            newModel.Name = world.get(tag, Name) ?? "Effect";
-            newModel.Parent = characterInstance;
+            .without(pair(Visual.Instance, tag))
+            .cached();
+    }
 
-            newModel.PivotTo(torsoInstance.CFrame);
+    function system(): void {
+        for (const [tag, model] of pairs(STATUSES)) {
+            const query = queries[tag];
 
-            const weld = new Instance("WeldConstraint");
-            weld.Part0 = newModel.PrimaryPart;
-            weld.Part1 = torsoInstance;
-            weld.Parent = newModel.PrimaryPart;
+            if (query === undefined) {
+                continue;
+            }
 
-            setPairValue(world, entity, VisualEffectInstance, tag, newModel);
+            for (const [entity, character, torso] of query) {
+                const newModel = model.Clone();
+                newModel.Name = world.get(tag, Name) ?? "Effect";
+                newModel.Parent = character;
+
+                newModel.PivotTo(torso.CFrame);
+
+                const weld = new Instance("WeldConstraint");
+                weld.Part0 = newModel.PrimaryPart;
+                weld.Part1 = torso;
+                weld.Parent = newModel.PrimaryPart;
+
+                setPairValue(world, entity, Visual.Instance, tag, newModel);
+            }
         }
     }
+
+    return { system };
 }
 
 export const spawnTrainingVisualEffect: SystemTable<[World]> = {
     name: "SpawnTrainingVisualEffect",
-    system,
+    system: initializer,
 };

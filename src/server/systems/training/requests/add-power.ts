@@ -1,20 +1,25 @@
 import { pair, type World } from "@rbxts/jecs";
 import { timePassed, type SystemTable } from "@rbxts/planck";
 
-import { PowerValue } from "../../../../shared/components";
-import { ActiveTrainingMode, TrainRequest } from "../../../../shared/tags";
+import { Action, Status, Value } from "../../../../shared/components";
 import { addPair } from "../../../../shared/utilities/ecs";
 
 const INTERVAL = 1;
 
-function system(world: World): void {
-    for (const [entity] of world.query().with(pair(ActiveTrainingMode, PowerValue))) {
-        addPair(world, entity, TrainRequest, PowerValue);
+function initializer(world: World): { system: () => void } {
+    const query = world.query(pair(Status.TrainingMode, Value.Power));
+
+    function system(): void {
+        for (const [entity] of query) {
+            addPair(world, entity, Action.Train, Value.Power);
+        }
     }
+
+    return { system };
 }
 
 export const addPowerTrainRequest: SystemTable<[World]> = {
     name: "AddPowerTrainRequest",
     runConditions: [timePassed(INTERVAL)],
-    system,
+    system: initializer,
 };

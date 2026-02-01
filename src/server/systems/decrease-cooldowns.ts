@@ -1,36 +1,42 @@
 import { pair, Wildcard, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { Cooldown } from "../../shared/components";
-import { COOLDOWN_ZERO } from "../../shared/constants/player";
+import { Value } from "../../shared/components";
 import { setPairValue } from "../../shared/utilities/ecs";
 import { scheduler } from "../scheduler";
 
-function system(world: World): void {
-    for (const [entity] of world.query(pair(Cooldown, Wildcard))) {
-        let index = 0;
-        let target = world.target(entity, Cooldown, index);
+const ZERO = 0;
 
-        while (target !== undefined) {
-            const cooldown = world.get(entity, pair(Cooldown, target));
+function initializer(world: World): { system: () => void } {
+    const query = world.query(pair(Value.Cooldown, Wildcard)).cached();
 
-            if (cooldown !== undefined) {
-                const newCooldown = cooldown - scheduler.getDeltaTime();
+    function system(): void {
+        for (const [entity] of query) {
+            let index = 0;
+            let target = world.target(entity, Value.Cooldown, index);
 
-                if (newCooldown <= COOLDOWN_ZERO) {
-                    world.remove(entity, pair(Cooldown, target));
-                } else {
-                    setPairValue(world, entity, Cooldown, target, newCooldown);
+            while (target !== undefined) {
+                const cooldown = world.get(entity, pair(Value.Cooldown, target));
+
+                if (cooldown !== undefined) {
+                    const newCooldown = cooldown - scheduler.getDeltaTime();
+
+                    if (newCooldown <= ZERO) {
+                        world.remove(entity, pair(Value.Cooldown, target));
+                    } else {
+                        setPairValue(world, entity, Value.Cooldown, target, newCooldown);
+                    }
                 }
-            }
 
-            index++;
-            target = world.target(entity, Cooldown, index);
+                index++;
+                target = world.target(entity, Value.Cooldown, index);
+            }
         }
     }
+    return { system };
 }
 
 export const decreaseCooldowns: SystemTable<[World]> = {
     name: "DecreaseCooldowns",
-    system,
+    system: initializer,
 };

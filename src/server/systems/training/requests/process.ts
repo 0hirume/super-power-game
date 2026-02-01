@@ -1,43 +1,46 @@
-import type { Entity } from "@rbxts/jecs";
+import type { CachedQuery, Entity, Pair } from "@rbxts/jecs";
 import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import {
-    Cooldown,
-    EnduranceValue,
-    JumpForceValue,
-    PowerValue,
-    SpeedValue,
-    StrengthValue,
-    TokenMultiplier,
-} from "../../../../shared/components";
-import { TRAINING_COOLDOWN } from "../../../../shared/constants/player";
-import { TrainRequest } from "../../../../shared/tags";
+import { Action, Multiplier, Value } from "../../../../shared/components";
 import { setComponent, setPairValue } from "../../../../shared/utilities/ecs";
 
-const STAT_COMPONENTS: Entity<number>[] = [
-    StrengthValue,
-    EnduranceValue,
-    SpeedValue,
-    JumpForceValue,
-    PowerValue,
-];
+const STATS = [Value.Strength, Value.Endurance, Value.Speed, Value.JumpForce, Value.Power] as const;
 
-function system(world: World): void {
-    for (const component of STAT_COMPONENTS) {
-        for (const [entity, statValue, multiplierValue] of world
-            .query(component, pair(TokenMultiplier, component))
-            .with(pair(TrainRequest, component))
-            .without(pair(Cooldown, component))) {
-            world.remove(entity, pair(TrainRequest, component));
+const COOLDOWN = 1;
 
-            setComponent(world, entity, component, statValue + multiplierValue);
-            setPairValue(world, entity, Cooldown, component, TRAINING_COOLDOWN);
+function initializer(world: World): { system: () => void } {
+    const queries: Record<Entity<number>, CachedQuery<[Entity<number>, Pair<number, number>]>> = {};
+
+    for (const component of STATS) {
+        queries[component] = world
+            .query(component, pair(Multiplier.Token, component))
+            .with(pair(Action.Train, component))
+            .without(pair(Value.Cooldown, component))
+            .cached();
+    }
+
+    function system(): void {
+        for (const component of STATS) {
+            const query = queries[component];
+
+            if (query === undefined) {
+                continue;
+            }
+
+            for (const [entity, value, multiplier] of query) {
+                world.remove(entity, pair(Action.Train, component));
+
+                setComponent(world, entity, component, value + multiplier);
+                setPairValue(world, entity, Value.Cooldown, component, COOLDOWN);
+            }
         }
     }
+
+    return { system };
 }
 
 export const processTrainRequest: SystemTable<[World]> = {
     name: "ProcessTrainRequest",
-    system,
+    system: initializer,
 };

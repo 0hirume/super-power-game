@@ -1,23 +1,27 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { CharacterInstance, HumanoidInstance } from "../../../../shared/components";
+import { Player } from "../../../../shared/components";
 
-function system(world: World): void {
-    for (const [entity, characterInstance] of world
-        .query(CharacterInstance)
-        .with(HumanoidInstance)) {
-        const humanoid = characterInstance.FindFirstChildWhichIsA("Humanoid");
+function initializer(world: World): { system: () => void } {
+    const query = world.query(Player.Character).with(Player.Humanoid).cached();
 
-        if (humanoid?.FindFirstAncestorWhichIsA("DataModel") !== undefined) {
-            continue;
+    function system(): void {
+        for (const [entity, character] of query) {
+            const humanoid = character.FindFirstChildWhichIsA("Humanoid");
+
+            if (humanoid?.FindFirstAncestorWhichIsA("DataModel") !== undefined) {
+                continue;
+            }
+
+            world.remove(entity, Player.Humanoid);
         }
-
-        world.remove(entity, HumanoidInstance);
     }
+
+    return { system };
 }
 
 export const trackHumanoidRemoved: SystemTable<[World]> = {
     name: "TrackHumanoidRemoved",
-    system,
+    system: initializer,
 };

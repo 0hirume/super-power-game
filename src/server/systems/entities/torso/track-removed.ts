@@ -1,21 +1,27 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { CharacterInstance, TorsoInstance } from "../../../../shared/components";
+import { Player } from "../../../../shared/components";
 
-function system(world: World): void {
-    for (const [entity, characterInstance] of world.query(CharacterInstance).with(TorsoInstance)) {
-        const torso = characterInstance.FindFirstChild("Torso");
+function initializer(world: World): { system: () => void } {
+    const query = world.query(Player.Character).with(Player.Torso).cached();
 
-        if (torso?.FindFirstAncestorWhichIsA("DataModel") !== undefined) {
-            continue;
+    function system(): void {
+        for (const [entity, character] of query) {
+            const torso = character.FindFirstChild("Torso");
+
+            if (torso?.FindFirstAncestorWhichIsA("DataModel") !== undefined) {
+                continue;
+            }
+
+            world.remove(entity, Player.Torso);
         }
-
-        world.remove(entity, TorsoInstance);
     }
+
+    return { system };
 }
 
 export const trackTorsoRemoved: SystemTable<[World]> = {
     name: "TrackTorsoRemoved",
-    system,
+    system: initializer,
 };

@@ -1,19 +1,25 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { CharacterInstance, PlayerInstance } from "../../../../shared/components";
+import { Player } from "../../../../shared/components";
 
-function system(world: World): void {
-    for (const [entity, playerInstance] of world.query(PlayerInstance).with(CharacterInstance)) {
-        if (playerInstance.Character?.Parent !== undefined) {
-            continue;
+function initializer(world: World): { system: () => void } {
+    const query = world.query(Player.Instance).with(Player.Character).cached();
+
+    function system(): void {
+        for (const [entity, player] of query) {
+            if (player.Character?.Parent !== undefined) {
+                continue;
+            }
+
+            world.remove(entity, Player.Character);
         }
-
-        world.remove(entity, CharacterInstance);
     }
+
+    return { system };
 }
 
 export const trackCharacterRemoved: SystemTable<[World]> = {
     name: "TrackCharacterRemoved",
-    system,
+    system: initializer,
 };

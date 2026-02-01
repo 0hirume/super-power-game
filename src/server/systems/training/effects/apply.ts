@@ -1,32 +1,44 @@
-import type { Entity } from "@rbxts/jecs";
+import type { CachedQuery, Entity, Pair, TagDiscriminator } from "@rbxts/jecs";
 import type { Tag, World } from "@rbxts/jecs";
 import { pair } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { EnduranceValue, PowerValue, StrengthValue } from "../../../../shared/components";
-import {
-    ActiveTrainingMode,
-    EnduranceTrainingEffect,
-    PowerTrainingEffect,
-    StrengthTrainingEffect,
-} from "../../../../shared/tags";
+import { Status, Value } from "../../../../shared/components";
 import { addTag } from "../../../../shared/utilities/ecs";
 
-const EFFECTS: Record<Entity<number>, Tag> = {
-    [StrengthValue]: StrengthTrainingEffect,
-    [EnduranceValue]: EnduranceTrainingEffect,
-    [PowerValue]: PowerTrainingEffect,
+const STATUSES: Record<Entity<number>, Tag> = {
+    [Value.Endurance]: Status.EnduranceTraining,
+    [Value.Power]: Status.PowerTraining,
 };
 
-function system(world: World): void {
-    for (const [component, tag] of pairs(EFFECTS)) {
-        for (const [entity] of world.query(pair(ActiveTrainingMode, component)).without(tag)) {
-            addTag(world, entity, tag);
+function initializer(world: World): { system: () => void } {
+    const queries: Record<Entity<number>, CachedQuery<[Pair<TagDiscriminator, number>]>> = {};
+
+    for (const [component, tag] of pairs(STATUSES)) {
+        queries[component] = world
+            .query(pair(Status.TrainingMode, component))
+            .without(tag)
+            .cached();
+    }
+
+    function system(): void {
+        for (const [component, tag] of pairs(STATUSES)) {
+            const query = queries[component];
+
+            if (query === undefined) {
+                continue;
+            }
+
+            for (const [entity] of query) {
+                addTag(world, entity, tag);
+            }
         }
     }
+
+    return { system };
 }
 
 export const applyTrainingModeEffects: SystemTable<[World]> = {
     name: "ApplyTrainingModeEffects",
-    system,
+    system: initializer,
 };

@@ -1,25 +1,28 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { CharacterInstance, PlayerInstance } from "../../../../shared/components";
+import { Player } from "../../../../shared/components";
 import { setComponent } from "../../../../shared/utilities/ecs";
 
-function system(world: World): void {
-    for (const [entity, playerInstance, characterInstance] of world.query(
-        PlayerInstance,
-        CharacterInstance,
-    )) {
-        const character = playerInstance.Character;
+function initializer(world: World): { system: () => void } {
+    const query = world.query(Player.Instance, Player.Character).cached();
 
-        if (character?.Parent === undefined || character === characterInstance) {
-            continue;
+    function system(): void {
+        for (const [entity, player, character] of query) {
+            const foundCharacter = player.Character;
+
+            if (foundCharacter?.Parent === undefined || foundCharacter === character) {
+                continue;
+            }
+
+            setComponent(world, entity, Player.Character, foundCharacter);
         }
-
-        setComponent(world, entity, CharacterInstance, playerInstance.Character);
     }
+
+    return { system };
 }
 
 export const trackCharacterUpdated: SystemTable<[World]> = {
     name: "TrackCharacterUpdated",
-    system,
+    system: initializer,
 };

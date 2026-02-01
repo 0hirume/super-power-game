@@ -2,32 +2,38 @@ import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 import { Players } from "@rbxts/services";
 
-import { PlayerInstance } from "../../shared/components";
+import { Player } from "../../shared/components";
 import { routes } from "../../shared/routes";
 
 const LOCAL_PLAYER = Players.LocalPlayer;
 
-function system(world: World): void {
-    for (const [_, playerInstance] of world.query(PlayerInstance)) {
-        if (playerInstance !== LOCAL_PLAYER) {
-            continue;
+function initializer(world: World): { system: () => void } {
+    const query = world.query(Player.Instance).cached();
+
+    function system(): void {
+        for (const [_, player] of query) {
+            if (player !== LOCAL_PLAYER) {
+                continue;
+            }
+
+            const humanoid = player.Character?.FindFirstChildWhichIsA("Humanoid");
+
+            if (humanoid === undefined) {
+                continue;
+            }
+
+            if (humanoid.GetState() !== Enum.HumanoidStateType.Jumping) {
+                continue;
+            }
+
+            routes.onHumanoidJumped.send();
         }
-
-        const humanoid = playerInstance.Character?.FindFirstChildWhichIsA("Humanoid");
-
-        if (humanoid === undefined) {
-            continue;
-        }
-
-        if (humanoid.GetState() !== Enum.HumanoidStateType.Jumping) {
-            continue;
-        }
-
-        routes.onHumanoidJumped.send();
     }
+
+    return { system };
 }
 
 export const trackHumanoidJumping: SystemTable<[World]> = {
     name: "TrackHumanoidJumping",
-    system,
+    system: initializer,
 };

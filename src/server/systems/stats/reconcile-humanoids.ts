@@ -1,35 +1,30 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import {
-    EnduranceValue,
-    HealthValue,
-    HumanoidInstance,
-    JumpForceValue,
-    SpeedValue,
-} from "../../../shared/components";
-import { BASE_JUMPHEIGHT, BASE_MAX_HEALTH, BASE_WALKSPEED } from "../../../shared/constants/player";
+import { Player, Value } from "../../../shared/components";
+import { BASE } from "../../../shared/constants/player";
 
-function system(world: World): void {
-    for (const [
-        _,
-        instance,
-        healthValue,
-        enduranceValue,
-        speedValue,
-        jumpForceValue,
-    ] of world.query(HumanoidInstance, HealthValue, EnduranceValue, SpeedValue, JumpForceValue)) {
-        instance.UseJumpPower = false;
+function initializer(world: World): { system: () => void } {
+    const query = world
+        .query(Player.Humanoid, Value.Health, Value.Endurance, Value.Speed, Value.JumpForce)
+        .cached();
 
-        instance.Health = healthValue;
-        instance.MaxHealth = BASE_MAX_HEALTH + enduranceValue;
+    function system(): void {
+        for (const [_, instance, health, endurance, speed, jumpForce] of query) {
+            instance.UseJumpPower = false;
 
-        instance.WalkSpeed = BASE_WALKSPEED + speedValue;
-        instance.JumpHeight = BASE_JUMPHEIGHT + jumpForceValue;
+            instance.Health = health;
+            instance.MaxHealth = BASE.HEALTH + endurance;
+
+            instance.WalkSpeed = BASE.WALKSPEED + speed;
+            instance.JumpHeight = BASE.JUMPHEIGHT + jumpForce;
+        }
     }
+
+    return { system };
 }
 
 export const reconcileHumanoids: SystemTable<[World]> = {
     name: "ReconcileHumanoids",
-    system,
+    system: initializer,
 };

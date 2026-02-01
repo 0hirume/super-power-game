@@ -1,22 +1,28 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { AnimatorInstance, HumanoidInstance } from "../../../../shared/components";
+import { Player } from "../../../../shared/components";
 import { setComponent } from "../../../../shared/utilities/ecs";
 
-function system(world: World): void {
-    for (const [entity, instance] of world.query(HumanoidInstance).without(AnimatorInstance)) {
-        const animator = instance.FindFirstChildWhichIsA("Animator");
+function initializer(world: World): { system: () => void } {
+    const query = world.query(Player.Humanoid).without(Player.Animator).cached();
 
-        if (animator === undefined) {
-            continue;
+    function system(): void {
+        for (const [entity, humanoid] of query) {
+            const animator = humanoid.FindFirstChildWhichIsA("Animator");
+
+            if (animator === undefined) {
+                continue;
+            }
+
+            setComponent(world, entity, Player.Animator, animator, true);
         }
-
-        setComponent(world, entity, AnimatorInstance, animator, true);
     }
+
+    return { system };
 }
 
 export const trackAnimatorAdded: SystemTable<[World]> = {
     name: "TrackAnimatorAdded",
-    system,
+    system: initializer,
 };

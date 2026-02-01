@@ -3,18 +3,25 @@ import { pair, Wildcard } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 import { ContextActionService } from "@rbxts/services";
 
-import { ActiveTrainingMode, FrozenMovementEffect } from "../../../shared/tags";
+import { Status } from "../../../shared/components";
 
-function system(world: World): void {
-    for (const [entity] of world
-        .query(FrozenMovementEffect)
-        .without(pair(ActiveTrainingMode, Wildcard))) {
-        ContextActionService.UnbindAction("FreezeMovement");
-        world.remove(entity, FrozenMovementEffect);
+function initializer(world: World): { system: () => void } {
+    const query = world
+        .query(Status.MovementFrozen)
+        .without(pair(Status.TrainingMode, Wildcard))
+        .cached();
+
+    function system(): void {
+        for (const [entity] of query) {
+            world.remove(entity, Status.MovementFrozen);
+            ContextActionService.UnbindAction("FreezeMovement");
+        }
     }
+
+    return { system };
 }
 
 export const unfreezeMovementSystem: SystemTable<[World]> = {
     name: "UnfreezeMovementSystem",
-    system,
+    system: initializer,
 };

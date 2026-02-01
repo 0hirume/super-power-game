@@ -1,25 +1,30 @@
 import type { World } from "@rbxts/jecs";
 import { timePassed, type SystemTable } from "@rbxts/planck";
 
-import { HumanoidInstance, SpeedValue } from "../../../../shared/components";
-import { TrainRequest } from "../../../../shared/tags";
+import { Action, Player, Value } from "../../../../shared/components";
 import { addPair } from "../../../../shared/utilities/ecs";
 
 const THRESHOLD = 0.5;
 const INTERVAL = 1;
 
-function system(world: World): void {
-    for (const [entity, instance] of world.query(HumanoidInstance)) {
-        if (instance.MoveDirection.Magnitude <= THRESHOLD) {
-            continue;
-        }
+function initializer(world: World): { system: () => void } {
+    const query = world.query(Player.Humanoid);
 
-        addPair(world, entity, TrainRequest, SpeedValue);
+    function system(): void {
+        for (const [entity, humanoid] of query) {
+            if (humanoid.MoveDirection.Magnitude <= THRESHOLD) {
+                continue;
+            }
+
+            addPair(world, entity, Action.Train, Value.Speed);
+        }
     }
+
+    return { system };
 }
 
 export const addSpeedTrainRequest: SystemTable<[World]> = {
     name: "AddSpeedTrainRequest",
     runConditions: [timePassed(INTERVAL)],
-    system,
+    system: initializer,
 };

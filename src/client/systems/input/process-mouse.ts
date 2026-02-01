@@ -7,26 +7,30 @@ import { routes } from "../../../shared/routes";
 
 const [hasInput, collectInputs] = onEvent(UserInputService.InputBegan);
 
-function system(): void {
-    for (const [_, inputObject, gameProcessed] of collectInputs()) {
-        if (gameProcessed) {
-            continue;
-        }
-
-        switch (inputObject.UserInputType) {
-            case Enum.UserInputType.MouseButton1: {
-                routes.requestTrain.send();
-                break;
+function initializer(): { system: () => void } {
+    function system(): void {
+        for (const [_, input, gameProcessed] of collectInputs()) {
+            if (gameProcessed) {
+                continue;
             }
-            default: {
-                break;
+
+            switch (input.UserInputType) {
+                case Enum.UserInputType.MouseButton1: {
+                    routes.requestTrain.send();
+                    break;
+                }
+                default: {
+                    break;
+                }
             }
         }
     }
+
+    return { system };
 }
 
 export const processMouseInputs: SystemTable<[World]> = {
     name: "ProcessMouseInputs",
     runConditions: [hasInput],
-    system,
+    system: initializer,
 };
