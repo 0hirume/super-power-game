@@ -8,6 +8,6 @@ export const routes = {
     receiveUpdate: new Route<[buffer, unknown[][]]>(),
 
     requestReplication: new Route<[]>(),
-    requestTrainingModeChange: new Route<[Entity<number>]>(),
     requestTrain: new Route<[]>(),
+    requestTrainingModeChange: new Route<[Entity<number>]>(),
 };
