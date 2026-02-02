@@ -7,6 +7,7 @@ import { Status, Value } from "../../../../shared/components";
 import { addTag } from "../../../../shared/utilities/ecs";
 
 const STATUSES: Record<Entity<number>, Tag> = {
+    [Value.Strength]: Status.StrengthTraining,
     [Value.Endurance]: Status.EnduranceTraining,
     [Value.Power]: Status.PowerTraining,
 };
