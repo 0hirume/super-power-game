@@ -11,7 +11,7 @@
     "@rbxts/jabby": "^0.4.0",
     "@rbxts/jecs": "^0.9.0",
     "@rbxts/object-utils": "^1.0.4",
-    "@rbxts/planck": "^1.0.0",
+    "@rbxts/planck": "^0.3.0-alpha.2",
     "@rbxts/planck-jabby": "^1.0.0",
     "@rbxts/planck-runservice": "^1.0.3",
     "@rbxts/replecs": "^0.2.3",
