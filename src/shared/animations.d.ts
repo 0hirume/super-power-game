@@ -2,6 +2,7 @@
 // It is not intended for manual editing.
 declare const animations: {
 	"meditation.rbxm": string
+	"pushup.rbxm": string
 }
 
 export = animations
