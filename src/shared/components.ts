@@ -31,6 +31,7 @@ export namespace Action {
 
 export namespace Status {
     export const TrainingMode = makeTag(world, "TrainingMode");
+    export const StrengthTraining = makeTag(world, "StrengthTraining");
     export const EnduranceTraining = makeTag(world, "EnduranceTraining");
     export const PowerTraining = makeTag(world, "PowerTraining");
     export const MovementFrozen = makeTag(world, "MovementFrozen");
