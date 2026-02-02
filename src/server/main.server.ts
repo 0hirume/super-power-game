@@ -27,7 +27,7 @@ import {
     trackTorsoAdded,
     trackTorsoRemoved,
     trackTorsoUpdated,
-} from "./systems/entities";
+} from "./systems/player";
 import { sendFull, sendUpdates } from "./systems/replecs";
 import { reconcileHumanoids, regenerateHealth } from "./systems/stats";
 import {

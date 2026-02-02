@@ -3,9 +3,9 @@ import type { SystemTable } from "@rbxts/planck";
 import { onEvent } from "@rbxts/planck";
 import { Players } from "@rbxts/services";
 
-import { Multiplier, Player, Value } from "../../../../shared/components";
-import { BASE } from "../../../../shared/constants/player";
-import { makeEntity, setComponent, setPairValue } from "../../../../shared/utilities/ecs";
+import { Multiplier, Player, Value } from "../../../shared/components";
+import { BASE } from "../../../shared/constants/player";
+import { makeEntity, setComponent, setPairValue } from "../../../shared/utilities/ecs";
 
 const STATS = [Value.Strength, Value.Endurance, Value.Speed, Value.JumpForce, Value.Power] as const;
 

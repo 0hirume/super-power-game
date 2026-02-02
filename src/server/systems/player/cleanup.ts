@@ -3,7 +3,7 @@ import type { SystemTable } from "@rbxts/planck";
 import { onEvent } from "@rbxts/planck";
 import { Players } from "@rbxts/services";
 
-import { Player } from "../../../../shared/components";
+import { Player } from "../../../shared/components";
 
 const [hasPlayerLeft, collectPlayersLeft] = onEvent(Players.PlayerRemoving);
 
