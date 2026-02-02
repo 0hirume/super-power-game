@@ -2,20 +2,14 @@ import type { CachedQuery, Entity, Tag, World } from "@rbxts/jecs";
 import { pair } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import animations from "../../../../shared/animations";
-import { Player, Status, Visual } from "../../../../shared/components";
-import { makeAnimation } from "../../../../shared/utilities/animations";
+import { Player, Visual } from "../../../../shared/components";
+import { STATUS_VISUAL_ANIMATIONS } from "../../../../shared/constants/components";
 import { setPairValue } from "../../../../shared/utilities/ecs";
-
-const ANIMATIONS: Record<Tag, Animation> = {
-    [Status.EnduranceTraining]: makeAnimation(animations["pushup.rbxm"]),
-    [Status.PowerTraining]: makeAnimation(animations["meditation.rbxm"]),
-};
 
 function initializer(world: World): { system: () => void } {
     const queries: Record<Tag, CachedQuery<[Entity<Animator>]>> = {};
 
-    for (const [tag] of pairs(ANIMATIONS)) {
+    for (const [tag] of pairs(STATUS_VISUAL_ANIMATIONS)) {
         queries[tag] = world
             .query(Player.Animator)
             .with(tag)
@@ -24,7 +18,7 @@ function initializer(world: World): { system: () => void } {
     }
 
     function system(): void {
-        for (const [tag, animation] of pairs(ANIMATIONS)) {
+        for (const [tag, animation] of pairs(STATUS_VISUAL_ANIMATIONS)) {
             const query = queries[tag];
 
             if (query === undefined) {

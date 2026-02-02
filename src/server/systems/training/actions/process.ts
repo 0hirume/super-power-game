@@ -3,16 +3,15 @@ import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
 import { Action, Multiplier, Value } from "../../../../shared/components";
+import { STAT_COMPONENTS } from "../../../../shared/constants/components";
 import { setComponent, setPairValue } from "../../../../shared/utilities/ecs";
-
-const STATS = [Value.Strength, Value.Endurance, Value.Speed, Value.JumpForce, Value.Power] as const;
 
 const COOLDOWN = 1;
 
 function initializer(world: World): { system: () => void } {
     const queries: Record<Entity<number>, CachedQuery<[Entity<number>, Pair<number, number>]>> = {};
 
-    for (const component of STATS) {
+    for (const component of STAT_COMPONENTS) {
         queries[component] = world
             .query(component, pair(Multiplier.Token, component))
             .with(pair(Action.Train, component))
@@ -21,7 +20,7 @@ function initializer(world: World): { system: () => void } {
     }
 
     function system(): void {
-        for (const component of STATS) {
+        for (const component of STAT_COMPONENTS) {
             const query = queries[component];
 
             if (query === undefined) {

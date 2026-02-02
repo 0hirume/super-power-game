@@ -2,17 +2,12 @@ import type { CachedQuery, Entity } from "@rbxts/jecs";
 import { Name, type Tag, type World } from "@rbxts/jecs";
 import { pair } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
-import { ReplicatedStorage } from "@rbxts/services";
 
-import { Player, Status, Visual } from "../../../../shared/components";
+import { Player, Visual } from "../../../../shared/components";
+import { STATUS_VISUAL_INSTANCES } from "../../../../shared/constants/components";
 import { setPairValue } from "../../../../shared/utilities/ecs";
 
-const STATUSES: Record<Tag, Model> = {
-    [Status.EnduranceTraining]: ReplicatedStorage.assets.effects.pushup,
-    [Status.PowerTraining]: ReplicatedStorage.assets.effects.meditation,
-};
-
-for (const [_, model] of pairs(STATUSES)) {
+for (const [_, model] of pairs(STATUS_VISUAL_INSTANCES)) {
     if (model === undefined) {
         error(`Model doesn't exist`);
     }
@@ -25,7 +20,7 @@ for (const [_, model] of pairs(STATUSES)) {
 function initializer(world: World): { system: () => void } {
     const queries: Record<Tag, CachedQuery<[Entity<Model>, Entity<BasePart>]>> = {};
 
-    for (const [tag] of pairs(STATUSES)) {
+    for (const [tag] of pairs(STATUS_VISUAL_INSTANCES)) {
         queries[tag] = world
             .query(Player.Character, Player.Torso)
             .with(tag)
@@ -34,7 +29,7 @@ function initializer(world: World): { system: () => void } {
     }
 
     function system(): void {
-        for (const [tag, model] of pairs(STATUSES)) {
+        for (const [tag, model] of pairs(STATUS_VISUAL_INSTANCES)) {
             const query = queries[tag];
 
             if (query === undefined) {

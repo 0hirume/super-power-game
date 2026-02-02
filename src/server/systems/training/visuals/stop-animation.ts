@@ -2,19 +2,18 @@ import type { CachedQuery, Pair, Tag, TagDiscriminator, World } from "@rbxts/jec
 import { pair } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
-import { Status, Visual } from "../../../../shared/components";
-
-const STATUSES = [Status.StrengthTraining, Status.EnduranceTraining, Status.PowerTraining] as const;
+import { Visual } from "../../../../shared/components";
+import { STATUS_TAGS } from "../../../../shared/constants/components";
 
 function initializers(world: World): { system: () => void } {
     const queries: Record<Tag, CachedQuery<[Pair<AnimationTrack, TagDiscriminator>]>> = {};
 
-    for (const tag of STATUSES) {
+    for (const tag of STATUS_TAGS) {
         queries[tag] = world.query(pair(Visual.AnimationTrack, tag)).without(tag).cached();
     }
 
     function system(): void {
-        for (const tag of STATUSES) {
+        for (const tag of STATUS_TAGS) {
             const query = queries[tag];
 
             if (query === undefined) {

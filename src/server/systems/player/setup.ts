@@ -4,10 +4,9 @@ import { onEvent } from "@rbxts/planck";
 import { Players } from "@rbxts/services";
 
 import { Multiplier, Player, Value } from "../../../shared/components";
+import { STAT_COMPONENTS } from "../../../shared/constants/components";
 import { BASE } from "../../../shared/constants/player";
 import { makeEntity, setComponent, setPairValue } from "../../../shared/utilities/ecs";
-
-const STATS = [Value.Strength, Value.Endurance, Value.Speed, Value.JumpForce, Value.Power] as const;
 
 const [hasPlayerJoined, collectPlayersJoined] = onEvent(Players.PlayerAdded);
 
@@ -17,7 +16,7 @@ function system(world: World): void {
         setComponent(world, entity, Player.Instance, player, true);
         setComponent(world, entity, Value.Health, BASE.HEALTH, true);
 
-        for (const component of STATS) {
+        for (const component of STAT_COMPONENTS) {
             setComponent(world, entity, component, BASE.VALUE, true);
             setPairValue(world, entity, Multiplier.Token, component, BASE.MULTIPLIER, true);
         }
