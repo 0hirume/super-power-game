@@ -4,7 +4,7 @@ import type { SystemTable } from "@rbxts/planck";
 
 import { Status, Visual } from "../../../../shared/components";
 
-const STATUSES = [Status.EnduranceTraining, Status.PowerTraining] as const;
+const STATUSES = [Status.StrengthTraining, Status.EnduranceTraining, Status.PowerTraining] as const;
 
 function initializers(world: World): { system: () => void } {
     const queries: Record<Tag, CachedQuery<[Pair<AnimationTrack, TagDiscriminator>]>> = {};

@@ -8,6 +8,7 @@ import { Player, Status, Visual } from "../../../../shared/components";
 import { setPairValue } from "../../../../shared/utilities/ecs";
 
 const STATUSES: Record<Tag, Model> = {
+    [Status.EnduranceTraining]: ReplicatedStorage.assets.effects.pushup,
     [Status.PowerTraining]: ReplicatedStorage.assets.effects.meditation,
 };
 
