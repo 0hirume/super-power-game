@@ -8,6 +8,7 @@ import { makeAnimation } from "../../../../shared/utilities/animations";
 import { setPairValue } from "../../../../shared/utilities/ecs";
 
 const ANIMATIONS: Record<Tag, Animation> = {
+    [Status.EnduranceTraining]: makeAnimation(animations["pushup.rbxm"]),
     [Status.PowerTraining]: makeAnimation(animations["meditation.rbxm"]),
 };
 
