@@ -23,8 +23,8 @@ function initializer(world: World): { system: () => void } {
     return { system };
 }
 
-export const addSpeedTrainRequest: SystemTable<[World]> = {
-    name: "AddSpeedTrainRequest",
+export const addSpeedTrainAction: SystemTable<[World]> = {
+    name: "AddSpeedTrainAction",
     runConditions: [timePassed(INTERVAL)],
     system: initializer,
 };

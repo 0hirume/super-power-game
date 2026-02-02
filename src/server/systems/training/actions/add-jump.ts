@@ -25,7 +25,7 @@ function initializer(world: World): { system: () => void } {
     return { system };
 }
 
-export const addJumpTrainRequest: SystemTable<[World]> = {
-    name: "AddJumpTrainRequest",
+export const addJumpTrainAction: SystemTable<[World]> = {
+    name: "AddJumpTrainAction",
     system: initializer,
 };

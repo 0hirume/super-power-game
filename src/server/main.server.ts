@@ -31,10 +31,10 @@ import {
 import { sendFull, sendUpdates } from "./systems/replecs";
 import { reconcileHumanoids, regenerateHealth } from "./systems/stats";
 import {
-    addJumpTrainRequest,
     addPowerTrainRequest,
-    addSpeedTrainRequest,
-    addTrainRequest,
+    addJumpTrainAction,
+    addSpeedTrainAction,
+    addTrainAction,
     applyTrainingModeEffects,
     destroyTrainingVisualEffect,
     playTrainingAnimation,
@@ -42,7 +42,7 @@ import {
     removeTrainingModeEffects,
     stopTrainingAnimation,
     updateTrainingMode,
-    processTrainRequest,
+    processTrainAction,
 } from "./systems/training";
 
 replicator.init(world);
@@ -79,11 +79,11 @@ scheduler
     .addSystem(destroyTrainingVisualEffect)
     .addSystem(playTrainingAnimation)
     .addSystem(stopTrainingAnimation)
-    .addSystem(addTrainRequest)
-    .addSystem(addSpeedTrainRequest)
-    .addSystem(addJumpTrainRequest)
     .addSystem(addPowerTrainRequest)
-    .addSystem(processTrainRequest)
+    .addSystem(addTrainAction)
+    .addSystem(addSpeedTrainAction)
+    .addSystem(addJumpTrainAction)
+    .addSystem(processTrainAction)
     .addSystem(decreaseCooldowns)
     .addSystem(sendFull)
     .addSystem(sendUpdates)

@@ -40,7 +40,7 @@ function initializer(world: World): { system: () => void } {
     return { system };
 }
 
-export const processTrainRequest: SystemTable<[World]> = {
-    name: "ProcessTrainRequest",
+export const processTrainAction: SystemTable<[World]> = {
+    name: "ProcessTrainAction",
     system: initializer,
 };
