@@ -5,6 +5,7 @@ declare global {
         assets: Folder & {
             effects: Folder & {
                 meditation: VisualEffectModel;
+                pushup: VisualEffectModel;
             };
         };
     }
