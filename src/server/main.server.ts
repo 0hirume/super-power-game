@@ -31,7 +31,6 @@ import {
 import { sendFull, sendUpdates } from "./systems/replecs";
 import { reconcileHumanoids, regenerateHealth } from "./systems/stats";
 import {
-    addPowerTrainRequest,
     addJumpTrainAction,
     addSpeedTrainAction,
     addTrainAction,
@@ -79,7 +78,6 @@ scheduler
     .addSystem(destroyTrainingVisualEffect)
     .addSystem(playTrainingAnimation)
     .addSystem(stopTrainingAnimation)
-    .addSystem(addPowerTrainRequest)
     .addSystem(addTrainAction)
     .addSystem(addSpeedTrainAction)
     .addSystem(addJumpTrainAction)

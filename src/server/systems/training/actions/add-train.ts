@@ -1,29 +1,31 @@
-import { pair, Wildcard, type World } from "@rbxts/jecs";
-import type { SystemTable } from "@rbxts/planck";
+import type { CachedQuery, Entity, Pair, TagDiscriminator } from "@rbxts/jecs";
+import { pair, type World } from "@rbxts/jecs";
+import { timePassed, type SystemTable } from "@rbxts/planck";
 
-import { Action, Player, Status } from "../../../../shared/components";
-import { routes } from "../../../../shared/routes";
+import { Action, Status, Value } from "../../../../shared/components";
 import { addPair } from "../../../../shared/utilities/ecs";
 
+const STATS = [Value.Strength, Value.Endurance, Value.Power] as const;
+
+const INTERVAL = 1;
+
 function initializer(world: World): { system: () => void } {
-    const query = world.query(Player.Instance).with(pair(Status.TrainingMode, Wildcard)).cached();
+    const queries: Record<Entity<number>, CachedQuery<[Pair<TagDiscriminator, number>]>> = {};
+
+    for (const component of STATS) {
+        queries[component] = world.query(pair(Status.TrainingMode, component));
+    }
 
     function system(): void {
-        for (const [_, player] of routes.requestTrain.query()) {
-            for (const [entity, instance] of query) {
-                if (player !== instance) {
-                    continue;
-                }
+        for (const component of STATS) {
+            const query = queries[component];
 
-                const stat = world.target(entity, Status.TrainingMode);
+            if (query === undefined) {
+                continue;
+            }
 
-                if (stat === undefined) {
-                    continue;
-                }
-
-                addPair(world, entity, Action.Train, stat);
-
-                break;
+            for (const [entity] of query) {
+                addPair(world, entity, Action.Train, component);
             }
         }
     }
@@ -31,7 +33,8 @@ function initializer(world: World): { system: () => void } {
     return { system };
 }
 
-export const addTrainRequest: SystemTable<[World]> = {
-    name: "AddTrainRequest",
+export const addTrainAction: SystemTable<[World]> = {
+    name: "AddTrainAction",
+    runConditions: [timePassed(INTERVAL)],
     system: initializer,
 };
