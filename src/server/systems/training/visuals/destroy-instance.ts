@@ -1,25 +1,19 @@
-import type { CachedQuery, Pair, Tag, TagDiscriminator, World } from "@rbxts/jecs";
+import type { World } from "@rbxts/jecs";
 import { pair } from "@rbxts/jecs";
+import Object from "@rbxts/object-utils";
 import type { SystemTable } from "@rbxts/planck";
 
 import { Visual } from "../../../../shared/components";
 import { STATUS_VISUAL_INSTANCES } from "../../../../shared/constants/components";
 
 function initializer(world: World): { system: () => void } {
-    const queries: Record<Tag, CachedQuery<[Pair<Model, TagDiscriminator>]>> = {};
-
-    for (const [tag] of pairs(STATUS_VISUAL_INSTANCES)) {
-        queries[tag] = world.query(pair(Visual.Instance, tag)).without(tag).cached();
-    }
+    const entries = Object.entries(STATUS_VISUAL_INSTANCES).map(([tag]) => ({
+        query: world.query(pair(Visual.Instance, tag)).without(tag).cached(),
+        tag,
+    }));
 
     function system(): void {
-        for (const [tag] of pairs(STATUS_VISUAL_INSTANCES)) {
-            const query = queries[tag];
-
-            if (query === undefined) {
-                continue;
-            }
-
+        for (const { query, tag } of entries) {
             for (const [entity, model] of query) {
                 world.remove(entity, pair(Visual.Instance, tag));
                 model.Destroy();

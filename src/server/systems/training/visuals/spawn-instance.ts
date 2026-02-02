@@ -1,6 +1,6 @@
-import type { CachedQuery, Entity } from "@rbxts/jecs";
-import { Name, type Tag, type World } from "@rbxts/jecs";
+import { Name, type World } from "@rbxts/jecs";
 import { pair } from "@rbxts/jecs";
+import Object from "@rbxts/object-utils";
 import type { SystemTable } from "@rbxts/planck";
 
 import { Player, Visual } from "../../../../shared/components";
@@ -18,24 +18,18 @@ for (const [_, model] of pairs(STATUS_VISUAL_INSTANCES)) {
 }
 
 function initializer(world: World): { system: () => void } {
-    const queries: Record<Tag, CachedQuery<[Entity<Model>, Entity<BasePart>]>> = {};
-
-    for (const [tag] of pairs(STATUS_VISUAL_INSTANCES)) {
-        queries[tag] = world
+    const entries = Object.entries(STATUS_VISUAL_INSTANCES).map(([tag, model]) => ({
+        model,
+        query: world
             .query(Player.Character, Player.Torso)
             .with(tag)
             .without(pair(Visual.Instance, tag))
-            .cached();
-    }
+            .cached(),
+        tag,
+    }));
 
     function system(): void {
-        for (const [tag, model] of pairs(STATUS_VISUAL_INSTANCES)) {
-            const query = queries[tag];
-
-            if (query === undefined) {
-                continue;
-            }
-
+        for (const { model, query, tag } of entries) {
             for (const [entity, character, torso] of query) {
                 const newModel = model.Clone();
                 newModel.Name = world.get(tag, Name) ?? "Effect";

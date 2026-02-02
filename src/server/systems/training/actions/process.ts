@@ -1,4 +1,3 @@
-import type { CachedQuery, Entity, Pair } from "@rbxts/jecs";
 import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
 
@@ -9,24 +8,17 @@ import { setComponent, setPairValue } from "../../../../shared/utilities/ecs";
 const COOLDOWN = 1;
 
 function initializer(world: World): { system: () => void } {
-    const queries: Record<Entity<number>, CachedQuery<[Entity<number>, Pair<number, number>]>> = {};
-
-    for (const component of STAT_COMPONENTS) {
-        queries[component] = world
+    const entries = STAT_COMPONENTS.map((component) => ({
+        component,
+        query: world
             .query(component, pair(Multiplier.Token, component))
             .with(pair(Action.Train, component))
-            .without(pair(Value.Cooldown, component))
-            .cached();
-    }
+            .without(Value.Cooldown, component)
+            .cached(),
+    }));
 
     function system(): void {
-        for (const component of STAT_COMPONENTS) {
-            const query = queries[component];
-
-            if (query === undefined) {
-                continue;
-            }
-
+        for (const { component, query } of entries) {
             for (const [entity, value, multiplier] of query) {
                 world.remove(entity, pair(Action.Train, component));
 
