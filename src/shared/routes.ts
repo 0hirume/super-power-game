@@ -5,8 +5,8 @@ import { Route } from "@rbxts/yetanothernet";
 export const routes = {
     onHumanoidJumped: new Route<[]>(),
 
-    receiveFull: new Route<[buffer, unknown[][]]>(),
-    receiveUpdate: new Route<[buffer, unknown[][]]>(),
+    receiveFull: new Route<[buffer, defined[][]?]>(),
+    receiveUpdate: new Route<[buffer, defined[][]?]>(),
 
     requestReplication: new Route<[]>(),
     requestTrain: new Route<[]>(),

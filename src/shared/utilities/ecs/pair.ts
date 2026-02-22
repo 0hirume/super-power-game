@@ -14,7 +14,7 @@ export function addPair(
     world.add(entity, jecs.pair(relation, target));
 
     if (isReplicated) {
-        world.set(entity, jecs.pair(replecs.pair, relation), undefined);
+        world.set(entity, jecs.pair(replecs.relation, relation), undefined);
     }
 }
 
@@ -29,6 +29,6 @@ export function setPairValue<R, T>(
     world.set(entity, jecs.pair(relation, target), value);
 
     if (isReplicated) {
-        world.set(entity, jecs.pair(replecs.pair, relation), undefined);
+        world.set(entity, jecs.pair(replecs.relation, relation), undefined);
     }
 }
