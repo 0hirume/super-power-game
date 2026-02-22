@@ -1,0 +1,7 @@
+[tools]
+bun = "latest"
+"npm:@typescript/native-preview" = "latest"
+"npm:oxfmt" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+oxlint = "latest"
+tombi = "latest"
