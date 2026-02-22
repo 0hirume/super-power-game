@@ -1,5 +1,6 @@
-import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
+
+import { pair, type World } from "@rbxts/jecs";
 
 import { Player, Status } from "../../../shared/components";
 import { routes } from "../../../shared/routes";

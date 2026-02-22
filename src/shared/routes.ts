@@ -1,4 +1,5 @@
 import type { Entity } from "@rbxts/jecs";
+
 import { Route } from "@rbxts/yetanothernet";
 
 export const routes = {

@@ -10,11 +10,13 @@ function initializer(world: World): { system: () => void } {
 
     function system(): void {
         for (const [_, requester] of routes.onHumanoidJumped.query()) {
+            print("request");
             for (const [entity, player] of query) {
                 if (requester !== player) {
                     continue;
                 }
 
+                print(player);
                 addPair(world, entity, Action.Train, Value.JumpForce);
 
                 break;

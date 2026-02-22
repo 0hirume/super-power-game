@@ -1,6 +1,8 @@
-import type { VisualEffectModel } from "../types";
 import type { Entity, Tag } from "@rbxts/jecs";
+
 import { ReplicatedStorage } from "@rbxts/services";
+
+import type { VisualEffectModel } from "../types";
 
 import animations from "../animations";
 import { Status, Value } from "../components";

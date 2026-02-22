@@ -1,4 +1,5 @@
 import type { World } from "@rbxts/jecs";
+
 import { timePassed, type SystemTable } from "@rbxts/planck";
 
 import { Action, Player, Value } from "../../../../shared/components";

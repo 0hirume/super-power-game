@@ -1,7 +1,8 @@
 import type { World } from "@rbxts/jecs";
+import type { SystemTable } from "@rbxts/planck";
+
 import { pair } from "@rbxts/jecs";
 import Object from "@rbxts/object-utils";
-import type { SystemTable } from "@rbxts/planck";
 
 import { Status } from "../../../../shared/components";
 import { STAT_STATUS_MAP } from "../../../../shared/constants/components";

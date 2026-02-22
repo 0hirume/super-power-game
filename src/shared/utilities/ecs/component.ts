@@ -1,5 +1,6 @@
-import { Name, type InferComponent } from "@rbxts/jecs";
 import type { Entity, World } from "@rbxts/jecs";
+
+import { Name, type InferComponent } from "@rbxts/jecs";
 import jecs from "@rbxts/jecs";
 import replecs from "@rbxts/replecs";
 

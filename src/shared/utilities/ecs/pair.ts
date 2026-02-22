@@ -1,5 +1,6 @@
 import type { InferComponent, Pair } from "@rbxts/jecs";
 import type { Entity, World, Tag } from "@rbxts/jecs";
+
 import jecs from "@rbxts/jecs";
 import replecs from "@rbxts/replecs";
 

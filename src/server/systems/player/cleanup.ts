@@ -1,5 +1,6 @@
 import type { World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
+
 import { onEvent } from "@rbxts/planck";
 import { Players } from "@rbxts/services";
 

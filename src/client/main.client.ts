@@ -7,7 +7,6 @@ import Net from "@rbxts/yetanothernet";
 import { replicator } from "../shared/replicator/client";
 import { routes } from "../shared/routes";
 import { world } from "../shared/world";
-
 import { scheduler } from "./scheduler";
 import {
     freezeMovementSystem,

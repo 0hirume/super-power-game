@@ -6,7 +6,6 @@ import Net from "@rbxts/yetanothernet";
 import { replicator } from "../shared/replicator/server";
 import { routes } from "../shared/routes";
 import { world } from "../shared/world";
-
 import { scheduler } from "./scheduler";
 import { decreaseCooldowns } from "./systems/decrease-cooldowns";
 import {

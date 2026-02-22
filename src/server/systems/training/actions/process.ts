@@ -1,5 +1,6 @@
-import { pair, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
+
+import { pair, type World } from "@rbxts/jecs";
 
 import { Action, Multiplier, Value } from "../../../../shared/components";
 import { STAT_COMPONENTS } from "../../../../shared/constants/components";

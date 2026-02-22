@@ -1,6 +1,7 @@
 import type { World } from "@rbxts/jecs";
-import { pair, Wildcard } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
+
+import { pair, Wildcard } from "@rbxts/jecs";
 import { ContextActionService } from "@rbxts/services";
 
 import { Status } from "../../../shared/components";

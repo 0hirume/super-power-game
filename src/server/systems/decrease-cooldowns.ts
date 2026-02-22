@@ -1,5 +1,6 @@
-import { pair, Wildcard, type World } from "@rbxts/jecs";
 import type { SystemTable } from "@rbxts/planck";
+
+import { pair, Wildcard, type World } from "@rbxts/jecs";
 
 import { Value } from "../../shared/components";
 import { setPairValue } from "../../shared/utilities/ecs";
