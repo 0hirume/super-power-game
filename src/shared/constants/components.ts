@@ -29,6 +29,7 @@ export const STAT_STATUS_MAP: Record<Entity<number>, Tag> = {
 } as const;
 
 export const STATUS_VISUAL_ANIMATIONS: Record<Tag, Animation> = {
+    [Status.StrengthTraining]: makeAnimation(animations["punch.rbxm"]),
     [Status.EnduranceTraining]: makeAnimation(animations["pushup.rbxm"]),
     [Status.PowerTraining]: makeAnimation(animations["meditation.rbxm"]),
 } as const;
