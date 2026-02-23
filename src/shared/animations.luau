@@ -2,6 +2,7 @@
 -- It is not intended for manual editing.
 local animations = {
 	["meditation.rbxm"] = "rbxassetid://122308760179749",
+	["punch.rbxm"] = "rbxassetid://102216068575310",
 	["pushup.rbxm"] = "rbxassetid://87319158333562",
 }
 
