@@ -1,6 +1,8 @@
 [tools]
 "aqua:Kampfkarren/selene" = "latest"
 "aqua:tombi-toml/tombi" = "latest"
+"github:blake-mealey/mantle" = "latest"
+"github:jacktabscode/asphalt" = "latest"
 "github:johnnymorganz/luau-lsp" = "latest"
 "github:johnnymorganz/stylua" = "latest"
 "github:lune-org/lune" = "latest"
