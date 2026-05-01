@@ -1,0 +1,13 @@
+*.rbxlx
+*.rbxlx.lock
+*.rbxl
+*.rbxl.lock
+
+.docs.json
+.types.d.luau
+
+/*packages/
+/.pesde/
+
+/pesde.lock
+/sourcemap.json
