@@ -9,5 +9,6 @@
 /*packages/
 /.pesde/
 
+/.env
 /pesde.lock
 /sourcemap.json
