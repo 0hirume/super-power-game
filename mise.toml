@@ -1,0 +1,10 @@
+[tools]
+"aqua:Kampfkarren/selene" = "latest"
+"aqua:tombi-toml/tombi" = "latest"
+"github:johnnymorganz/luau-lsp" = "latest"
+"github:johnnymorganz/stylua" = "latest"
+"github:lune-org/lune" = "latest"
+"github:pesde-pkg/pesde" = "latest"
+"github:rojo-rbx/rojo" = "latest"
+"npm:oxfmt" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
