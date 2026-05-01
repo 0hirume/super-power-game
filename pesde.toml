@@ -1,0 +1,39 @@
+name = "ohirume/super_power_game"
+version = "0.1.0"
+
+[target]
+environment = "roblox"
+
+[indices]
+default = "https://github.com/pesde-pkg/index"
+
+[wally_indices]
+default = "https://github.com/UpliftGames/wally-index"
+
+[scripts]
+roblox_sync_config_generator = ".pesde/scripts/roblox_sync_config_generator.luau"
+sourcemap_generator = ".pesde/scripts/sourcemap_generator.luau"
+
+[dev_dependencies]
+blink = { repo = "https://github.com/1axen/blink", rev = "d3982fa1daedc5357d35905f51c6fe00bd909c93", target = "lune" }
+rojo = { name = "pesde/rojo", version = "^7.6.1", target = "lune" }
+scripts = { name = "pesde/scripts_rojo", version = "^0.2.0", target = "lune" }
+
+[engines]
+lune = "^0.10.4"
+pesde = "^0.7.3"
+
+[dependencies]
+jabby = { wally = "alicesaidhi/jabby", version = "^0.5.1" }
+jecs = { wally = "ukendio/jecs", version = "^0.11.0" }
+planck = { wally = "yetanotherclown/planck", version = "^0.3.0-alpha.2" }
+planck-jabby = { wally = "yetanotherclown/planck-jabby", version = "^0.3.0-alpha.1" }
+planck-runservice = { wally = "yetanotherclown/planck-runservice", version = "^0.2.0" }
+replecs = { wally = "pepeeltoro41/replecs", version = "^0.3.1" }
+vide = { wally = "centau/vide", version = "^0.4.0" }
+
+[overrides]
+"jabby>jecs" = { wally = "ukendio/jecs", version = "^0.11.0" }
+"planck-jabby>jabby" = { wally = "alicesaidhi/jabby", version = "^0.5.1" }
+"planck-runservice>planck" = { wally = "yetanotherclown/planck", version = "^0.3.0-alpha.2" }
+"replecs>jecs" = { wally = "ukendio/jecs", version = "^0.11.0" }
