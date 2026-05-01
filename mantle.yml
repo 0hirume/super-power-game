@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://mantledeploy.vercel.app/schemas/v0.11.18/schema.json
+owner:
+  group: 985474832
+
+environments:
+  - label: staging
+    targetNamePrefix: environmentLabel
+  - label: production
+    targetAccess: public
+
+target:
+  experience:
+    configuration:
+      enableStudioAccessToApis: true
+      avatarType: r6
+      avatarAnimationType: standard
+    places:
+      start:
+        configuration:
+          description: Train to become the strongest!
+          maxPlayerCount: 12
+          name: Super Power Game
+        file: super-power-game.rbxl
