@@ -15,7 +15,7 @@ roblox_sync_config_generator = ".pesde/scripts/roblox_sync_config_generator.luau
 sourcemap_generator = ".pesde/scripts/sourcemap_generator.luau"
 
 [dev_dependencies]
-blink = { repo = "https://github.com/1axen/blink", rev = "d3982fa1daedc5357d35905f51c6fe00bd909c93", target = "lune" }
+blink = { name = "1axen/blink", version = "^0.18.8", target = "lune" }
 rojo = { name = "pesde/rojo", version = "^7.6.1", target = "lune" }
 scripts = { name = "pesde/scripts_rojo", version = "^0.2.0", target = "lune" }
 
