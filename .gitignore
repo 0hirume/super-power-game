@@ -3,6 +3,7 @@
 *.rbxl
 *.rbxl.lock
 
+blink.luau
 .docs.json
 .types.d.luau
 
