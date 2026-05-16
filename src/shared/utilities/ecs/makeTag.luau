@@ -1,10 +1,7 @@
 local jecs = require("../../roblox_packages/jecs")
 local replecs = require("../../roblox_packages/replecs")
 
-type Entity<T = nil> = jecs.Entity<T>
-type World = jecs.World
-
-return function(world: World, name: string?, isShared: boolean?): Entity
+return function(world: jecs.World, name: string?, isShared: boolean?): jecs.Entity
     local tag = world:entity()
 
     if name ~= nil then
