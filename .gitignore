@@ -7,6 +7,7 @@ blink.luau
 .docs.json
 .types.d.luau
 
+/.helix/
 /*packages/
 /.pesde/
 
