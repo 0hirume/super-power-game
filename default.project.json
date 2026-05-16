@@ -32,6 +32,10 @@
         "effects": {
           "$className": "Folder",
           "$path": "assets/effects"
+        },
+        "inputs": {
+          "$className": "Folder",
+          "$path": "assets/inputs"
         }
       },
       "roblox_packages": {
