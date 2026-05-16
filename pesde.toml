@@ -26,14 +26,12 @@ pesde = "^0.7.3"
 [dependencies]
 jabby = { wally = "alicesaidhi/jabby", version = "^0.5.1" }
 jecs = { wally = "ukendio/jecs", version = "^0.11.0" }
-planck = { wally = "yetanotherclown/planck", version = "^0.3.0-alpha.2" }
-planck-jabby = { wally = "yetanotherclown/planck-jabby", version = "^0.3.0-alpha.1" }
-planck-runservice = { wally = "yetanotherclown/planck-runservice", version = "^0.2.0" }
+planck = { wally = "yetanotherclown/planck", version = "^0.3.0-rc.2" }
+planck-jabby = { wally = "yetanotherclown/planck-jabby", version = "^0.3.0-rc.2" }
+planck-runservice = { wally = "yetanotherclown/planck-runservice", version = "^0.3.0-rc.2" }
 replecs = { wally = "pepeeltoro41/replecs", version = "^0.3.1" }
 vide = { wally = "centau/vide", version = "^0.4.0" }
 
 [overrides]
 "jabby>jecs" = { wally = "ukendio/jecs", version = "^0.11.0" }
-"planck-jabby>jabby" = { wally = "alicesaidhi/jabby", version = "^0.5.1" }
-"planck-runservice>planck" = { wally = "yetanotherclown/planck", version = "^0.3.0-alpha.2" }
 "replecs>jecs" = { wally = "ukendio/jecs", version = "^0.11.0" }
