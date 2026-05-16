@@ -28,8 +28,7 @@ local systemTable: planck.SystemTable<jecs.World> = {
                             break
                         end
 
-                        -- FIXME: remove this ascription when fixed
-                        local newCooldown = cooldown - scheduler:getDeltaTime() :: number
+                        local newCooldown = cooldown - scheduler:getDeltaTime()
 
                         if newCooldown <= 0 then
                             world:remove(entity, jecs.pair(value.Cooldown, target))
