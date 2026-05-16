@@ -18,7 +18,7 @@ local systemTable: planck.SystemTable<jecs.World> = {
 
         local client = jabby.obtain_client()
 
-        ReplicatedStorage.assets.inputs.contexts.debug.openJabby.Pressed:Connect(function()
+        ReplicatedStorage.assets.inputs.debug.openJabby.Pressed:Connect(function()
             client.spawn_app(client.apps.home, nil)
         end)
     end,
