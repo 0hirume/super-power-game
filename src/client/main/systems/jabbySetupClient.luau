@@ -1,4 +1,4 @@
-local ContextActionService = game:GetService("ContextActionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local jabby = require("@game/ReplicatedStorage/roblox_packages/jabby")
 local jecs = require("@game/ReplicatedStorage/roblox_packages/jecs")
@@ -18,11 +18,9 @@ local systemTable: planck.SystemTable<jecs.World> = {
 
         local client = jabby.obtain_client()
 
-        ContextActionService:BindAction("Open Jabby Home", function(_, state)
-            if state == Enum.UserInputState.Begin then
-                client.spawn_app(client.apps.home, nil)
-            end
-        end, false, Enum.KeyCode.F4)
+        ReplicatedStorage.assets.inputs.contexts.debug.openJabby.Pressed:Connect(function()
+            client.spawn_app(client.apps.home, nil)
+        end)
     end,
 }
 
