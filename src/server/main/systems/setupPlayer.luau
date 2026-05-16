@@ -210,8 +210,6 @@ local systemTable: planck.SystemTable<jecs.World> = {
                     elseif command.kind == "TorsoRemoving" then
                         world:remove(entity, instance.Torso)
                     end
-
-                    break
                 end
 
                 table.clear(queue)
