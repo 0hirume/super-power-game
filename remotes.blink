@@ -1,0 +1,5 @@
+option Casing = Camel
+
+option ServerOutput = "./src/server/blink.luau"
+option ClientOutput = "./src/client/main/blink.luau"
+option TypesOutput = "./src/shared/blink.luau"
