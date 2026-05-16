@@ -37,3 +37,16 @@ event sendUpdates {
 	Call: Polling,
 	Data: (buffer, unknown)
 }
+
+enum TrainingMode = {
+	Strength,
+	Endurance,
+	Power
+}
+
+event setTrainingMode {
+	From: Client,
+	Type: Reliable,
+	Call: Polling,
+	Data: TrainingMode
+}
