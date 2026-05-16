@@ -3,3 +3,37 @@ option Casing = Camel
 option ServerOutput = "./src/server/blink.luau"
 option ClientOutput = "./src/client/main/blink.luau"
 option TypesOutput = "./src/shared/blink.luau"
+
+event requestReplication {
+	From: Client,
+	Type: Reliable,
+	Call: Polling
+}
+
+event sendClientHandshake {
+	From: Client,
+	Type: Reliable,
+	Call: Polling,
+	Data: unknown,
+}
+
+event sendServerHandshake {
+	From: Server,
+	Type: Reliable,
+	Call: Polling,
+	Data: unknown,
+}
+
+event sendFull {
+	From: Server,
+	Type: Reliable,
+	Call: Polling,
+	Data: (buffer, unknown)
+}
+
+event sendUpdates {
+	From: Server,
+	Type: Reliable,
+	Call: Polling,
+	Data: (buffer, unknown)
+}
