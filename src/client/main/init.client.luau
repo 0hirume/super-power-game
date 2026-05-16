@@ -9,6 +9,7 @@ local applyUpdates = require("@self/systems/replecs/applyUpdates")
 local jabbySetupClient = require("@self/systems/jabbySetupClient")
 local sendClientHandshake = require("@self/systems/replecs/sendClientHandshake")
 local startReplication = require("@self/systems/replecs/startReplication")
+local trackJump = require("@self/systems/trackJump")
 local verifyServerHandshake = require("@self/systems/replecs/verifyServerHandshake")
 
 local replicator = require("@self/replicator")
@@ -29,3 +30,4 @@ scheduler
     :addSystem(applyFull)
     :addSystem(applyUpdates)
     :addSystem(jabbySetupClient)
+    :addSystem(trackJump)

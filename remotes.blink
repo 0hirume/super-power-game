@@ -38,6 +38,12 @@ event sendUpdates {
 	Data: (buffer, unknown)
 }
 
+event jumped {
+	From: Client,
+	Type: Reliable,
+	Call: Polling
+}
+
 enum TrainingMode = {
 	Strength,
 	Endurance,
