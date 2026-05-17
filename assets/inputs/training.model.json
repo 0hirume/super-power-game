@@ -1,0 +1,53 @@
+{
+  "ClassName": "InputContext",
+  "Children": [
+    {
+      "ClassName": "InputAction",
+      "Name": "setTrainingModeStrength",
+      "Properties": {
+        "Type": "Bool"
+      },
+      "Children": [
+        {
+          "ClassName": "InputBinding",
+          "Name": "binding",
+          "Properties": {
+            "KeyCode": "One"
+          }
+        }
+      ]
+    },
+    {
+      "ClassName": "InputAction",
+      "Name": "setTrainingModeEndurance",
+      "Properties": {
+        "Type": "Bool"
+      },
+      "Children": [
+        {
+          "ClassName": "InputBinding",
+          "Name": "binding",
+          "Properties": {
+            "KeyCode": "Two"
+          }
+        }
+      ]
+    },
+    {
+      "ClassName": "InputAction",
+      "Name": "setTrainingModePower",
+      "Properties": {
+        "Type": "Bool"
+      },
+      "Children": [
+        {
+          "ClassName": "InputBinding",
+          "Name": "binding",
+          "Properties": {
+            "KeyCode": "Three"
+          }
+        }
+      ]
+    }
+  ]
+}
