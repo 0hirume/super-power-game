@@ -45,6 +45,7 @@ local systemTable: planck.SystemTable<jecs.World> = {
 
         local function onDescendantAdded(player: Player, descendant: Instance)
             if descendant:IsA("Humanoid") then
+                descendant.UseJumpPower = false
                 table.insert(queue, { kind = "HumanoidAdded", player = player, humanoid = descendant } :: Command)
             elseif descendant:IsA("Animator") then
                 table.insert(queue, { kind = "AnimatorAdded", player = player, animator = descendant } :: Command)

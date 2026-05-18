@@ -12,8 +12,6 @@ local systemTable: planck.SystemTable<jecs.World> = {
         return {
             system = function()
                 for _, humanoid, health, endurance, speed, jumpForce in query do
-                    humanoid.UseJumpPower = false
-
                     humanoid.Health = health
                     humanoid.MaxHealth = 100 + endurance
 
