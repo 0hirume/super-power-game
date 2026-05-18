@@ -6,6 +6,8 @@ local planck = require("@game/ReplicatedStorage/roblox_packages/planck")
 
 local world = require("@game/ReplicatedStorage/world")
 
+local OPEN_JABBY_ACTION = ReplicatedStorage.assets.inputs.debug.openJabby
+
 local systemTable: planck.SystemTable<jecs.World> = {
     name = "JabbySetupClient",
     runConditions = { planck.runOnce() },
@@ -18,7 +20,7 @@ local systemTable: planck.SystemTable<jecs.World> = {
 
         local client = jabby.obtain_client()
 
-        ReplicatedStorage.assets.inputs.debug.openJabby.Pressed:Connect(function()
+        OPEN_JABBY_ACTION.Pressed:Connect(function()
             client.spawn_app(client.apps.home, nil)
         end)
     end,
