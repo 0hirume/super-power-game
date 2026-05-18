@@ -13,6 +13,10 @@ local systemTable: planck.SystemTable<jecs.World> = {
             configuration = { world = world },
             name = "Server World",
         })
+
+        jabby.set_check_function(function(player)
+            return player:IsInGroupAsync(985474832)
+        end)
     end,
 }
 
