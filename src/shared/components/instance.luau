@@ -11,4 +11,5 @@ return {
     Torso = makeComponent<<Part>>(world, "Torso", true),
 
     AnimationTrack = makeComponent<<AnimationTrack>>(world, "AnimationTrack"),
+    VisualEffect = makeComponent<<Model>>(world, "VisualEffect"),
 }
