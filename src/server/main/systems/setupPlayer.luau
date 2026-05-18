@@ -22,6 +22,8 @@ type Command =
     | { read kind: "AnimatorRemoving", read player: Player }
     | { read kind: "HumanoidRootAdded", read player: Player, read root: Part }
     | { read kind: "HumanoidRootRemoving", read player: Player }
+    | { read kind: "HeadAdded", read player: Player, read head: Part }
+    | { read kind: "HeadRemoving", read player: Player }
     | { read kind: "TorsoAdded", read player: Player, read torso: Part }
     | { read kind: "TorsoRemoving", read player: Player }
 
@@ -51,6 +53,8 @@ local systemTable: planck.SystemTable<jecs.World> = {
                 table.insert(queue, { kind = "AnimatorAdded", player = player, animator = descendant } :: Command)
             elseif descendant.Name == "HumanoidRootPart" and descendant:IsA("Part") then
                 table.insert(queue, { kind = "HumanoidRootAdded", player = player, root = descendant } :: Command)
+            elseif descendant.Name == "Head" and descendant:IsA("Part") then
+                table.insert(queue, { kind = "HeadAdded", player = player, head = descendant } :: Command)
             elseif descendant.Name == "Torso" and descendant:IsA("Part") then
                 table.insert(queue, { kind = "TorsoAdded", player = player, torso = descendant } :: Command)
             end
@@ -63,6 +67,8 @@ local systemTable: planck.SystemTable<jecs.World> = {
                 table.insert(queue, { kind = "AnimatorRemoving", player = player } :: Command)
             elseif descendant.Name == "HumanoidRootPart" and descendant:IsA("Part") then
                 table.insert(queue, { kind = "HumanoidRootRemoving", player = player } :: Command)
+            elseif descendant.Name == "Head" and descendant:IsA("Part") then
+                table.insert(queue, { kind = "HeadRemoving", player = player } :: Command)
             elseif descendant.Name == "Torso" and descendant:IsA("Part") then
                 table.insert(queue, { kind = "TorsoRemoving", player = player } :: Command)
             end
@@ -153,6 +159,7 @@ local systemTable: planck.SystemTable<jecs.World> = {
                         replicator:set_reliable(player, instance.Humanoid)
                         replicator:set_reliable(player, instance.Animator)
                         replicator:set_reliable(player, instance.HumanoidRoot)
+                        replicator:set_reliable(player, instance.Head)
                         replicator:set_reliable(player, instance.Torso)
                         replicator:set_reliable(player, value.Health)
                         replicator:set_reliable(player, value.Strength)
@@ -162,6 +169,7 @@ local systemTable: planck.SystemTable<jecs.World> = {
                         replicator:set_reliable(player, value.Power)
                         replicator:set_relation(player, value.TokenMultiplier)
                         replicator:set_relation(player, state.TrainingMode)
+                        replicator:set_relation(player, state.MovementDisabled)
 
                         world:set(player, instance.Player, command.player)
                         world:set(player, value.Health, 100)
@@ -206,6 +214,10 @@ local systemTable: planck.SystemTable<jecs.World> = {
                         world:set(entity, instance.HumanoidRoot, command.root)
                     elseif command.kind == "HumanoidRootRemoving" then
                         world:remove(entity, instance.HumanoidRoot)
+                    elseif command.kind == "HeadAdded" then
+                        world:set(entity, instance.Head, command.head)
+                    elseif command.kind == "HeadRemoving" then
+                        world:remove(entity, instance.Head)
                     elseif command.kind == "TorsoAdded" then
                         world:set(entity, instance.Torso, command.torso)
                     elseif command.kind == "TorsoRemoving" then
