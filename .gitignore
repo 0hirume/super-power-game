@@ -1,8 +1,0 @@
-*.rbxl
-*.tsbuildinfo
-.env
-bun.lock
-include
-node_modules
-out
-sourcemap.json
