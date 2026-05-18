@@ -10,7 +10,7 @@
       "Children": [
         {
           "ClassName": "InputBinding",
-          "Name": "binding",
+          "Name": "keyboard",
           "Properties": {
             "KeyCode": "F4"
           }
