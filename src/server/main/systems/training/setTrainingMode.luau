@@ -21,18 +21,22 @@ local systemTable: planck.SystemTable<jecs.World> = {
 
             if currentMode ~= nil then
                 world:remove(entity, jecs.pair(state.TrainingMode, currentMode))
+                world:remove(entity, jecs.pair(state.MovementDisabled, state.TrainingMode))
             end
 
             if mode == "Strength" and (currentMode ~= value.Strength) then
                 world:add(entity, jecs.pair(state.TrainingMode, value.Strength))
+                world:add(entity, jecs.pair(state.MovementDisabled, state.TrainingMode))
             end
 
             if mode == "Endurance" and (currentMode ~= value.Endurance) then
                 world:add(entity, jecs.pair(state.TrainingMode, value.Endurance))
+                world:add(entity, jecs.pair(state.MovementDisabled, state.TrainingMode))
             end
 
             if mode == "Power" and (currentMode ~= value.Power) then
                 world:add(entity, jecs.pair(state.TrainingMode, value.Power))
+                world:add(entity, jecs.pair(state.MovementDisabled, state.TrainingMode))
             end
 
             break
