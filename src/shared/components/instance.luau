@@ -9,4 +9,6 @@ return {
     Animator = makeComponent<<Animator>>(world, "Animator", true),
     Head = makeComponent<<Part>>(world, "Head", true),
     Torso = makeComponent<<Part>>(world, "Torso", true),
+
+    AnimationTrack = makeComponent<<AnimationTrack>>(world, "AnimationTrack"),
 }
