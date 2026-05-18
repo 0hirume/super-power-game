@@ -24,7 +24,6 @@ local updatePlayerCollision = require("@self/systems/updatePlayerCollision")
 local replicator = require("@self/replicator")
 
 require("@game/ReplicatedStorage/components/instance")
-require("@game/ReplicatedStorage/components/intent")
 require("@game/ReplicatedStorage/components/state")
 require("@game/ReplicatedStorage/components/value")
 
