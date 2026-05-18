@@ -4,4 +4,5 @@ local world = require("../world")
 return {
     TrainingMode = makeTag(world, "TrainingMode", true),
     MovementDisabled = makeTag(world, "MovementDisabled", true),
+    NoCollide = makeTag(world, "NoCollide", true),
 }

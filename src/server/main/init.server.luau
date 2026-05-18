@@ -19,6 +19,7 @@ local setTrainingMode = require("@self/systems/training/setTrainingMode")
 local setupPlayer = require("@self/systems/setupPlayer")
 local spawnTrainingVisualEffects = require("@self/systems/training/spawnTrainingVisualEffects")
 local stopTrainingAnimation = require("@self/systems/training/stopTrainingAnimation")
+local updatePlayerCollision = require("@self/systems/updatePlayerCollision")
 
 local replicator = require("@self/replicator")
 
@@ -47,3 +48,4 @@ scheduler
     :addSystem(stopTrainingAnimation)
     :addSystem(spawnTrainingVisualEffects)
     :addSystem(destroyTrainingVisualEffects)
+    :addSystem(updatePlayerCollision)
