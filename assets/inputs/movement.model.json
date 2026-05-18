@@ -1,0 +1,37 @@
+{
+  "ClassName": "InputContext",
+  "Children": [
+    {
+      "ClassName": "InputAction",
+      "Name": "move",
+      "Properties": {
+        "Type": "Direction2D"
+      },
+      "Children": [
+        {
+          "ClassName": "InputBinding",
+          "Name": "keyboard",
+          "Properties": {
+            "Down": "S",
+            "Left": "A",
+            "Right": "D",
+            "Up": "W"
+          }
+        }
+      ]
+    },
+    {
+      "ClassName": "InputAction",
+      "Name": "jump",
+      "Children": [
+        {
+          "ClassName": "InputBinding",
+          "Name": "keyboard",
+          "Properties": {
+            "KeyCode": "Space"
+          }
+        }
+      ]
+    }
+  ]
+}
