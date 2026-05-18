@@ -22,6 +22,10 @@ local systemTable: planck.SystemTable<jecs.World> = {
                         continue
                     end
 
+                    if humanoid:GetState() == Enum.HumanoidStateType.Dead then
+                        continue
+                    end
+
                     world:set(entity, value.Speed, speed + multiplier)
                     world:set(entity, jecs.pair(value.Cooldown, value.Speed), 1)
                 end

@@ -11,7 +11,7 @@ local systemTable: planck.SystemTable<jecs.World> = {
     name = "ProcessJump",
     system = function(world: jecs.World)
         local query = world
-            :query(instance.Player, value.JumpForce, jecs.pair(value.TokenMultiplier, value.JumpForce))
+            :query(instance.Player, instance.Humanoid, value.JumpForce, jecs.pair(value.TokenMultiplier, value.JumpForce))
             :without(jecs.pair(state.TrainingMode, jecs.Wildcard))
             :without(jecs.pair(value.Cooldown, value.JumpForce))
             :cached()
@@ -19,8 +19,12 @@ local systemTable: planck.SystemTable<jecs.World> = {
         return {
             system = function()
                 for _, sender in blink.jumped.iter() do
-                    for entity, player, jumpForce, multiplier in query do
+                    for entity, player, humanoid, jumpForce, multiplier in query do
                         if sender ~= player then
+                            continue
+                        end
+
+                        if humanoid:GetState() == Enum.HumanoidStateType.Dead then
                             continue
                         end
 
